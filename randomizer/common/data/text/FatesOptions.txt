@@ -1,0 +1,14 @@
+Randomize Character Classes
+Randomize Class Stats and Skills
+Randomize Skills
+Randomize Chest Items
+Randomize Join Order
+Same-Sex Swaps Only
+Adjust Cutscene Text
+Adjust Cutscene Voices
+Adjust Cutscene Models
+Recruit Anna's Replacement Through My Castle
+Promote Jakob and Felicia
+Include Personal Skills in Skill Pool
+Unlock Hero Battles
+Patch Bitflags

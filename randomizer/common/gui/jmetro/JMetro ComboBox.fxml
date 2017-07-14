@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?scenebuilder-stylesheet JMetroLightTheme.css?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="373.0" styleClass="background" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Label layoutX="43.0" layoutY="37.0" styleClass="header" text="Combo Box">
+    </Label>
+    <Label layoutX="43.0" layoutY="165.0" styleClass="item-title" text="normal" textFill="WHITE">
+    </Label>
+    <Label layoutX="260.0" layoutY="165.0" styleClass="item-title" text="disabled">
+    </Label>
+    <ComboBox layoutX="43.0" layoutY="187.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="1" />
+          <String fx:value="2" />
+          <String fx:value="3" />
+          <String fx:value="4" />
+          <String fx:value="5" />
+          <String fx:value="6" />
+          <String fx:value="7" />
+          <String fx:value="8" />
+          <String fx:value="9" />
+          <String fx:value="10" />
+          <String fx:value="11" />
+          <String fx:value="12" />
+          <String fx:value="13" />
+          <String fx:value="14" />
+          <String fx:value="15" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ComboBox disable="true" layoutX="260.0" layoutY="188.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="1" />
+          <String fx:value="2" />
+          <String fx:value="3" />
+          <String fx:value="4" />
+          <String fx:value="5" />
+          <String fx:value="6" />
+          <String fx:value="7" />
+          <String fx:value="8" />
+          <String fx:value="9" />
+          <String fx:value="10" />
+          <String fx:value="11" />
+          <String fx:value="12" />
+          <String fx:value="13" />
+          <String fx:value="14" />
+          <String fx:value="15" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+  </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.common.gui.Verification">
+   <children>
+      <ProgressBar fx:id="progressBar" layoutY="88.0" prefHeight="23.0" prefWidth="320.0" progress="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <ComboBox fx:id="regionBox" layoutX="25.0" layoutY="168.0" prefHeight="35.0" prefWidth="270.0" promptText="Select region." AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+      <Button layoutX="117.0" layoutY="215.0" mnemonicParsing="false" onAction="#verify" text="Verify" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="117.0" />
+      <Label fx:id="errorLabel" layoutX="10.0" layoutY="57.0" prefHeight="27.0" prefWidth="300.0" text="An error occurred. Check the logs for details." textFill="RED" visible="false" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Label layoutX="94.0" layoutY="25.0" text="File Verification">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="gameBox" layoutX="25.0" layoutY="125.0" prefHeight="35.0" prefWidth="270.0" promptText="Select game." AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+   </children>
+</AnchorPane>

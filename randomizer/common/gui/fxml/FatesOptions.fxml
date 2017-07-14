@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.CheckListView?>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.common.gui.FatesOptions">
+   <children>
+      <Button layoutX="159.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="131.0" text="Randomize" AnchorPane.bottomAnchor="12.0" />
+      <ProgressIndicator fx:id="progress" layoutX="293.0" layoutY="370.0" prefHeight="43.0" prefWidth="25.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="0.0" />
+      <Accordion layoutY="-1.0" prefHeight="458.0" prefWidth="454.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <panes>
+          <TitledPane animated="false" prefHeight="231.0" prefWidth="454.0" text="Options">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="menuBox" layoutX="5.0" layoutY="10.0" prefHeight="34.0" prefWidth="212.0" promptText="Select Menu" />
+                        <CheckListView fx:id="configList" layoutX="12.0" layoutY="69.0" prefHeight="340.0" prefWidth="452.0" AnchorPane.bottomAnchor="-12.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-12.0" AnchorPane.topAnchor="45.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Stat Randomization">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Slider fx:id="baseStatMin" layoutX="160.0" layoutY="30.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
+                        <Label layoutX="160.0" layoutY="10.0" text="Base Stat Minimum" />
+                        <Slider fx:id="baseStatMax" layoutX="305.0" layoutY="30.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
+                        <Label layoutX="305.0" layoutY="10.0" text="Base Stat Maximum" />
+                        <Slider fx:id="growthPasses" layoutX="10.0" layoutY="95.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="10.0" layoutY="75.0" text="Growth Passes" />
+                        <Slider fx:id="growthMin" layoutX="160.0" layoutY="105.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
+                        <Label layoutX="160.0" layoutY="85.0" text="Growth Minimum" />
+                        <Slider fx:id="growthMax" layoutX="305.0" layoutY="95.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
+                        <Label layoutX="305.0" layoutY="75.0" text="Growth Maximum" />
+                        <Slider fx:id="modPasses" layoutX="10.0" layoutY="160.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="10.0" layoutY="141.0" text="Modifier Passes" />
+                        <Slider fx:id="modMin" layoutX="160.0" layoutY="160.0" majorTickUnit="1.0" max="2.0" min="-2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="160.0" layoutY="141.0" text="Modifier Minimum" />
+                        <Slider fx:id="modMax" layoutX="305.0" layoutY="160.0" majorTickUnit="1.0" max="2.0" min="-2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="305.0" layoutY="141.0" text="Modifier Maximum" />
+                        <Slider fx:id="baseStatPasses" layoutX="10.0" layoutY="30.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="10.0" layoutY="10.0" text="Base Stat Passes" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>
