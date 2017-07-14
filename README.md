@@ -1,5 +1,4 @@
 # 3DSFE Randomizer
----------------------------------------------
 ## What is 3DSFE Randomizer?
 The original Fire Emblem Fates Randomizer was a simple tool put together as quickly as possible to fulfill a request for a member of the Fire Emblem Fates hacking community - it wasn't created with anyone else in mind. However, the tool received a lot of attention after some Fire Emblem content creators began creating videos featuring it.
 
