@@ -9,3 +9,9 @@ After spending a couple of months trying to support the tool, it became clear th
 At the moment, the randomizer only supports Fire Emblem Fates. I intend to provide full support for Fire Emblem Awakening and basic support for Fire Emblem Echoes: Shadows of Valentia in the future.
 
 Please note that the randomizer is incomplete at this time. I will *not* provide support regarding how to use the tool or any similar issues until the randomizer has officially released.
+
+## Credits
+- DeathChaos25, TildeHat, RainThunder, SciresM, and SecretiveCactus for their Fates hacking tools and documentation. Without their efforts, this randomizer would not be possible.
+- The GUI uses the JMetro8 style from the JFXtras project. JFXtras uses the new BSD license.
+- Character, class, item, and skill data is handled using GSON. GSON uses the Apache 2.0 License.
+- The options menu uses the CheckListView control from the ControlsFX project. ControlsFX uses the new BSD license.
