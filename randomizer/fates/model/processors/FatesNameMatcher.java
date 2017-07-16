@@ -9,19 +9,19 @@ import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
 
 import java.io.File;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class FatesNameMatcher {
     /**
      * Opens up the given GameData text file and assigns characters,
      * skills, items, and classes the correct names for the current
-     * region by match IDs with text.
+     * region by matching IDs with text.
      *
      * @param file A compressed GameData text file.
      */
     public static void matchNames(File file) {
         String[] lines = MessageBinUtils.extractMessageArchive(CompressionUtils.decompress(file));
-        TreeMap<String, String> map = new TreeMap<>();
+        HashMap<String, String> map = new HashMap<>();
         for(int x = 6; x < lines.length; x++) {
             String[] split = lines[x].split(": ");
             map.put(split[0], split[1]);

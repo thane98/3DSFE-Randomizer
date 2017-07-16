@@ -5,7 +5,7 @@
 <?import org.controlsfx.control.CheckListView?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.common.gui.FatesOptions">
    <children>
-      <Button layoutX="159.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="131.0" text="Randomize" AnchorPane.bottomAnchor="12.0" />
+      <Button layoutX="70.0" layoutY="477.0" mnemonicParsing="false" onAction="#randomize" prefHeight="33.0" prefWidth="194.0" text="Randomize" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="28.0" />
       <ProgressIndicator fx:id="progress" layoutX="293.0" layoutY="370.0" prefHeight="43.0" prefWidth="25.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="0.0" />
       <Accordion layoutY="-1.0" prefHeight="458.0" prefWidth="454.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
@@ -46,5 +46,6 @@
           </TitledPane>
         </panes>
       </Accordion>
+      <Button layoutX="232.0" layoutY="477.0" mnemonicParsing="false" onAction="#randomizeWithSettings" prefHeight="33.0" prefWidth="194.0" text="Use Custom Settings" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="28.0" />
    </children>
 </AnchorPane>

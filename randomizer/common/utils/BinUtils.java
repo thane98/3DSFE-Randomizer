@@ -38,6 +38,28 @@ public class BinUtils {
         }
     }
 
+    public static boolean isInSubDirectory(File dir, File file) {
+        if (file == null)
+            return false;
+        if (file.equals(dir))
+            return true;
+        return isInSubDirectory(dir, file.getParentFile());
+    }
+
+    public static void deleteFolder(File folder) {
+        File[] files = folder.listFiles();
+        if(files != null) { //some JVMs return null for empty dirs
+            for(File f: files) {
+                if(f.isDirectory()) {
+                    deleteFolder(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+        folder.delete();
+    }
+
     public static int search(byte[] target, byte[] input) {
         Object[] targetB = new Byte[target.length];
         int x = 0;

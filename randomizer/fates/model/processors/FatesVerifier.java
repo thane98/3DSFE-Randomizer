@@ -25,7 +25,7 @@ public class FatesVerifier {
     private static final String CONQUEST_PERSON_PATH = "/GameData/Person/B";
     private static final String REVELATION_PERSON_PATH = "/GameData/Person/C";
     private static final String BIRTHRIGHT_SCRIPTS_PATH = "/Scripts/A";
-    private static final String CONQUEST_SCRIPTS_PATH = "/Script/B";
+    private static final String CONQUEST_SCRIPTS_PATH = "/Scripts/B";
     private static final String REVELATION_SCRIPTS_PATH = "/Scripts/C";
 
     /**
@@ -264,7 +264,10 @@ public class FatesVerifier {
             FatesFileData.getInstance().setBirthrightVerified(true);
         }
 
+        for(File f : routeFailures)
+            System.out.println(f.getName());
         FatesFileData.getInstance().setOriginalFileList(verified);
+        FatesFileData.getInstance().setRom(dir);
         return true;
     }
 

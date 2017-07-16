@@ -50,6 +50,7 @@ public class Verification implements Initializable {
             DirectoryChooser chooser = new DirectoryChooser();
             File file = chooser.showDialog(Gui.getInstance().getMainStage());
             if(file != null) {
+                errorLabel.setVisible(false);
                 regionBox.setDisable(true);
                 gameBox.setDisable(true);
 
@@ -75,8 +76,12 @@ public class Verification implements Initializable {
                                 e.printStackTrace();
                             }
                         }
-                        else
-                            Platform.runLater(() -> progressBar.setProgress(0));
+                        else {
+                            Platform.runLater(() -> {
+                                progressBar.setProgress(0);
+                                errorLabel.setVisible(true);
+                            });
+                        }
                         return null;
                     }
                 };

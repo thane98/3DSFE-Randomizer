@@ -10,6 +10,7 @@ import randomizer.common.enums.ItemType;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
+import randomizer.fates.model.processors.FatesPatchBuilder;
 import randomizer.fates.model.structures.FatesCharacter;
 
 import java.net.URL;
@@ -138,5 +139,15 @@ public class FatesOptions implements Initializable {
                 }
                 break;
         }
+    }
+
+    @FXML
+    private void randomize() {
+        FatesPatchBuilder.createPatch();
+    }
+
+    @FXML
+    private void randomizeWithSettings() {
+
     }
 }
