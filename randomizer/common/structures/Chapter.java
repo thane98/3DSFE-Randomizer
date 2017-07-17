@@ -7,6 +7,7 @@ public class Chapter {
     private String cid;
     private String parentPid;
     private String childPid;
+    private int id;
 
     public String getChildPid() {
         return childPid;
@@ -38,5 +39,13 @@ public class Chapter {
 
     public void setType(ChapterType type) {
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

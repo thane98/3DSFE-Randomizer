@@ -14,7 +14,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import randomizer.Main;
 import randomizer.common.data.Gui;
-import randomizer.fates.model.processors.FatesVerifier;
+import randomizer.fates.model.processors.prep.FatesVerifier;
 
 import java.io.File;
 import java.io.IOException;

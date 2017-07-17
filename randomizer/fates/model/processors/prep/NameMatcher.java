@@ -1,4 +1,4 @@
-package randomizer.fates.model.processors;
+package randomizer.fates.model.processors.prep;
 
 import randomizer.common.data.FatesData;
 import randomizer.common.structures.FEItem;
@@ -11,7 +11,7 @@ import randomizer.fates.model.structures.FatesCharacter;
 import java.io.File;
 import java.util.HashMap;
 
-public class FatesNameMatcher {
+public class NameMatcher {
     /**
      * Opens up the given GameData text file and assigns characters,
      * skills, items, and classes the correct names for the current

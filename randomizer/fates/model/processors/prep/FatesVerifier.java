@@ -1,4 +1,4 @@
-package randomizer.fates.model.processors;
+package randomizer.fates.model.processors.prep;
 
 import randomizer.common.data.FatesData;
 import randomizer.common.data.FatesFileData;
@@ -123,7 +123,7 @@ public class FatesVerifier {
         file = new File(mainText, "GameData.bin.lz");
         if(file.exists()) {
             verified.add(file);
-            FatesNameMatcher.matchNames(file); // Get names from IDs.
+            NameMatcher.matchNames(file); // Get names from IDs.
         }
         else
             failures.add(file);

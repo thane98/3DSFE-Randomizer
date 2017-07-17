@@ -31,7 +31,10 @@ public class FatesCharacter {
     private Job characterClass;
     private Job[] reclasses;
 
-    private FatesCharacter target;
+    // Randomizer-only data.
+    private String targetPid;
+    private String linkedPid; // Used for Parent/child randomization.
+    private transient boolean hasSwappedStats;
 
     public FatesCharacter() {}
 
@@ -171,14 +174,6 @@ public class FatesCharacter {
         this.reclasses = reclasses;
     }
 
-    public FatesCharacter getTarget() {
-        return target;
-    }
-
-    public void setTarget(FatesCharacter target) {
-        this.target = target;
-    }
-
     public String getTaglessPid() {
         return pid.substring(4);
     }
@@ -205,5 +200,29 @@ public class FatesCharacter {
 
     public void setCharacterType(CharacterType characterType) {
         this.characterType = characterType;
+    }
+
+    public String getTargetPid() {
+        return targetPid;
+    }
+
+    public void setTargetPid(String targetPid) {
+        this.targetPid = targetPid;
+    }
+
+    public String getLinkedPid() {
+        return linkedPid;
+    }
+
+    public void setLinkedPid(String linkedPid) {
+        this.linkedPid = linkedPid;
+    }
+
+    public boolean hasSwappedStats() {
+        return hasSwappedStats;
+    }
+
+    public void setHasSwappedStats(boolean hasSwappedStats) {
+        this.hasSwappedStats = hasSwappedStats;
     }
 }

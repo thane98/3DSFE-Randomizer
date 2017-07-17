@@ -1,5 +1,4 @@
 Randomize Character Classes
-Randomize Class Stats and Skills
 Randomize Skills
 Randomize Chest Items
 Randomize Join Order

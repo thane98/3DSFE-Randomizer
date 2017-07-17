@@ -3,6 +3,7 @@ package randomizer.common.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 import org.controlsfx.control.CheckListView;
 import randomizer.common.data.FatesData;
 import randomizer.common.data.FatesGui;
@@ -10,7 +11,7 @@ import randomizer.common.enums.ItemType;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
-import randomizer.fates.model.processors.FatesPatchBuilder;
+import randomizer.fates.model.processors.FatesHub;
 import randomizer.fates.model.structures.FatesCharacter;
 
 import java.net.URL;
@@ -21,6 +22,16 @@ public class FatesOptions implements Initializable {
     @FXML private CheckListView<String> configList;
     @FXML private ComboBox<String> menuBox;
 
+    @FXML private Slider baseStatVariance;
+    @FXML private Slider baseStatMax;
+    @FXML private Slider baseStatMin;
+    @FXML private Slider growthVariance;
+    @FXML private Slider growthMin;
+    @FXML private Slider growthMax;
+    @FXML private Slider modVariance;
+    @FXML private Slider modMin;
+    @FXML private Slider modMax;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBox.getItems().addAll(Arrays.asList(
@@ -29,6 +40,17 @@ public class FatesOptions implements Initializable {
         ));
         menuBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 changeMenu(oldValue, newValue));
+
+        FatesGui gui = FatesGui.getInstance();
+        gui.setBaseStatVariance(baseStatVariance);
+        gui.setBaseStatMin(baseStatMin);
+        gui.setBaseStatMax(baseStatMax);
+        gui.setGrowthVariance(growthVariance);
+        gui.setGrowthMin(growthMin);
+        gui.setGrowthMax(growthMax);
+        gui.setModVariance(modVariance);
+        gui.setModMin(modMin);
+        gui.setModMax(modMax);
     }
 
     @FXML
@@ -143,7 +165,8 @@ public class FatesOptions implements Initializable {
 
     @FXML
     private void randomize() {
-        FatesPatchBuilder.createPatch();
+        FatesHub hub = new FatesHub();
+        hub.randomize();
     }
 
     @FXML

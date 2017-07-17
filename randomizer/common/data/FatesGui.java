@@ -1,5 +1,6 @@
 package randomizer.common.data;
 
+import javafx.scene.control.Slider;
 import randomizer.Main;
 import randomizer.common.enums.SkillType;
 import randomizer.common.structures.Skill;
@@ -24,6 +25,16 @@ public class FatesGui {
     private boolean[] selectedPaths = new boolean[paths.length];
     private boolean[] selectedOptions;
     private boolean[] selectedExperimentalOptions;
+
+    private Slider baseStatVariance;
+    private Slider baseStatMin;
+    private Slider baseStatMax;
+    private Slider growthVariance;
+    private Slider growthMin;
+    private Slider growthMax;
+    private Slider modVariance;
+    private Slider modMin;
+    private Slider modMax;
 
     private FatesGui() {
         try {
@@ -131,5 +142,77 @@ public class FatesGui {
 
     public void setSelectedPaths(boolean[] selectedPaths) {
         this.selectedPaths = selectedPaths;
+    }
+
+    public Slider getModMax() {
+        return modMax;
+    }
+
+    public void setModMax(Slider modMax) {
+        this.modMax = modMax;
+    }
+
+    public Slider getModMin() {
+        return modMin;
+    }
+
+    public void setModMin(Slider modMin) {
+        this.modMin = modMin;
+    }
+
+    public Slider getModVariance() {
+        return modVariance;
+    }
+
+    public void setModVariance(Slider modVariance) {
+        this.modVariance = modVariance;
+    }
+
+    public Slider getGrowthMax() {
+        return growthMax;
+    }
+
+    public void setGrowthMax(Slider growthMax) {
+        this.growthMax = growthMax;
+    }
+
+    public Slider getGrowthMin() {
+        return growthMin;
+    }
+
+    public void setGrowthMin(Slider growthMin) {
+        this.growthMin = growthMin;
+    }
+
+    public Slider getGrowthVariance() {
+        return growthVariance;
+    }
+
+    public void setGrowthVariance(Slider growthVariance) {
+        this.growthVariance = growthVariance;
+    }
+
+    public Slider getBaseStatMax() {
+        return baseStatMax;
+    }
+
+    public void setBaseStatMax(Slider baseStatMax) {
+        this.baseStatMax = baseStatMax;
+    }
+
+    public Slider getBaseStatMin() {
+        return baseStatMin;
+    }
+
+    public void setBaseStatMin(Slider baseStatMin) {
+        this.baseStatMin = baseStatMin;
+    }
+
+    public Slider getBaseStatVariance() {
+        return baseStatVariance;
+    }
+
+    public void setBaseStatVariance(Slider baseStatVariance) {
+        this.baseStatVariance = baseStatVariance;
     }
 }
