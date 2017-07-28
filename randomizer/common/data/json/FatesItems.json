@@ -1008,50 +1008,6 @@
     "type": "Treasure"
   },
   {
-    "iid": "IID_竜のブレス",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_暗夜竜のブレス",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_透魔竜のブレス",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_乱拳",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_狂乱拳",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_岩塊",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_巨岩塊",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_星竜のブレス",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_星竜の加護",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_絡繰鋸",
-    "type": "Treasure"
-  },
-  {
-    "iid": "IID_絡繰巨大鋸",
-    "type": "Treasure"
-  },
-  {
     "iid": "IID_傷薬",
     "type": "Treasure"
   },
@@ -1634,5 +1590,45 @@
   {
     "iid": "IID_獣石",
     "type": "Beaststone"
+  },
+  {
+    "iid": "IID_竜のブレス",
+    "type": "Breaths"
+  },
+  {
+    "iid": "IID_暗夜竜のブレス",
+    "type": "DarkBreaths"
+  },
+  {
+    "iid": "IID_透魔竜のブレス",
+    "type": "Breaths"
+  },
+  {
+  "iid": "IID_乱拳",
+  "type": "Fists"
+  },
+  {
+    "iid": "IID_狂乱拳",
+    "type": "Fists"
+  },
+  {
+    "iid": "IID_岩塊",
+    "type": "Stones"
+  },
+  {
+    "iid": "IID_巨岩塊",
+    "type": "Stones"
+  },
+  {
+    "iid": "IID_星竜のブレス",
+    "type": "Breaths"
+  },
+  {
+    "iid": "IID_絡繰鋸",
+    "type": "Saws"
+  },
+  {
+    "iid": "IID_絡繰巨大鋸",
+    "type": "Saws"
   }
 ]

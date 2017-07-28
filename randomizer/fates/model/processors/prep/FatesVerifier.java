@@ -129,7 +129,8 @@ public class FatesVerifier {
             failures.add(file);
 
         for(Chapter c : FatesData.getInstance().getChapters()) {
-            if(c.getType() == ChapterType.AllRoutes || c.getType() == ChapterType.Child) {
+            if(c.getType() == ChapterType.AllRoutes || c.getType() == ChapterType.Child
+                    || c.getType() == ChapterType.Amiibo) {
                 file = new File(mainText, c.getCid() + ".bin.lz");
                 if(file.exists())
                     verified.add(file);
@@ -241,6 +242,10 @@ public class FatesVerifier {
                     routeFailures.add(file);
                 }
             }
+
+            file = new File(dir.getAbsolutePath() + "/Scripts", c.getCid() + "_Terrain.cmb");
+            if(file.exists())
+                verified.add(file);
         }
 
         // Run checks based off of failures and successes.
@@ -261,7 +266,7 @@ public class FatesVerifier {
         }
         if(!revelationFlag) {
             verified.addAll(revelation);
-            FatesFileData.getInstance().setBirthrightVerified(true);
+            FatesFileData.getInstance().setRevelationVerified(true);
         }
 
         for(File f : routeFailures)

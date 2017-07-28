@@ -11,7 +11,7 @@ import randomizer.common.data.FatesGui;
 import randomizer.common.data.Gui;
 
 
-public class Main extends Application {
+public class Randomizer extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {

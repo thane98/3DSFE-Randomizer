@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import randomizer.Main;
+import randomizer.Randomizer;
 import randomizer.common.data.Gui;
 import randomizer.fates.model.processors.prep.FatesVerifier;
 
@@ -61,9 +61,9 @@ public class Verification implements Initializable {
                         if(verified) { // Move on to options.
                             Parent root;
                             try {
-                                root = FXMLLoader.load(Main.class.getResource("common/gui/fxml/FatesOptions.fxml"));
-                                Scene scene = new Scene(root,680,520);
-                                scene.getStylesheets().add(Main.class.getResource("common/gui/jmetro/JMetroLightTheme.css")
+                                root = FXMLLoader.load(Randomizer.class.getResource("common/gui/fxml/FatesOptions.fxml"));
+                                Scene scene = new Scene(root,500,550);
+                                scene.getStylesheets().add(Randomizer.class.getResource("common/gui/jmetro/JMetroLightTheme.css")
                                         .toExternalForm());
                                 Stage stage = Gui.getInstance().getMainStage();
                                 Platform.runLater(() -> {

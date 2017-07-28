@@ -52,4 +52,14 @@ public class ByteUtils {
         }
         return new String(Arrays.copyOfRange(source, index, end), "shift-jis");
     }
+
+    public static String toString(byte[] input) {
+        StringBuilder builder = new StringBuilder("[");
+        for(int x = 0; x < input.length; x++) {
+            builder.append("0x").append(Long.toHexString(input[x] & 0xFF));
+            if(x != input.length - 1)
+                builder.append(", ");
+        }
+        return builder.append("]").toString();
+    }
 }

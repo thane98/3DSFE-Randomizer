@@ -16,7 +16,7 @@ public class Skill
 	@Override
 	public String toString()
 	{
-		return seid;
+		return name;
 	}
 	
 	public String getSeid() {

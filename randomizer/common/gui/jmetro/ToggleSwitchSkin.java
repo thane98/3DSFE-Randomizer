@@ -102,7 +102,7 @@ public class ToggleSwitchSkin extends SkinBase<ToggleSwitch>{
     @Override protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
         final String labelText = label.getText();
         final Font font = label.getFont();
-        double textWidth = Utils.computeTextWidth(font, labelText, 0);
+        double textWidth = Utils.computeTextWidth(font, labelText);
 
         return leftInset + textWidth + thumbArea.prefWidth(-1) + rightInset;
     }
@@ -110,7 +110,7 @@ public class ToggleSwitchSkin extends SkinBase<ToggleSwitch>{
     @Override protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
         final Font font = label.getFont();
         final String labelText = label.getText();
-        final double textHeight = Utils.computeTextHeight(font, labelText, 0, label.getLineSpacing(), label.getBoundsType());
+        final double textHeight = Utils.computeTextHeight(font, labelText, label.getLineSpacing(), label.getBoundsType());
 
         return topInset + Math.max(thumb.prefHeight(-1), textHeight) + bottomInset;
     }
@@ -118,7 +118,7 @@ public class ToggleSwitchSkin extends SkinBase<ToggleSwitch>{
     @Override protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
         final String labelText = label.getText();
         final Font font = label.getFont();
-        double textWidth = Utils.computeTextWidth(font, labelText, 0);
+        double textWidth = Utils.computeTextWidth(font, labelText);
 
         return leftInset + textWidth + 20 + thumbArea.prefWidth(-1) + rightInset;
     }
@@ -127,7 +127,7 @@ public class ToggleSwitchSkin extends SkinBase<ToggleSwitch>{
     {
         final Font font = label.getFont();
         final String labelText = label.getText();
-        final double textHeight = Utils.computeTextHeight(font, labelText, 0, label.getLineSpacing(), label.getBoundsType());
+        final double textHeight = Utils.computeTextHeight(font, labelText, label.getLineSpacing(), label.getBoundsType());
 
         return topInset + Math.max(thumb.prefHeight(-1), textHeight) + bottomInset;
     }

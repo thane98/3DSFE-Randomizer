@@ -8,7 +8,7 @@ import javafx.scene.text.TextBoundsType;
 /**
  * Created by pedro_000 on 6/28/2014.
  */
-public class Utils {
+class Utils {
 
     /* Using TextLayout directly for simple text measurement.
      * Instead of restoring the TextLayout attributes to default values
@@ -21,15 +21,15 @@ public class Utils {
      * */
     private static final TextLayout layout = Toolkit.getToolkit().getTextLayoutFactory().createLayout();
 
-    public static double computeTextWidth(Font font, String text, double wrappingWidth) {
+    static double computeTextWidth(Font font, String text) {
         layout.setContent(text != null ? text : "", font.impl_getNativeFont());
-        layout.setWrapWidth((float)wrappingWidth);
+        layout.setWrapWidth(0.0f);
         return layout.getBounds().getWidth();
     }
 
-    public static double computeTextHeight(Font font, String text, double wrappingWidth, double lineSpacing, TextBoundsType boundsType) {
+    static double computeTextHeight(Font font, String text, double lineSpacing, TextBoundsType boundsType) {
         layout.setContent(text != null ? text : "", font.impl_getNativeFont());
-        layout.setWrapWidth((float)wrappingWidth);
+        layout.setWrapWidth(0.0f);
         layout.setLineSpacing((float)lineSpacing);
         if (boundsType == TextBoundsType.LOGICAL_VERTICAL_CENTER) {
             layout.setBoundsType(TextLayout.BOUNDS_CENTER);

@@ -50,25 +50,29 @@ public class PatchBuilder {
             try {
                 if(f.getName().equals("bev") && f.isDirectory()) {
                     BinUtils.copyFolder(f, copy);
-                    //FatesFileData.getInstance().setBev(copy);
+                    FatesFileData.getInstance().setBev(copy);
                 }
                 else {
                     if(BinUtils.isInSubDirectory(disposDir, copy)) {
                         FatesFileData.getInstance().getDispos().put(getCid(copy.getName()), copy);
-                        //Files.write(copy.toPath(), CompressionUtils.decompress(f));
+                        Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
                     else if(BinUtils.isInSubDirectory(personDir, copy)) {
                         FatesFileData.getInstance().getPerson().put(getCid(copy.getName()), copy);
-                        //Files.write(copy.toPath(), CompressionUtils.decompress(f));
+                        Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
-                    else if(BinUtils.isInSubDirectory(textDir, copy)) {
+                    else if(BinUtils.isInSubDirectory(textDir, copy) && !copy.getName().equals("GMap.bin.lz")) {
                         FatesFileData.getInstance().getText().put(getCid(copy.getName()), copy);
-                        //Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
-                        //        CompressionUtils.decompress(f))));
+                        Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
+                                CompressionUtils.decompress(f))));
+                    }
+                    else if(BinUtils.isInSubDirectory(scriptsDir, copy) && copy.getName().endsWith("_Terrain.cmb")) {
+                        FatesFileData.getInstance().getTerrain().put(getCid(copy.getName()), copy);
+                        Files.copy(f.toPath(), copy.toPath());
                     }
                     else if(BinUtils.isInSubDirectory(scriptsDir, copy)) {
                         FatesFileData.getInstance().getScript().put(getCid(copy.getName()), copy);
-                        //Files.copy(f.toPath(), copy.toPath());
+                        Files.copy(f.toPath(), copy.toPath());
                     }
                     else if(BinUtils.isInSubDirectory(gameDataDir, copy) && copy.getName().equals("GameData.bin.lz")) {
                         FatesFileData.getInstance().setGameData(copy);
@@ -79,7 +83,7 @@ public class PatchBuilder {
                         Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
                                 CompressionUtils.decompress(f))));
                     }
-                    else if(BinUtils.isInSubDirectory(textDir, copy) && copy.getName().equals("GMap.bin.lz")) {
+                    else if(copy.getName().equals("GMap.bin.lz")) {
                         FatesFileData.getInstance().setGMap(copy);
                         Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
                                 CompressionUtils.decompress(f))));

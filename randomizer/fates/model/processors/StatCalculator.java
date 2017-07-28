@@ -32,18 +32,18 @@ class StatCalculator {
             target.setLevel(originalLevel);
             c.setInternalLevel(target.getInternalLevel());
             target.setInternalLevel(originalInternalLevel);
-//            c.setStats(calculateStats(getStatTotal(target.getStats()), (int) gui.getBaseStatVariance().getValue(),
-//                    1, (int) gui.getBaseStatMin().getValue(), (int) gui.getBaseStatMax().getValue(), true));
-//            c.setGrowths(calculateStats(getStatTotal(target.getGrowths()), (int) gui.getGrowthVariance().getValue(),
-//                    5, (int) gui.getGrowthMin().getValue(), (int) gui.getGrowthMax().getValue(), true));
-//            c.setModifiers(calculateStats(getStatTotal(target.getModifiers()), (int) gui.getModVariance().getValue(),
-//                    1, (int) gui.getModMin().getValue(), (int) gui.getModMax().getValue(), false));
-//            target.setStats(calculateStats(getStatTotal(originalStats), (int) gui.getBaseStatVariance().getValue(),
-//                    1, (int) gui.getBaseStatMin().getValue(), (int) gui.getBaseStatMax().getValue(), true));
-//            target.setGrowths(calculateStats(getStatTotal(originalGrowths), (int) gui.getGrowthVariance().getValue(),
-//                    5, (int) gui.getGrowthMin().getValue(), (int) gui.getGrowthMax().getValue(), true));
-//            target.setModifiers(calculateStats(getStatTotal(originalMods), (int) gui.getModVariance().getValue(),
-//                    1, (int) gui.getModMin().getValue(), (int) gui.getModMax().getValue(), false));
+            c.setStats(calculateStats(target.getStats(), gui.getBaseStatPasses(), 
+                    gui.getBaseStatMin(), gui.getBaseStatMax(), true));
+            c.setGrowths(calculateStats(target.getGrowths(), gui.getGrowthPasses(),
+                    gui.getGrowthMin(), gui.getGrowthMax(), true));
+            c.setModifiers(calculateStats(target.getModifiers(), gui.getModPasses(),
+                    gui.getModMin(), gui.getModMax(), false));
+            target.setStats(calculateStats(originalStats, gui.getBaseStatPasses(),
+                    gui.getBaseStatMin(), gui.getBaseStatMax(), true));
+            target.setGrowths(calculateStats(originalGrowths, gui.getGrowthPasses(),
+                    gui.getGrowthMin(), gui.getGrowthMax(), true));
+            target.setModifiers(calculateStats(originalMods, gui.getModPasses(),
+                    gui.getModMin(), gui.getModMax(), false));
 
             // Randomize skills.
             if(gui.getSelectedOptions()[1]) {
@@ -57,41 +57,21 @@ class StatCalculator {
         }
     }
 
-    // TODO: Fix this broken calculator.
-    private static byte[] calculateStats(int total, int variance, int increment, int min, int max, boolean healthBias) {
-        byte[] stats = new byte[8];
-        for(int x = 0; x < 8; x ++) {
-            stats[x] = (byte) min;
+    private static byte[] calculateStats(byte[] input, int passes, int min, int max, boolean healthBias)
+    {
+        Random random = new Random();
+        for(int x = 0; x < passes; x++)
+        {
+            int targetOne = random.nextInt(8);
+            int targetTwo = random.nextInt(healthBias ? 10 : 8);
+            if(targetTwo > 7)
+                targetTwo = 0;
+            if(input[targetOne] <= min || input[targetTwo] >= max || targetOne == targetTwo)
+                continue;
+            input[targetOne] = (byte) (input[targetOne] - 1);
+            input[targetTwo] = (byte) (input[targetTwo] + 1);
         }
-        total -= min * 8;
-        if(total <= 0)
-            return stats;
-        int newTotal = total + (random.nextInt(variance * 2) - variance);
-        int passes = newTotal / increment;
-        for(int x = 0; x < passes; x++) {
-            int selection;
-            if(healthBias)
-                selection = random.nextInt(10);
-            else
-                selection = random.nextInt(8);
-            if(selection > 7) {
-                if(stats[0] >= max)
-                    continue;
-                stats[0] += increment;
-            }
-            else {
-                if(stats[selection] >= max)
-                    continue;
-                stats[selection] += increment;
-            }
-        }
-        return stats;
-    }
-
-    private static int getStatTotal(byte[] arr) {
-        int count = 0;
-        for (byte anArr : arr) count += anArr;
-        return count;
+        return input;
     }
 
     private static Skill[] randomizeSkills(Skill[] original) {

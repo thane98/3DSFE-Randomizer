@@ -1,8 +1,13 @@
 package randomizer.fates.model.structures;
 
+import randomizer.common.data.FatesData;
+import randomizer.common.data.FatesGui;
 import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
+import randomizer.common.utils.ByteUtils;
+
+import java.util.Arrays;
 
 public class FatesCharacter {
     // Character label data.
@@ -25,6 +30,7 @@ public class FatesCharacter {
     // Character flags.
     private boolean male;
     private boolean promoted;
+    private boolean royal = false;
     private CharacterType characterType;
 
     // Class data.
@@ -37,6 +43,34 @@ public class FatesCharacter {
     private transient boolean hasSwappedStats;
 
     public FatesCharacter() {}
+
+    @Override
+    public String toString() {
+        boolean[] options = FatesGui.getInstance().getSelectedOptions();
+        StringBuilder res = new StringBuilder();
+        res.append("Name: ").append(name).append("\n");
+        if(id != 0) {
+            res.append("Stats: ").append(ByteUtils.toString(stats)).append("\n");
+            res.append("Growths: ").append(ByteUtils.toString(growths)).append("\n");
+            res.append("Modifiers: ").append(ByteUtils.toString(modifiers)).append("\n");
+        }
+        if(options[0]) {
+            res.append("Class: ").append(characterClass).append("\n");
+            res.append("Reclasses: ").append(Arrays.toString(reclasses)).append("\n");
+        }
+        if(options[1]) {
+            res.append("Skills: ").append(Arrays.toString(skills)).append("\n");
+            res.append("Personal Skill: ").append(FatesData.getInstance().getSkillById(personSkill)).append("\n");
+        }
+        if(options[3]) {
+            res.append("Replacing: ").append(FatesData.getInstance().getByPid(targetPid).getName()).append("\n");
+            if(linkedPid != null)
+                res.append("Parent/Child: ").append(FatesData.getInstance().getByPid(linkedPid).getName()).append("\n");
+            res.append("Level: ").append(level).append("\n");
+            res.append("Internal Level: ").append(internalLevel).append("\n");
+        }
+        return res.toString();
+    }
 
     public String getName() {
         return name;
@@ -224,5 +258,13 @@ public class FatesCharacter {
 
     public void setHasSwappedStats(boolean hasSwappedStats) {
         this.hasSwappedStats = hasSwappedStats;
+    }
+
+    public boolean isRoyal() {
+        return royal;
+    }
+
+    public void setRoyal(boolean royal) {
+        this.royal = royal;
     }
 }

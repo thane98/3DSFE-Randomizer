@@ -1027,28 +1027,10 @@
   },
   {
     "state": "SpecialPromote",
-    "jid": "JID_ノスフェラトゥ男",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 107,
-    "weaponRank": 0,
-    "gender": 2
-  },
-  {
-    "state": "SpecialPromote",
     "jid": "JID_ゴーレム男",
-    "itemType": "Misc",
+    "itemType": "Stones",
     "tiedJob": 0,
     "id": 108,
-    "weaponRank": 0,
-    "gender": 2
-  },
-  {
-    "state": "SpecialPromote",
-    "jid": "JID_暗夜竜男",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 113,
     "weaponRank": 0,
     "gender": 2
   },
@@ -1085,42 +1067,6 @@
     "itemType": "Tomes",
     "tiedJob": 0,
     "id": 121,
-    "weaponRank": 0,
-    "gender": 1
-  },
-  {
-    "state": "SpecialPromote",
-    "jid": "JID_絡繰人形男",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 109,
-    "weaponRank": 0,
-    "gender": 2
-  },
-  {
-    "state": "SpecialPromote",
-    "jid": "JID_星竜女",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 110,
-    "weaponRank": 0,
-    "gender": 1
-  },
-  {
-    "state": "SpecialPromote",
-    "jid": "JID_竜男",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 111,
-    "weaponRank": 0,
-    "gender": 0
-  },
-  {
-    "state": "SpecialPromote",
-    "jid": "JID_竜女",
-    "itemType": "Misc",
-    "tiedJob": 0,
-    "id": 112,
     "weaponRank": 0,
     "gender": 1
   }

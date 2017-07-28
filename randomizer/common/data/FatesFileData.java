@@ -18,6 +18,7 @@ public class FatesFileData
 	private Map<String, File> person = new HashMap<>();
 	private Map<String, File> text = new HashMap<>();
 	private Map<String, File> script = new HashMap<>();
+	private Map<String, File> terrain = new HashMap<>();
 
 	// Individual files used by the randomizer.
     private File gameData;
@@ -86,16 +87,8 @@ public class FatesFileData
         return dispos;
     }
 
-    public void setDispos(Map<String, File> dispos) {
-        this.dispos = dispos;
-    }
-
     public Map<String, File> getPerson() {
         return person;
-    }
-
-    public void setPerson(Map<String, File> person) {
-        this.person = person;
     }
 
     public Map<String, File> getText() {
@@ -108,10 +101,6 @@ public class FatesFileData
 
     public Map<String, File> getScript() {
         return script;
-    }
-
-    public void setScript(Map<String, File> script) {
-        this.script = script;
     }
 
     public File getGameData() {
@@ -128,10 +117,6 @@ public class FatesFileData
 
     public void setGMap(File gMap) {
         this.gMap = gMap;
-    }
-
-    public File getGameDataText() {
-        return gameDataText;
     }
 
     public void setGameDataText(File gameDataText) {
@@ -152,5 +137,9 @@ public class FatesFileData
 
     public void setBev(File bev) {
         this.bev = bev;
+    }
+
+    public Map<String, File> getTerrain() {
+        return terrain;
     }
 }

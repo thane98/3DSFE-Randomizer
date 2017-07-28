@@ -60,6 +60,7 @@
     "id": 9,
     "male": false,
     "promoted": false,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -87,6 +88,7 @@
     "id": 8,
     "male": false,
     "promoted": false,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -123,6 +125,7 @@
     "id": 21,
     "male": true,
     "promoted": false,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -186,6 +189,7 @@
     "id": 34,
     "male": false,
     "promoted": true,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -231,6 +235,7 @@
     "id": 28,
     "male": false,
     "promoted": false,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -303,6 +308,7 @@
     "id": 15,
     "male": false,
     "promoted": false,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -330,6 +336,7 @@
     "id": 25,
     "male": true,
     "promoted": true,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -342,6 +349,7 @@
     "id": 41,
     "male": true,
     "promoted": true,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -369,6 +377,7 @@
     "id": 43,
     "male": true,
     "promoted": true,
+    "royal": true,
     "characterType": "FirstGen"
   },
   {
@@ -468,6 +477,7 @@
     "id": 51,
     "male": true,
     "promoted": false,
+    "royal": true,
     "characterType": "SecondGen"
   },
   {

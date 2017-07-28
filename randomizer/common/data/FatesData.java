@@ -3,10 +3,7 @@ package randomizer.common.data;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import randomizer.common.enums.ChapterType;
-import randomizer.common.enums.ItemType;
-import randomizer.common.enums.JobState;
-import randomizer.common.enums.SkillType;
+import randomizer.common.enums.*;
 import randomizer.common.structures.Chapter;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
@@ -19,6 +16,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FatesData {
     private static FatesData instance;
@@ -87,7 +85,7 @@ public class FatesData {
         return null;
     }
 
-    public List<FEItem> getWeapons() {
+    List<FEItem> getWeapons() {
         List<FEItem> weapons = new ArrayList<>();
         for(FEItem i : items) {
             if(i.getType() != ItemType.Treasure)
@@ -181,12 +179,75 @@ public class FatesData {
         return selected;
     }
 
-    public FatesCharacter getReplacement(String pid) {
+    public FatesCharacter getReplacement(List<FatesCharacter> characters, String pid) {
         for(FatesCharacter c : characters) {
             if(c.getTargetPid().equals(pid))
                 return c;
         }
         return null;
+    }
+    
+    public List<Chapter> getSelectedChapters() {
+        List<Chapter> selected = new ArrayList<>();
+        boolean[] paths = FatesGui.getInstance().getSelectedPaths();
+        for(Chapter c : chapters) {
+            if(c.getType() == ChapterType.AllRoutes || c.getType() == ChapterType.Amiibo 
+                    || c.getType() == ChapterType.Child)
+                selected.add(c);
+            else if(c.getType() == ChapterType.Birthright && paths[0])
+                selected.add(c);
+            else if(c.getType() == ChapterType.Conquest && paths[1])
+                selected.add(c);
+            else if(c.getType() == ChapterType.Revelation && paths[2])
+                selected.add(c);
+        }
+        return selected;
+    }
+
+    public List<FEItem> getSelectedItems(ItemType type) {
+        List<FEItem> selected = new ArrayList<>();
+        List<FEItem> weapons = getWeapons();
+        boolean[] selectedItems = FatesGui.getInstance().getSelectedItems();
+        for(int x = 0; x < weapons.size(); x++) {
+            if(weapons.get(x).getType() == type && selectedItems[x])
+                selected.add(weapons.get(x));
+        }
+        return selected;
+    }
+    
+    public byte[] generateWeaponsRanks(Job j) {
+        byte[] weaponRanks = new byte[8];
+        if(j.getItemType() == ItemType.Swords) {
+            weaponRanks[0] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Lances) {
+            weaponRanks[1] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Axes) {
+            weaponRanks[2] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Shurikens) {
+            weaponRanks[3] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Bows) {
+            weaponRanks[4] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Tomes) {
+            weaponRanks[5] = (byte) WeaponRank.C.value();
+        }
+        else if(j.getItemType() == ItemType.Staves) {
+            weaponRanks[6] = (byte) WeaponRank.C.value();
+        }
+        else {
+            weaponRanks[7] = (byte) WeaponRank.C.value();
+        }
+        return weaponRanks;
+    }
+
+    public FEItem generateItem(Job j) {
+        Random random = new Random();
+        List<FEItem> items = getSelectedItems(j.getItemType());
+        return items.get(random.nextInt(items.size()));
     }
 
     public List<Skill> getSkills() {

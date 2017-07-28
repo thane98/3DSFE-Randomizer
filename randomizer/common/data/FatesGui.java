@@ -1,7 +1,8 @@
 package randomizer.common.data;
 
-import javafx.scene.control.Slider;
-import randomizer.Main;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import randomizer.Randomizer;
 import randomizer.common.enums.SkillType;
 import randomizer.common.structures.Skill;
 
@@ -12,13 +13,21 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FatesGui {
-    private static FatesGui instance;
+    private static transient FatesGui instance;
+    private transient IntegerProperty baseStatPasses = new SimpleIntegerProperty();
+    private transient IntegerProperty baseStatMin = new SimpleIntegerProperty();
+    private transient IntegerProperty baseStatMax = new SimpleIntegerProperty();
+    private transient IntegerProperty growthPasses = new SimpleIntegerProperty();
+    private transient IntegerProperty growthMin = new SimpleIntegerProperty();
+    private transient IntegerProperty growthMax = new SimpleIntegerProperty();
+    private transient IntegerProperty modPasses = new SimpleIntegerProperty();
+    private transient IntegerProperty modMin = new SimpleIntegerProperty();
+    private transient IntegerProperty modMax = new SimpleIntegerProperty();
+    private transient List<String> options;
+    private transient List<String> experimentalOptions;
+    private transient String[] paths = { "Birthright", "Conquest", "Revelation" };
 
-    private List<String> options;
-    private List<String> experimentalOptions;
-    private String[] paths = { "Birthright", "Conquest", "Revelation" };
-
-    private boolean[] selectedCharacters = new boolean[FatesData.getInstance().getCharacters().size()];
+    private transient boolean[] selectedCharacters = new boolean[FatesData.getInstance().getCharacters().size()];
     private boolean[] selectedJobs = new boolean[FatesData.getInstance().getJobs().size()];
     private boolean[] selectedItems = new boolean[FatesData.getInstance().getWeapons().size()];
     private boolean[] selectedSkills = new boolean[FatesData.getInstance().getSkills().size()];
@@ -26,21 +35,11 @@ public class FatesGui {
     private boolean[] selectedOptions;
     private boolean[] selectedExperimentalOptions;
 
-    private Slider baseStatVariance;
-    private Slider baseStatMin;
-    private Slider baseStatMax;
-    private Slider growthVariance;
-    private Slider growthMin;
-    private Slider growthMax;
-    private Slider modVariance;
-    private Slider modMin;
-    private Slider modMax;
-
     private FatesGui() {
         try {
-            options = Files.readAllLines(Paths.get(Main.class.getResource(
+            options = Files.readAllLines(Paths.get(Randomizer.class.getResource(
                     "common/data/text/FatesOptions.txt").toURI()));
-            experimentalOptions = Files.readAllLines(Paths.get(Main.class.getResource(
+            experimentalOptions = Files.readAllLines(Paths.get(Randomizer.class.getResource(
                     "common/data/text/FatesExperimentalOptions.txt").toURI()));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
@@ -144,75 +143,75 @@ public class FatesGui {
         this.selectedPaths = selectedPaths;
     }
 
-    public Slider getModMax() {
-        return modMax;
+    public int getBaseStatPasses() {
+        return baseStatPasses.get();
     }
 
-    public void setModMax(Slider modMax) {
-        this.modMax = modMax;
+    public IntegerProperty baseStatPassesProperty() {
+        return baseStatPasses;
     }
 
-    public Slider getModMin() {
-        return modMin;
+    public int getBaseStatMin() {
+        return baseStatMin.get();
     }
 
-    public void setModMin(Slider modMin) {
-        this.modMin = modMin;
-    }
-
-    public Slider getModVariance() {
-        return modVariance;
-    }
-
-    public void setModVariance(Slider modVariance) {
-        this.modVariance = modVariance;
-    }
-
-    public Slider getGrowthMax() {
-        return growthMax;
-    }
-
-    public void setGrowthMax(Slider growthMax) {
-        this.growthMax = growthMax;
-    }
-
-    public Slider getGrowthMin() {
-        return growthMin;
-    }
-
-    public void setGrowthMin(Slider growthMin) {
-        this.growthMin = growthMin;
-    }
-
-    public Slider getGrowthVariance() {
-        return growthVariance;
-    }
-
-    public void setGrowthVariance(Slider growthVariance) {
-        this.growthVariance = growthVariance;
-    }
-
-    public Slider getBaseStatMax() {
-        return baseStatMax;
-    }
-
-    public void setBaseStatMax(Slider baseStatMax) {
-        this.baseStatMax = baseStatMax;
-    }
-
-    public Slider getBaseStatMin() {
+    public IntegerProperty baseStatMinProperty() {
         return baseStatMin;
     }
 
-    public void setBaseStatMin(Slider baseStatMin) {
-        this.baseStatMin = baseStatMin;
+    public int getBaseStatMax() {
+        return baseStatMax.get();
     }
 
-    public Slider getBaseStatVariance() {
-        return baseStatVariance;
+    public IntegerProperty baseStatMaxProperty() {
+        return baseStatMax;
     }
 
-    public void setBaseStatVariance(Slider baseStatVariance) {
-        this.baseStatVariance = baseStatVariance;
+    public int getGrowthPasses() {
+        return growthPasses.get();
+    }
+
+    public IntegerProperty growthPassesProperty() {
+        return growthPasses;
+    }
+
+    public int getGrowthMin() {
+        return growthMin.get();
+    }
+
+    public IntegerProperty growthMinProperty() {
+        return growthMin;
+    }
+
+    public int getGrowthMax() {
+        return growthMax.get();
+    }
+
+    public IntegerProperty growthMaxProperty() {
+        return growthMax;
+    }
+
+    public int getModPasses() {
+        return modPasses.get();
+    }
+
+    public IntegerProperty modPassesProperty() {
+        return modPasses;
+    }
+
+    public int getModMin() {
+        return modMin.get();
+    }
+
+    public IntegerProperty modMinProperty() {
+        return modMin;
+    }
+
+    public int getModMax() {
+        return modMax.get();
+    }
+
+    public IntegerProperty modMaxProperty() {
+        return modMax;
     }
 }

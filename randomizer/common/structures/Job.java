@@ -22,7 +22,7 @@ public class Job
 	
 	@Override public String toString()
 	{
-		return jid;
+		return name;
 	}
 
 	public JobState getState() {

@@ -25,6 +25,7 @@ class GameDataHandler {
             if(options[0]) {
                 b.setClasses(new short[] {c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob()});
                 b.setReclasses(new short[] {c.getReclasses()[0].getId(), c.getReclasses()[1].getId()});
+                b.setWeaponRanks(fatesData.generateWeaponsRanks(c.getCharacterClass()));
             }
 
             // Make adjustments for join-order.
@@ -54,14 +55,41 @@ class GameDataHandler {
                 }
                 b.setPersonalSkills(personals);
             }
+
             // TODO: Patch bitflags for special weapons and royals.
+            FatesCharacter target = fatesData.getByPid(c.getTargetPid());
+            byte[] bitflags = b.getBitflags();
+            if(target.isRoyal()) {
+                bitflags[4] = 0x8;
+                switch(target.getPid()) {
+                    case "PID_タクミ":
+                        bitflags[3] = 0x40;
+                        break;
+                    case "PID_リョウマ":
+                        bitflags[3] = (byte) 0x80;
+                        break;
+                    case "PID_レオン":
+                        bitflags[4] = 0x9;
+                        break;
+                    case "PID_マークス":
+                        bitflags[4] = 0xA;
+                        break;
+                }
+                b.setBitflags(bitflags);
+                c.setBitflags(bitflags);
+            }
         }
 
         // Patch chapters.
         if(options[3]) {
             for(Chapter c : FatesData.getInstance().getChaptersByType(ChapterType.Child)) {
                 data.getChapters().get(c.getId()).setMarriedCharacter(fatesData.getByPid(
-                        fatesData.getReplacement(c.getChildPid()).getLinkedPid()).getId());
+                        fatesData.getReplacement(characters, c.getChildPid()).getLinkedPid()).getId());
+            }
+        }
+        if(options[11]) {
+            for(Chapter c : FatesData.getInstance().getChaptersByType(ChapterType.Amiibo)) {
+                data.getChapters().get(c.getId()).setType((byte) 0x1); // Paralogue.
             }
         }
     }
