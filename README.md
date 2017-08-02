@@ -15,3 +15,4 @@ Please note that the randomizer is incomplete at this time. I will *not* provide
 - The GUI uses the JMetro8 style from the JFXtras project. JFXtras uses the new BSD license.
 - Character, class, item, and skill data is handled using GSON. GSON uses the Apache 2.0 License.
 - The options menu uses the CheckListView control from the ControlsFX project. ControlsFX uses the new BSD license.
+- einstein95 for DSdecmp which allows for automated decompression and compression.
