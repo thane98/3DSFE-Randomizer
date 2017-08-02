@@ -1,4 +1,4 @@
-package randomizer.common.gui.jmetro;
+package randomizer.gui.jmetro;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.BooleanPropertyBase;

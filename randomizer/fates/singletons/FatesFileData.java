@@ -1,4 +1,4 @@
-package randomizer.common.data;
+package randomizer.fates.singletons;
 
 import java.io.File;
 import java.util.HashMap;
@@ -26,13 +26,14 @@ public class FatesFileData
     private File gameDataText;
     private File castleJoin;
     private File bev;
+    private File code;
 
     // Route verification flags.
 	private boolean birthrightVerified;
 	private boolean conquestVerified;
 	private boolean revelationVerified;
 
-	public FatesFileData() {
+	private FatesFileData() {
 
 	}
 	
@@ -142,4 +143,12 @@ public class FatesFileData
     public Map<String, File> getTerrain() {
         return terrain;
     }
+
+	public File getCode() {
+		return code;
+	}
+
+	public void setCode(File code) {
+		this.code = code;
+	}
 }

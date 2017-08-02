@@ -1,12 +1,14 @@
 package randomizer.fates.model.processors.prep;
 
-import randomizer.common.data.FatesFileData;
 import randomizer.common.utils.BinUtils;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
+import randomizer.fates.singletons.FatesFileData;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 
 public class PatchBuilder {
@@ -17,13 +19,14 @@ public class PatchBuilder {
      */
     public static void createPatch() {
         // Create folder.
-        File dir = new File(System.getProperty("user.dir"), "Patch");
+        File dir = new File(System.getProperty("user.dir") + "/Patch/romfs");
+        File patchDir = new File(System.getProperty("user.dir"), "Patch");
         if(!dir.exists()) {
-            dir.mkdir();
+            dir.mkdirs();
         }
         else {
             BinUtils.deleteFolder(dir);
-            dir.mkdir();
+            dir.mkdirs();
         }
 
         // Parent directories for randomizer files.
@@ -39,6 +42,16 @@ public class PatchBuilder {
         scriptsDir.mkdir();
         textDir.mkdir();
         castleDir.mkdir();
+
+        if(FatesFileData.getInstance().getCode() != null) {
+            try {
+                File file = new File(patchDir, "code.bin");
+                Files.copy(FatesFileData.getInstance().getCode().toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                FatesFileData.getInstance().setCode(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         for(File f : FatesFileData.getInstance().getOriginalFileList()) {
             File copy = new File(f.getAbsolutePath().replace(FatesFileData.getInstance().getRom().getAbsolutePath(),
@@ -77,11 +90,6 @@ public class PatchBuilder {
                     else if(BinUtils.isInSubDirectory(gameDataDir, copy) && copy.getName().equals("GameData.bin.lz")) {
                         FatesFileData.getInstance().setGameData(copy);
                         Files.write(copy.toPath(), CompressionUtils.decompress(f));
-                    }
-                    else if(BinUtils.isInSubDirectory(textDir, copy) && copy.getName().equals("GameData.bin.lz")) {
-                        FatesFileData.getInstance().setGameDataText(copy);
-                        Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
-                                CompressionUtils.decompress(f))));
                     }
                     else if(copy.getName().equals("GMap.bin.lz")) {
                         FatesFileData.getInstance().setGMap(copy);

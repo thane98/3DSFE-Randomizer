@@ -1,0 +1,426 @@
+[
+  {
+    "name": "Chrom",
+    "pid": "PID_クロム",
+    "sound": "CHROM",
+    "id": 2,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Lissa",
+    "pid": "PID_リズ",
+    "sound": "",
+    "id": 3,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Frederick",
+    "pid": "PID_フレデリク",
+    "sound": "",
+    "id": 4,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Virion",
+    "pid": "PID_ヴィオール",
+    "sound": "",
+    "id": 5,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Sully",
+    "pid": "PID_ソワレ",
+    "sound": "",
+    "id": 6,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Vaike",
+    "pid": "PID_ヴェイク",
+    "sound": "",
+    "id": 7,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Stahl",
+    "pid": "PID_ソール",
+    "sound": "",
+    "id": 8,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Miriel",
+    "pid": "PID_ミリエル",
+    "sound": "",
+    "id": 9,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Kellam",
+    "pid": "PID_カラム",
+    "sound": "",
+    "id": 10,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Sumia",
+    "pid": "PID_スミア",
+    "sound": "",
+    "id": 11,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Lon'qu",
+    "pid": "PID_ロンクー",
+    "sound": "",
+    "id": 12,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Ricken",
+    "pid": "PID_リヒト",
+    "sound": "",
+    "id": 13,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Maribelle",
+    "pid": "PID_マリアベル",
+    "sound": "",
+    "id": 14,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Panne",
+    "pid": "PID_ベルベット",
+    "sound": "",
+    "id": 15,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Gaius",
+    "pid": "PID_ガイア",
+    "sound": "",
+    "id": 16,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Cordelia",
+    "pid": "PID_ティアモ",
+    "sound": "",
+    "id": 17,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Gregor",
+    "pid": "PID_グレゴ",
+    "sound": "",
+    "id": 18,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Nowi",
+    "pid": "PID_ノノ",
+    "sound": "",
+    "id": 19,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Libra",
+    "pid": "PID_リベラ",
+    "sound": "",
+    "id": 20,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Tharja",
+    "pid": "PID_サーリャ",
+    "sound": "",
+    "id": 21,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Olivia",
+    "pid": "PID_オリヴィエ",
+    "sound": "",
+    "id": 22,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Cherche",
+    "pid": "PID_セルジュ",
+    "sound": "",
+    "id": 23,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Henry",
+    "pid": "PID_ヘンリー",
+    "sound": "",
+    "id": 24,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Say'ri",
+    "pid": "PID_サイリ",
+    "sound": "",
+    "id": 26,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Basilio",
+    "pid": "PID_バジーリオ",
+    "sound": "",
+    "id": 27,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Flavia",
+    "pid": "PID_フラヴィア",
+    "sound": "",
+    "id": 28,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Donnel",
+    "pid": "PID_ドニ",
+    "sound": "",
+    "id": 29,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Anna",
+    "pid": "PID_アンナ",
+    "sound": "",
+    "id": 30,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Lucina",
+    "pid": "PID_マルス",
+    "sound": "",
+    "id": 25,
+    "male": true,
+    "promoted": false,
+    "royal": true,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Owain",
+    "pid": "PID_ウード",
+    "sound": "",
+    "id": 31,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Inigo",
+    "pid": "PID_アズール",
+    "sound": "",
+    "id": 32,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Brady",
+    "pid": "PID_ブレディ",
+    "sound": "",
+    "id": 33,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Kjelle",
+    "pid": "PID_デジェル",
+    "sound": "",
+    "id": 34,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Cynthia",
+    "pid": "PID_シンシア",
+    "sound": "",
+    "id": 35,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Severa",
+    "pid": "PID_セレナ",
+    "sound": "",
+    "id": 36,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Gerome",
+    "pid": "PID_ジェローム",
+    "sound": "",
+    "id": 37,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Yarne",
+    "pid": "PID_シャンブレー",
+    "sound": "",
+    "id": 38,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Laurent",
+    "pid": "PID_ロラン",
+    "sound": "",
+    "id": 39,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Noire",
+    "pid": "PID_ノワール",
+    "sound": "",
+    "id": 40,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Nah",
+    "pid": "PID_ンン",
+    "sound": "",
+    "id": 41,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Tiki",
+    "pid": "PID_チキ",
+    "sound": "",
+    "id": 42,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Gangrel",
+    "pid": "PID_ギャンレル",
+    "sound": "",
+    "id": 43,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Walhart",
+    "pid": "PID_ヴァルハルト",
+    "sound": "",
+    "id": 44,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Emmeryn",
+    "pid": "PID_エメリナ",
+    "sound": "",
+    "id": 45,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Yen'fay",
+    "pid": "PID_レンハ",
+    "sound": "",
+    "id": 46,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Aversa",
+    "pid": "PID_インバース",
+    "sound": "",
+    "id": 47,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Priam",
+    "pid": "PID_パリス",
+    "sound": "",
+    "id": 48,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  }
+]

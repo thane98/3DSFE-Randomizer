@@ -1,6 +1,6 @@
 package randomizer.fates.model.structures;
 
-import randomizer.common.data.FatesGui;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.List;
 

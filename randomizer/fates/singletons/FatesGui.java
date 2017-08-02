@@ -1,4 +1,4 @@
-package randomizer.common.data;
+package randomizer.fates.singletons;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -24,7 +24,6 @@ public class FatesGui {
     private transient IntegerProperty modMin = new SimpleIntegerProperty();
     private transient IntegerProperty modMax = new SimpleIntegerProperty();
     private transient List<String> options;
-    private transient List<String> experimentalOptions;
     private transient String[] paths = { "Birthright", "Conquest", "Revelation" };
 
     private transient boolean[] selectedCharacters = new boolean[FatesData.getInstance().getCharacters().size()];
@@ -33,14 +32,11 @@ public class FatesGui {
     private boolean[] selectedSkills = new boolean[FatesData.getInstance().getSkills().size()];
     private boolean[] selectedPaths = new boolean[paths.length];
     private boolean[] selectedOptions;
-    private boolean[] selectedExperimentalOptions;
 
     private FatesGui() {
         try {
             options = Files.readAllLines(Paths.get(Randomizer.class.getResource(
                     "common/data/text/FatesOptions.txt").toURI()));
-            experimentalOptions = Files.readAllLines(Paths.get(Randomizer.class.getResource(
-                    "common/data/text/FatesExperimentalOptions.txt").toURI()));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
@@ -51,7 +47,6 @@ public class FatesGui {
         for(int x = 0; x < selectedOptions.length; x++) {
             selectedOptions[x] = true;
         }
-        selectedExperimentalOptions = new boolean[experimentalOptions.size()];
         for(int x = 0; x < selectedCharacters.length; x++) {
             selectedCharacters[x] = true;
         }
@@ -111,10 +106,6 @@ public class FatesGui {
         return options;
     }
 
-    public List<String> getExperimentalOptions() {
-        return experimentalOptions;
-    }
-
     public String[] getPaths() {
         return paths;
     }
@@ -125,14 +116,6 @@ public class FatesGui {
 
     public void setSelectedOptions(boolean[] selectedOptions) {
         this.selectedOptions = selectedOptions;
-    }
-
-    public boolean[] getSelectedExperimentalOptions() {
-        return selectedExperimentalOptions;
-    }
-
-    public void setSelectedExperimentalOptions(boolean[] selectedExperimentalOptions) {
-        this.selectedExperimentalOptions = selectedExperimentalOptions;
     }
 
     public boolean[] getSelectedPaths() {

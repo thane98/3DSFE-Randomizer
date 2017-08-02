@@ -1,12 +1,13 @@
 package randomizer.fates.model.processors;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
-import randomizer.common.data.FatesGui;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Chapter;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,12 +35,16 @@ class TextHandler {
                 if(s.startsWith("MID_")) {
                     String[] split = s.split(": ", 2);
                     for(FatesCharacter ch : characters) {
+                        if(ch.getCharacterType() == CharacterType.Player)
+                            continue;
                         split[1] = split[1].replaceAll(ch.getTaglessPid(), ch.getTaglessPid() + "TMP");
                         if(options[6])
                             split[1] = split[1].replaceAll(ch.getSound(), ch.getSound() + "TMP");
                         split[1] = split[1].replaceAll(ch.getName(), ch.getName() + "TMP");
                     }
                     for(FatesCharacter ch : characters) {
+                        if(ch.getCharacterType() == CharacterType.Player)
+                            continue;
                         FatesCharacter target = fatesData.getByPid(ch.getTargetPid());
                         split[1] = split[1].replaceAll(target.getTaglessPid() +  "TMP", ch.getTaglessPid());
                         if(options[6])

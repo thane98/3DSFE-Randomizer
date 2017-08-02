@@ -2,12 +2,12 @@ package randomizer.fates.model.processors;
 
 import feflib.fates.gamedata.CharacterBlock;
 import feflib.fates.gamedata.FatesGameData;
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.enums.ChapterType;
 import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Chapter;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.List;
 

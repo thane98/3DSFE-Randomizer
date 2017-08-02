@@ -1,12 +1,13 @@
 package randomizer.fates.model.processors.prep;
 
-import randomizer.common.data.FatesData;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
 
 import java.io.File;
 import java.util.HashMap;
@@ -29,7 +30,8 @@ public class NameMatcher {
 
         // Use the map to assign names.
         for(FatesCharacter c : FatesData.getInstance().getCharacters()) {
-            c.setName(map.get(c.getMPid()));
+            if(c.getCharacterType() != CharacterType.Player)
+                c.setName(map.get(c.getMPid()));
         }
         for(Skill s : FatesData.getInstance().getSkills()) {
             s.setName(map.get("M" + s.getSeid()));

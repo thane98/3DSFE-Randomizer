@@ -1,0 +1,434 @@
+[
+  {
+    "state": "Base",
+    "name": "JID_ロード男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_ロード女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_マスターロード男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_マスターロード女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_戦術師男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_戦術師女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_神軍師男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_神軍師女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_ソシアルナイト男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_ソシアルナイト女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_アーマーナイト男",
+    "itemType": "Lances",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_アーマーナイト女",
+    "itemType": "Lances",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_パラディン男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_パラディン女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_グレートナイト男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_グレートナイト女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ジェネラル男",
+    "itemType": "Lances",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ジェネラル女",
+    "itemType": "Lances",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_蛮族男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_戦士男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_傭兵男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_傭兵女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_アーチャー男",
+    "itemType": "Bows",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_アーチャー女",
+    "itemType": "Bows",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_バーサーカー男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ウォーリアー男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_勇者男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_勇者女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ボウナイト男",
+    "itemType": "Bows",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ボウナイト女",
+    "itemType": "Bows",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_スナイパー男",
+    "itemType": "Bows",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_スナイパー女",
+    "itemType": "Bows",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_剣士男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_剣士女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_盗賊男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_盗賊女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ソードマスター男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ソードマスター女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_アサシン男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_アサシン女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_トリックスター男",
+    "itemType": "Swords",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_トリックスター女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_ペガサスナイト女",
+    "itemType": "Lances",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ファルコンナイト女",
+    "itemType": "Lances",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ダークペガサス女",
+    "itemType": "Lances",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_ドラゴンナイト男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_ドラゴンナイト女",
+    "itemType": "Axes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ドラゴンマスター男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ドラゴンマスター女",
+    "itemType": "Axes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_グリフォンナイト男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_グリフォンナイト女",
+    "itemType": "Axes",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_グリフォンナイト女",
+    "itemType": "Staves",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_僧侶男",
+    "itemType": "Staves",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_シスター女",
+    "itemType": "Staves",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_魔道士男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_魔道士女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_ダークマージ男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "name": "JID_ダークマージ女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ヴァルキュリア女",
+    "itemType": "Staves",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_バトルモンク男",
+    "itemType": "Axes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_バトルシスター女",
+    "itemType": "Axes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_賢者男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_賢者女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ダークナイト男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ダークナイト女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ソーサラー男",
+    "itemType": "Tomes",
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "name": "JID_ソーサラー女",
+    "itemType": "Tomes",
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "name": "JID_踊り子女",
+    "itemType": "Swords",
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "name": "JID_マムクート女",
+    "itemType": "Stones",
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "name": "JID_ラグズ男",
+    "itemType": "Stones",
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "name": "JID_ラグズ女",
+    "itemType": "Stones",
+    "gender": 1
+  },
+  {
+	"state": "Base",
+	"name": "JID_村人男",
+	"itemType": "Lances",
+	"gender": 0
+  }
+]

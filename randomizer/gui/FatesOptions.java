@@ -1,4 +1,4 @@
-package randomizer.common.gui;
+package randomizer.gui;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -6,15 +6,9 @@ import com.google.gson.stream.JsonReader;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.CheckListView;
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.data.Gui;
 import randomizer.common.enums.ItemType;
 import randomizer.common.structures.FEItem;
@@ -23,6 +17,9 @@ import randomizer.common.structures.Skill;
 import randomizer.fates.model.processors.FatesHub;
 import randomizer.fates.model.structures.FatesCharacter;
 import randomizer.fates.model.structures.SettingsWrapper;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,6 +29,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class FatesOptions implements Initializable {
@@ -55,7 +53,7 @@ public class FatesOptions implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         menuBox.getItems().addAll(Arrays.asList(
-                "Basic Options", "Experimental Options", "Characters", "Classes",
+                "Basic Options", "Characters", "Classes",
                 "Skills", "Items", "Paths"
         ));
         menuBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
@@ -95,25 +93,6 @@ public class FatesOptions implements Initializable {
                     else
                         index = c.getRemoved().get(0);
                     FatesGui.getInstance().getSelectedOptions()[index] = c.wasAdded();
-                };
-                configList.getCheckModel().getCheckedIndices().addListener(listener);
-                break;
-            case "Experimental Options":
-                for(String s : FatesGui.getInstance().getExperimentalOptions()) {
-                    configList.getItems().add(s);
-                }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedExperimentalOptions()[x])
-                        configList.getCheckModel().check(x);
-                }
-                listener = c -> {
-                    c.next();
-                    int index;
-                    if(c.wasAdded())
-                        index = c.getAddedSubList().get(0);
-                    else
-                        index = c.getRemoved().get(0);
-                    FatesGui.getInstance().getSelectedExperimentalOptions()[index] = c.wasAdded();
                 };
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
@@ -218,6 +197,8 @@ public class FatesOptions implements Initializable {
 
     @FXML
     private void randomize() {
+        if(FatesGui.getInstance().getSelectedCharacters()[0] || FatesGui.getInstance().getSelectedCharacters()[1])
+            loadCodeBin();
 //        Task task = new Task<Void>() {
 //            @Override
 //            public Void call() {
@@ -247,7 +228,6 @@ public class FatesOptions implements Initializable {
             SettingsWrapper wrapper = gson.fromJson(reader, type);
             reader.close();
             FatesGui.getInstance().setSelectedOptions(wrapper.getGui().getSelectedOptions());
-            FatesGui.getInstance().setSelectedExperimentalOptions(wrapper.getGui().getSelectedExperimentalOptions());
             FatesGui.getInstance().setSelectedPaths(wrapper.getGui().getSelectedPaths());
             FatesGui.getInstance().setSelectedItems(wrapper.getGui().getSelectedItems());
             FatesGui.getInstance().setSelectedSkills(wrapper.getGui().getSelectedSkills());
@@ -264,11 +244,34 @@ public class FatesOptions implements Initializable {
                 return;
             }
             List<FatesCharacter> selectedCharacters = wrapper.getCharacters();
+            if(FatesGui.getInstance().getSelectedCharacters()[0] && FatesGui.getInstance().getSelectedCharacters()[1])
+                loadCodeBin();
             FatesHub hub = new FatesHub();
             hub.randomizeWithSettings(selectedCharacters);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadCodeBin() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Fates Randomizer");
+        alert.setHeaderText("Load code.bin?");
+        alert.setContentText("The option you selected requires a decompressed code.bin file." +
+                "Would you like to select one now? If you don't, the option will be ignored!");
+        Optional<ButtonType> res = alert.showAndWait();
+        res.ifPresent(e -> {
+            if(e == ButtonType.OK) {
+                FileChooser chooser = new FileChooser();
+                chooser.setTitle("Select code.bin");
+                chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bin Files (*.bin)",
+                        "*.bin"));
+                File file = chooser.showOpenDialog(Gui.getInstance().getMainStage());
+                if(file != null) {
+                    FatesFileData.getInstance().setCode(file);
+                }
+            }
+        });
     }
 
     private void throwUnverifiedPathDialog() {

@@ -1,4 +1,4 @@
-package randomizer.common.gui.jmetro;
+package randomizer.gui.jmetro;
 
 import com.sun.javafx.scene.text.TextLayout;
 import com.sun.javafx.tk.Toolkit;

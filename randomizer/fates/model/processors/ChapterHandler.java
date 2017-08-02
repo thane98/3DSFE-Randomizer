@@ -7,12 +7,13 @@ import feflib.fates.gamedata.dispo.DispoFaction;
 import feflib.fates.gamedata.dispo.FatesDispo;
 import feflib.fates.gamedata.person.FatesPerson;
 import feflib.fates.gamedata.person.PersonBlock;
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
-import randomizer.common.data.FatesGui;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Chapter;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +23,6 @@ import java.util.List;
 
 class ChapterHandler {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private static boolean[] experimental = FatesGui.getInstance().getSelectedExperimentalOptions();
     private static FatesData fatesData = FatesData.getInstance();
     private static FatesFileData fileData = FatesFileData.getInstance();
 
@@ -43,14 +43,17 @@ class ChapterHandler {
         }
         for(PersonBlock p : person.getCharacters()) {
             for(FatesCharacter c : selected) {
+                if(c.getCharacterType() == CharacterType.Player)
+                    continue;
                 FatesCharacter target = fatesData.getByPid(c.getTargetPid());
                 if(p.getAid().equals(target.getAid() + "TMP")) {
                     p.setAid(c.getAid());
                     p.setFid(c.getFid());
                     p.setMPid(c.getMPid());
                     p.setMPidH(c.getMPidH());
-                    p.setClasses(new short[] { c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob() });
-                    p.setReclasses(new short[] { c.getReclasses()[0].getId(), c.getReclasses()[1].getId() });
+                    if(options[13]) {
+                        p.setClasses(new short[] { c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob() });
+                    }
                     p.setWeaponRanks(fatesData.generateWeaponsRanks(c.getCharacterClass()));
                     if(aliasMap.containsKey(c.getPid())) {
                         aliasMap.get(c.getPid()).add(p.getPid());
@@ -80,16 +83,18 @@ class ChapterHandler {
             for(DispoBlock b : f.getSpawns()) {
                 for(FatesCharacter c : selected) {
                     FatesCharacter target = fatesData.getByPid(c.getTargetPid());
-                    if(target.getPid().equals(b.getPid())) {
+                    if(pidMatches(target, b)) {
                         b.setPid(c.getPid());
                         b.setItem(fatesData.generateItem(c.getCharacterClass()).getIid(), 0);
+                        if(c.getCharacterType() == CharacterType.Player)
+                            b.setItem(fatesData.generateItem(c.getCharacterClass()).getIid(), 1);
                         break;
                     }
-                    else if(aliasMap.get(c.getPid()) != null) {
+                    else if(aliasMap.get(c.getPid()) != null && options[13]) {
                         for(String s : aliasMap.get(c.getPid())) {
                             if(s.equals(b.getPid())) {
                                 b.setItem(fatesData.generateItem(c.getCharacterClass()).getIid(), 0);
-                                if(s.equals("PID_A002_ボス")) { // Workaround for Chapter 2 Kaze.
+                                if(s.contains("ボス")) { // Workaround for bugged bosses.
                                     b.setItem(fatesData.generateItem(c.getCharacterClass()).getIid(), 1);
                                 }
                                 break;
@@ -119,11 +124,10 @@ class ChapterHandler {
         }
         if(options[8]) {
             JoinBlock block = new JoinBlock();
-            block.setBirthrightJoin("CID_A007");
-            block.setConquestJoin("CID_B007");
-            block.setRevelationJoin("CID_C007");
+            block.setBirthrightJoin("CID_A006");
+            block.setConquestJoin("CID_B006");
+            block.setRevelationJoin("CID_C006");
             block.setUnknownOne(join.getBlocks().get(0).getUnknownOne());
-            block.setUnknownTwo(join.getBlocks().get(0).getUnknownTwo());
             for(FatesCharacter c : selected) {
                 if(c.getPid().equals("PID_アンナ")) {
                     block.setCharacter(fatesData.getReplacement(selected, c.getPid()).getPid());
@@ -138,5 +142,10 @@ class ChapterHandler {
         } catch(IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static boolean pidMatches(FatesCharacter c, DispoBlock b) {
+        return c.getPid().equals(b.getPid()) || c.getPidA().equals(b.getPid()) || c.getPidB().equals(b.getPid())
+                || c.getPidC().equals(b.getPid());
     }
 }

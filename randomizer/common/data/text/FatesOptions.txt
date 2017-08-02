@@ -11,3 +11,4 @@ Promote Jakob and Felicia
 Include Personal Skills in Skill Pool
 Unlock Hero Battles
 Patch Bitflags
+Reclass Every Character Appearance

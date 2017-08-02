@@ -1,13 +1,13 @@
 package randomizer.fates.model.processors;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.enums.ItemType;
 import randomizer.common.fs.model.Decompiler;
 import randomizer.common.fs.model.ScriptCompiler;
 import randomizer.common.structures.Chapter;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -17,7 +17,6 @@ import java.util.List;
 
 class ScriptHandler {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private static boolean[] experimental = FatesGui.getInstance().getSelectedExperimentalOptions();
     private static FatesData fatesData = FatesData.getInstance();
     private static FatesFileData fileData = FatesFileData.getInstance();
 
@@ -35,6 +34,12 @@ class ScriptHandler {
                 for(FatesCharacter ch : characters) {
                     script = script.replaceAll(ch.getTargetPid().replace("PID_", "AID_")
                             + "RANDOMIZERTMP", ch.getPid());
+                    if(ch.getId() == 1 && c.getCid().equals("A005")) { // Fix for chapter 5 forced class.
+                        script = script.replaceAll("JID_ダークプリンス男", ch.getCharacterClass().getJid());
+                    }
+                    else if(ch.getId() == 2 && c.getCid().equals("A005")) {
+                        script = script.replaceAll("JID_ダークプリンセス女", ch.getCharacterClass().getJid());
+                    }
                 }
                 compiler = new ScriptCompiler(path.toFile().getName());
                 compiler.compile(path, script);

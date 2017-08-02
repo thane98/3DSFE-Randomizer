@@ -1,4 +1,4 @@
-package randomizer.common.gui;
+package randomizer.gui;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -31,7 +31,7 @@ public class Verification implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         gameBox.getItems().addAll(Arrays.asList(
-           "Awakening", "Fates", "Shadows of Valentia"
+           "Awakening", "Fates"
         ));
         regionBox.getItems().addAll(Arrays.asList(
            "North America", "Japan", "Europe - English",
@@ -41,7 +41,6 @@ public class Verification implements Initializable {
 
         // Only Fates is support right now.
         gameBox.getSelectionModel().select(1);
-        gameBox.setDisable(true);
     }
 
     @FXML
@@ -61,15 +60,15 @@ public class Verification implements Initializable {
                         if(verified) { // Move on to options.
                             Parent root;
                             try {
-                                root = FXMLLoader.load(Randomizer.class.getResource("common/gui/fxml/FatesOptions.fxml"));
+                                root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/FatesOptions.fxml"));
                                 Scene scene = new Scene(root,500,550);
-                                scene.getStylesheets().add(Randomizer.class.getResource("common/gui/jmetro/JMetroLightTheme.css")
+                                scene.getStylesheets().add(Randomizer.class.getResource("gui/jmetro/JMetroLightTheme.css")
                                         .toExternalForm());
                                 Stage stage = Gui.getInstance().getMainStage();
                                 Platform.runLater(() -> {
                                     progressBar.setProgress(1);
                                     stage.setResizable(true);
-                                    stage.setTitle("Fates Randomizer Options");
+                                    stage.setTitle("Randomizer Options");
                                     stage.setScene(scene);
                                 });
                             } catch (IOException e) {

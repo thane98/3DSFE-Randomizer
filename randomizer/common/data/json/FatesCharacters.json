@@ -1,5 +1,21 @@
 [
   {
+    "name": "Corrin (M)",
+    "pid": "PID_プレイヤー男",
+    "male": true,
+    "id": 1,
+    "promoted": false,
+    "characterType": "Player"
+  },
+  {
+    "name": "Corrin (F)",
+    "pid": "PID_プレイヤー女",
+    "male": false,
+    "id": 2,
+    "promoted": false,
+    "characterType": "Player"
+  },
+  {
     "name": "Felicia",
     "pid": "PID_フェリシア",
     "sound": "FELICIA",

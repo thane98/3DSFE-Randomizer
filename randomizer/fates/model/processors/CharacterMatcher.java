@@ -1,9 +1,9 @@
 package randomizer.fates.model.processors;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.enums.CharacterType;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +31,8 @@ class CharacterMatcher {
                 firstGen.add(c);
             else if(c.getCharacterType() == CharacterType.SecondGen)
                 secondGen.add(c);
+            else if(c.getCharacterType() == CharacterType.Player) // Players can only randomize classes and stats.
+                c.setTargetPid(c.getPid());
             else
                 npcs.add(c);
         }

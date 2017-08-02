@@ -1,8 +1,9 @@
-package randomizer.common.data;
+package randomizer.fates.singletons;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import randomizer.Randomizer;
 import randomizer.common.enums.*;
 import randomizer.common.structures.Chapter;
 import randomizer.common.structures.FEItem;
@@ -13,6 +14,7 @@ import randomizer.fates.model.structures.FatesCharacter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,24 +38,24 @@ public class FatesData {
 
         try {
             Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(this.getClass()
-                    .getResourceAsStream("json/FatesChapters.json"))));
+            JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("common/data/json/FatesChapters.json"))));
             chapters = gson.fromJson(reader, chapterType);
             reader.close();
-            reader = new JsonReader(new BufferedReader(new InputStreamReader(this.getClass()
-                    .getResourceAsStream("json/FatesCharacters.json"))));
+            reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("common/data/json/FatesCharacters.json"))));
             characters = gson.fromJson(reader, characterType);
             reader.close();
-            reader = new JsonReader(new BufferedReader(new InputStreamReader(this.getClass()
-                    .getResourceAsStream("json/FatesClasses.json"))));
+            reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("common/data/json/FatesClasses.json"))));
             jobs = gson.fromJson(reader, jobType);
             reader.close();
-            reader = new JsonReader(new BufferedReader(new InputStreamReader(this.getClass()
-                    .getResourceAsStream("json/FatesItems.json"))));
+            reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("common/data/json/FatesItems.json"))));
             items = gson.fromJson(reader, itemType);
             reader.close();
-            reader = new JsonReader(new BufferedReader(new InputStreamReader(this.getClass()
-                    .getResourceAsStream("json/FatesSkills.json"))));
+            reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("common/data/json/FatesSkills.json"))));
             skills = gson.fromJson(reader, skillType);
             reader.close();
         } catch (IOException e) {
@@ -213,6 +215,38 @@ public class FatesData {
                 selected.add(weapons.get(x));
         }
         return selected;
+    }
+
+    public FEItem generateEligibleItem(ItemType type, int maxLength) {
+        List<FEItem> eligible = new ArrayList<>();
+        try {
+            for(FEItem i : getSelectedItems(type)) {
+                if(i.getIid().getBytes("shift-jis").length <= maxLength)
+                    eligible.add(i);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        Random random = new Random();
+        return eligible.get(random.nextInt(eligible.size()));
+    }
+
+    public List<Job> getEligibleJobs(boolean male, int maxLength) {
+        List<Job> eligible = new ArrayList<>();
+        List<Job> pool;
+        if(male)
+            pool = getMaleBaseClasses();
+        else
+            pool = getFemaleBaseClasses();
+        try {
+            for(Job j : pool) {
+                if(j.getJid().getBytes("shift-jis").length <= maxLength)
+                    eligible.add(j);
+            }
+        } catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return eligible;
     }
     
     public byte[] generateWeaponsRanks(Job j) {

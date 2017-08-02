@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.control.CheckListView?>
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.common.gui.FatesOptions">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.gui.FatesOptions">
    <children>
       <Button layoutX="70.0" layoutY="477.0" mnemonicParsing="false" onAction="#randomize" prefHeight="33.0" prefWidth="194.0" text="Randomize" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="28.0" />
       <ProgressIndicator fx:id="progress" layoutX="293.0" layoutY="370.0" prefHeight="43.0" prefWidth="25.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="0.0" />

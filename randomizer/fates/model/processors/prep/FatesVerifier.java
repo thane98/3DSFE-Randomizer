@@ -1,9 +1,9 @@
 package randomizer.fates.model.processors.prep;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
 import randomizer.common.enums.ChapterType;
 import randomizer.common.structures.Chapter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
 
 import java.io.File;
 import java.io.IOException;
@@ -122,7 +122,6 @@ public class FatesVerifier {
             failures.add(file);
         file = new File(mainText, "GameData.bin.lz");
         if(file.exists()) {
-            verified.add(file);
             NameMatcher.matchNames(file); // Get names from IDs.
         }
         else

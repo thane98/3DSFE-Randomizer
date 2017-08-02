@@ -4,14 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import feflib.fates.gamedata.CharacterBlock;
 import feflib.fates.gamedata.FatesGameData;
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesFileData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.fates.model.processors.prep.PatchBuilder;
 import randomizer.fates.model.structures.FatesCharacter;
 import randomizer.fates.model.structures.SettingsWrapper;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -39,6 +39,8 @@ public class FatesHub {
         List<FatesCharacter> selectedCharacters = FatesData.getInstance().getSelectedCharacters();
         PatchBuilder.createPatch();
         FatesGameData data = new FatesGameData(FatesFileData.getInstance().getGameData());
+
+        // Synchronize randomizer and GameData's characters.
         for(CharacterBlock c : data.getCharacters()) {
             FatesCharacter character = FatesData.getInstance().getByPid(c.getPid());
             if(character == null)
@@ -75,11 +77,11 @@ public class FatesHub {
         StatCalculator.randomizeStats(selectedCharacters);
         GameDataHandler.randomizeGameData(data, selectedCharacters);
 
-        // TODO: Add in option checks.
         // Modify chapters.
         ChapterHandler.randomizeChapterData(selectedCharacters);
         ScriptHandler.randomizeScript(selectedCharacters);
-        TextHandler.randomizeText(selectedCharacters);
+        if(options[3])
+            TextHandler.randomizeText(selectedCharacters);
         try {
             Files.write(FatesFileData.getInstance().getGameData().toPath(),
                     CompressionUtils.compress(data.getRaw()));
@@ -87,29 +89,13 @@ public class FatesHub {
             e.printStackTrace();
         }
 
+        // Process code.
+        if(FatesFileData.getInstance().getCode() != null)
+            CodeHandler.process(selectedCharacters);
+
         // Create output files.
-        File out = new File(System.getProperty("user.dir"), "settings.json");
-        try (Writer writer = new FileWriter(out)) {
-            GsonBuilder builder = new GsonBuilder();
-            builder.setPrettyPrinting();
-            Gson gson = builder.create();
-            SettingsWrapper wrapper = new SettingsWrapper();
-            wrapper.setGui(FatesGui.getInstance());
-            wrapper.setCharacters(selectedCharacters);
-            gson.toJson(wrapper, writer);
-        } catch(IOException ex) {
-            ex.printStackTrace();
-        }
-        out = new File(System.getProperty("user.dir"), "results.txt");
-        List<String> lines = new ArrayList<>();
-        for(FatesCharacter c : selectedCharacters) {
-            lines.add(c.toString());
-        }
-        try {
-            Files.write(out.toPath(), lines);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createSettings(selectedCharacters);
+        createOutputText(selectedCharacters);
     }
 
     public void randomizeWithSettings(List<FatesCharacter> selectedCharacters) {
@@ -130,8 +116,25 @@ public class FatesHub {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        createOutputText(selectedCharacters);
+    }
 
-        // Create output file. Settings are identical, so creating new settings would be useless.
+    private void createSettings(List<FatesCharacter> selectedCharacters) {
+        File out = new File(System.getProperty("user.dir"), "settings.json");
+        try (Writer writer = new FileWriter(out)) {
+            GsonBuilder builder = new GsonBuilder();
+            builder.setPrettyPrinting();
+            Gson gson = builder.create();
+            SettingsWrapper wrapper = new SettingsWrapper();
+            wrapper.setGui(FatesGui.getInstance());
+            wrapper.setCharacters(selectedCharacters);
+            gson.toJson(wrapper, writer);
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void createOutputText(List<FatesCharacter> selectedCharacters) {
         File out = new File(System.getProperty("user.dir"), "results.txt");
         List<String> lines = new ArrayList<>();
         for(FatesCharacter c : selectedCharacters) {

@@ -1,4 +1,4 @@
-package randomizer.common.gui.jmetro;
+package randomizer.gui.jmetro;
 
 import com.sun.javafx.scene.control.behavior.SliderBehavior;
 import com.sun.javafx.scene.control.skin.BehaviorSkinBase;

@@ -1,9 +1,10 @@
 package randomizer.fates.model.processors;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesGui;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Job;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.List;
 import java.util.Random;
@@ -14,6 +15,8 @@ public class ClassRandomizer {
     private static List<Job> malePromotedJobs = FatesData.getInstance().getMalePromotedClasses();
     private static List<Job> femaleBaseJobs = FatesData.getInstance().getFemaleBaseClasses();
     private static List<Job> femalePromotedJobs = FatesData.getInstance().getFemalePromotedClasses();
+    private static List<Job> malePlayerJobs = FatesData.getInstance().getEligibleJobs(true, 0x14);
+    private static List<Job> femalePlayerJobs = FatesData.getInstance().getEligibleJobs(false, 0x14);
     private static Random random = new Random();
 
     static void randomizeClasses(List<FatesCharacter> characters) {
@@ -21,7 +24,9 @@ public class ClassRandomizer {
             FatesCharacter target = FatesData.getInstance().getByPid(c.getTargetPid());
             
             // Current character class.
-            c.setCharacterClass(generateClass(c.isMale(), target.isPromoted()));
+            if(c.getCharacterType() != CharacterType.Player) {
+                c.setCharacterClass(generateClass(c.isMale(), target.isPromoted()));
+            }
 
             // Reclasses.
             Job[] reclasses = new Job[2];
@@ -31,6 +36,20 @@ public class ClassRandomizer {
                 tmp = generateClass(c.isMale(), false);
             reclasses[1] = tmp;
             c.setReclasses(reclasses);
+        }
+
+        // Player classes.
+        if(FatesGui.getInstance().getSelectedCharacters()[0]) {
+            characters.get(0).setCharacterClass(malePlayerJobs.get(random.nextInt(malePlayerJobs.size())));
+        }
+        if(FatesGui.getInstance().getSelectedCharacters()[1]) {
+            characters.get(1).setCharacterClass(femalePlayerJobs.get(random.nextInt(femalePlayerJobs.size())));
+        }
+        if(FatesGui.getInstance().getSelectedCharacters()[0] && FatesGui.getInstance().getSelectedCharacters()[1]) {
+            while(characters.get(0).getCharacterClass().getItemType()
+                    != characters.get(1).getCharacterClass().getItemType()) {
+                characters.get(1).setCharacterClass(femalePlayerJobs.get(random.nextInt(femalePlayerJobs.size())));
+            }
         }
     }
     

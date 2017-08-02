@@ -692,7 +692,7 @@
  ******************************************************************************/
 
 .slider {
-    -fx-skin: "randomizer.common.gui.jmetro.FilledSliderSkin";
+    -fx-skin: "randomizer.gui.jmetro.FilledSliderSkin";
 }
 
 .slider .thumb {

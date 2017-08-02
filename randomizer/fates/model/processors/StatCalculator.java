@@ -1,9 +1,9 @@
 package randomizer.fates.model.processors;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.structures.Skill;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.List;
 import java.util.Random;
@@ -28,7 +28,7 @@ class StatCalculator {
             Skill[] originalSkills = c.getSkills();
             byte originalLevel = c.getLevel();
             byte originalInternalLevel = c.getInternalLevel();
-            c.setLevel(target.getLevel());
+            c.setLevel(originalLevel);
             target.setLevel(originalLevel);
             c.setInternalLevel(target.getInternalLevel());
             target.setInternalLevel(originalInternalLevel);

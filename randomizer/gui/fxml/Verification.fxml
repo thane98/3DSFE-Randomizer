@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.common.gui.Verification">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="randomizer.gui.Verification">
    <children>
       <ProgressBar fx:id="progressBar" layoutY="88.0" prefHeight="23.0" prefWidth="320.0" progress="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <ComboBox fx:id="regionBox" layoutX="25.0" layoutY="168.0" prefHeight="35.0" prefWidth="270.0" promptText="Select region." AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />

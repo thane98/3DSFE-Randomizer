@@ -1,11 +1,11 @@
 package randomizer.fates.model.structures;
 
-import randomizer.common.data.FatesData;
-import randomizer.common.data.FatesGui;
 import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
 import randomizer.common.utils.ByteUtils;
+import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesGui;
 
 import java.util.Arrays;
 
@@ -266,5 +266,17 @@ public class FatesCharacter {
 
     public void setRoyal(boolean royal) {
         this.royal = royal;
+    }
+
+    public String getPidA() {
+        return pid.replace("PID_", "PID_A_");
+    }
+
+    public String getPidB() {
+        return pid.replace("PID_", "PID_B_");
+    }
+
+    public String getPidC() {
+        return pid.replace("PID_", "PID_C_");
     }
 }

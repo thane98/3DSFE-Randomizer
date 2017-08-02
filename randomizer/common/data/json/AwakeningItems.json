@@ -1,0 +1,34 @@
+[
+  {
+    "iid": "IID_鉄の剣",
+    "type": "Swords"
+  },
+  {
+    "iid": "IID_鉄の槍",
+    "type": "Lances"
+  },
+  {
+    "iid": "IID_鉄の斧",
+    "type": "Axes"
+  },
+  {
+    "iid": "IID_鉄の弓",
+    "type": "Bows"
+  },
+  {
+    "iid": "IID_ファイアー",
+    "type": "Tomes"
+  },
+  {
+    "iid": "IID_ライブ",
+    "type": "Staves"
+  },
+  {
+    "iid": "IID_竜石",
+    "type": "Stones"
+  },
+  {
+    "iid": "IID_獣石",
+    "type": "Stones"
+  }
+]
