@@ -7,7 +7,10 @@ import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesCharacters;
+import randomizer.fates.singletons.FatesItems;
+import randomizer.fates.singletons.FatesJobs;
+import randomizer.fates.singletons.FatesSkills;
 
 import java.io.File;
 import java.util.HashMap;
@@ -29,17 +32,17 @@ public class NameMatcher {
         }
 
         // Use the map to assign names.
-        for(FatesCharacter c : FatesData.getInstance().getCharacters()) {
-            if(c.getCharacterType() != CharacterType.Player)
+        for(FatesCharacter c : FatesCharacters.getInstance().getCharacters()) {
+            if(c.getCharacterType() != CharacterType.Player && !c.getPid().startsWith("PID_カンナ"))
                 c.setName(map.get(c.getMPid()));
         }
-        for(Skill s : FatesData.getInstance().getSkills()) {
+        for(Skill s : FatesSkills.getInstance().getSkills()) {
             s.setName(map.get("M" + s.getSeid()));
         }
-        for(FEItem i : FatesData.getInstance().getItems()) {
+        for(FEItem i : FatesItems.getInstance().getItems()) {
             i.setName(map.get("M" + i.getIid()));
         }
-        for(Job j : FatesData.getInstance().getJobs()) {
+        for(Job j : FatesJobs.getInstance().getJobs()) {
             j.setName(map.get("M" + j.getJid().substring(0, j.getJid().length() - 1)));
         }
     }

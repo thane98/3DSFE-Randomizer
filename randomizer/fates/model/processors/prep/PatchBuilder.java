@@ -3,7 +3,7 @@ package randomizer.fates.model.processors.prep;
 import randomizer.common.utils.BinUtils;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
-import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesFiles;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class PatchBuilder {
     /**
      * Copies the relevant patch files from the ROM to a new directory,
-     * adds the copied files to the FatesFileData singleton, and decompresses
+     * adds the copied files to the FatesFiles singleton, and decompresses
      * every bin file.
      */
     public static void createPatch() {
@@ -43,18 +43,18 @@ public class PatchBuilder {
         textDir.mkdir();
         castleDir.mkdir();
 
-        if(FatesFileData.getInstance().getCode() != null) {
+        if(FatesFiles.getInstance().getCode() != null) {
             try {
                 File file = new File(patchDir, "code.bin");
-                Files.copy(FatesFileData.getInstance().getCode().toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                FatesFileData.getInstance().setCode(file);
+                Files.copy(FatesFiles.getInstance().getCode().toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                FatesFiles.getInstance().setCode(file);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        for(File f : FatesFileData.getInstance().getOriginalFileList()) {
-            File copy = new File(f.getAbsolutePath().replace(FatesFileData.getInstance().getRom().getAbsolutePath(),
+        for(File f : FatesFiles.getInstance().getOriginalFileList()) {
+            File copy = new File(f.getAbsolutePath().replace(FatesFiles.getInstance().getRom().getAbsolutePath(),
                     dir.getAbsolutePath()));
             if(!copy.getName().endsWith(".lz") && !copy.getName().endsWith(".cmb"))
                 copy.mkdirs();
@@ -63,41 +63,41 @@ public class PatchBuilder {
             try {
                 if(f.getName().equals("bev") && f.isDirectory()) {
                     BinUtils.copyFolder(f, copy);
-                    FatesFileData.getInstance().setBev(copy);
+                    FatesFiles.getInstance().setBev(copy);
                 }
                 else {
                     if(BinUtils.isInSubDirectory(disposDir, copy)) {
-                        FatesFileData.getInstance().getDispos().put(getCid(copy.getName()), copy);
+                        FatesFiles.getInstance().getDispos().put(getCid(copy.getName()), copy);
                         Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
                     else if(BinUtils.isInSubDirectory(personDir, copy)) {
-                        FatesFileData.getInstance().getPerson().put(getCid(copy.getName()), copy);
+                        FatesFiles.getInstance().getPerson().put(getCid(copy.getName()), copy);
                         Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
                     else if(BinUtils.isInSubDirectory(textDir, copy) && !copy.getName().equals("GMap.bin.lz")) {
-                        FatesFileData.getInstance().getText().put(getCid(copy.getName()), copy);
+                        FatesFiles.getInstance().getText().put(getCid(copy.getName()), copy);
                         Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
                                 CompressionUtils.decompress(f))));
                     }
                     else if(BinUtils.isInSubDirectory(scriptsDir, copy) && copy.getName().endsWith("_Terrain.cmb")) {
-                        FatesFileData.getInstance().getTerrain().put(getCid(copy.getName()), copy);
+                        FatesFiles.getInstance().getTerrain().put(getCid(copy.getName()), copy);
                         Files.copy(f.toPath(), copy.toPath());
                     }
                     else if(BinUtils.isInSubDirectory(scriptsDir, copy)) {
-                        FatesFileData.getInstance().getScript().put(getCid(copy.getName()), copy);
+                        FatesFiles.getInstance().getScript().put(getCid(copy.getName()), copy);
                         Files.copy(f.toPath(), copy.toPath());
                     }
                     else if(BinUtils.isInSubDirectory(gameDataDir, copy) && copy.getName().equals("GameData.bin.lz")) {
-                        FatesFileData.getInstance().setGameData(copy);
+                        FatesFiles.getInstance().setGameData(copy);
                         Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
                     else if(copy.getName().equals("GMap.bin.lz")) {
-                        FatesFileData.getInstance().setGMap(copy);
+                        FatesFiles.getInstance().setGMap(copy);
                         Files.write(copy.toPath(), Arrays.asList(MessageBinUtils.extractMessageArchive(
                                 CompressionUtils.decompress(f))));
                     }
                     else if(BinUtils.isInSubDirectory(castleDir, copy) && copy.getName().equals("castle_join.bin.lz")) {
-                        FatesFileData.getInstance().setCastleJoin(copy);
+                        FatesFiles.getInstance().setCastleJoin(copy);
                         Files.write(copy.toPath(), CompressionUtils.decompress(f));
                     }
                 }

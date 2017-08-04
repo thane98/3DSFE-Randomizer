@@ -3,7 +3,6 @@ package randomizer.gui.jmetro;
 import com.sun.javafx.scene.control.behavior.SliderBehavior;
 import com.sun.javafx.scene.control.skin.BehaviorSkinBase;
 import javafx.animation.Transition;
-import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
@@ -28,7 +27,6 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
 
     private boolean showTickMarks;
     private double thumbWidth;
-    private double thumbHeight;
 
     private double trackStart;
     private double trackLength;
@@ -40,8 +38,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
     private StackPane thumb;
     private StackPane track;
     private StackPane fill;
-    private boolean trackClicked = false;
-//    private double visibleAmount = 16;
+    //    private double visibleAmount = 16;
 
     public FilledSliderSkin(Slider slider) {
         super(slider, new SliderBehavior(slider));
@@ -72,55 +69,25 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         getChildren().addAll(track, fill, thumb);
         setShowTickMarks(getSkinnable().isShowTickMarks(), getSkinnable().isShowTickLabels());
 
-        track.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                mousePressedOnTrack(me);
-            }
-        });
-        track.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                mouseDraggedOnTrack(me);
-            }
-        });
-        fill.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                mousePressedOnTrack(me);
-            }
-        });
-        fill.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                mouseDraggedOnTrack(me);
-            }
+        track.setOnMousePressed(this::mousePressedOnTrack);
+        track.setOnMouseDragged(this::mouseDraggedOnTrack);
+        fill.setOnMousePressed(this::mousePressedOnTrack);
+        fill.setOnMouseDragged(this::mouseDraggedOnTrack);
+
+        thumb.setOnMousePressed(me -> {
+            getBehavior().thumbPressed(me, 0.0f);
+            dragStart = thumb.localToParent(me.getX(), me.getY());
+            preDragThumbPos = (getSkinnable().getValue() - getSkinnable().getMin()) /
+                    (getSkinnable().getMax() - getSkinnable().getMin());
         });
 
-        thumb.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                getBehavior().thumbPressed(me, 0.0f);
-                dragStart = thumb.localToParent(me.getX(), me.getY());
-                preDragThumbPos = (getSkinnable().getValue() - getSkinnable().getMin()) /
-                        (getSkinnable().getMax() - getSkinnable().getMin());
-            }
-        });
+        thumb.setOnMouseReleased(me -> getBehavior().thumbReleased(me));
 
-        thumb.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                getBehavior().thumbReleased(me);
-            }
-        });
-
-        thumb.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                Point2D cur = thumb.localToParent(me.getX(), me.getY());
-                double dragPos = (getSkinnable().getOrientation() == Orientation.HORIZONTAL) ?
-                        cur.getX() - dragStart.getX() : -(cur.getY() - dragStart.getY());
-                getBehavior().thumbDragged(me, preDragThumbPos + dragPos / trackLength);
-            }
+        thumb.setOnMouseDragged(me -> {
+            Point2D cur = thumb.localToParent(me.getX(), me.getY());
+            double dragPos = (getSkinnable().getOrientation() == Orientation.HORIZONTAL) ?
+                    cur.getX() - dragStart.getX() : -(cur.getY() - dragStart.getY());
+            getBehavior().thumbDragged(me, preDragThumbPos + dragPos / trackLength);
         });
     }
 
@@ -144,7 +111,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    StringConverter<Number> stringConverterWrapper = new StringConverter<Number>() {
+    private StringConverter<Number> stringConverterWrapper = new StringConverter<Number>() {
         Slider slider = getSkinnable();
 
         @Override
@@ -205,7 +172,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
             getSkinnable().requestLayout();
         } else if ("VALUE".equals(p)) {
             // only animate thumb if the track was clicked - not if the thumb is dragged
-            positionThumb(trackClicked);
+            positionThumb(false);
         } else if ("MIN".equals(p)) {
             if (showTickMarks && tickLine != null) {
                 tickLine.setLowerBound(slider.getMin());
@@ -243,7 +210,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
     /**
      * Called when ever either min, max or value changes, so thumb's layoutX, Y is recomputed.
      */
-    void positionThumb(final boolean animate) {
+    private void positionThumb(final boolean animate) {
         Slider s = getSkinnable();
         if (s.getValue() > s.getMax()) return;// this can happen if we are bound to something
         boolean horizontal = s.getOrientation() == Orientation.HORIZONTAL;
@@ -285,7 +252,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         // calculate the available space
         // resize thumb to preferred size
         thumbWidth = snapSize(thumb.prefWidth(-1));
-        thumbHeight = snapSize(thumb.prefHeight(-1));
+        double thumbHeight = snapSize(thumb.prefHeight(-1));
         thumb.resize(thumbWidth, thumbHeight);
         // we are assuming the is common radius's for all corners on the track
         double trackRadius = track.getBackground() == null ? 0 : track.getBackground().getFills().size() > 0 ?
@@ -362,7 +329,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    double minTrackLength() {
+    private double minTrackLength() {
         return 2 * thumb.prefWidth(-1);
     }
 

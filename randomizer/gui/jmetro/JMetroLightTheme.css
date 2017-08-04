@@ -79,55 +79,6 @@
     -fx-background-color: #219297;
 }
 
-
-/*******************************************************************************
- *                                                                             *
- * Toggle Button                                                               *
- *                                                                             *
- ******************************************************************************/
-
-.toggle-button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-style: null;
-    -fx-background-radius: 0;
-
-    -fx-background-color: #cccccc;
-
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: black;
-
-    -fx-border-color: transparent;
-    -fx-border-width: 2;
-}
-
-.toggle-button:focused {
-    -fx-border-color: transparent, black;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 2);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.toggle-button:hover {
-    -fx-background-color: #d8d8d8;
-    -fx-text-fill: black;
-}
-
-.toggle-button:selected {
-    -fx-background-color: black;
-    -fx-text-fill: white;
-}
-
-.toggle-button:selected:hover {
-    -fx-background-color: #666;
-    -fx-text-fill: white;
-}
-
-.toggle-button:disabled {
-    -fx-opacity: 0.4;
-}
-
 /*******************************************************************************
  *                                                                             *
  * Check Box                                                                   *
@@ -344,7 +295,6 @@
     -fx-padding: 0.58333275em 1.333332em 0.58333275em 1.333332em;  /*7 16 7 16 */
 }
 
-/* TODO: try to scope the menu-item style to the contextmenu */
 .menu-item {
     -fx-background-color: transparent;
     -fx-padding: 0.666666em 1.333332em 0.666666em 1.333332em;   /*8 16 8 16 */
@@ -547,47 +497,7 @@
 }
 
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected{
-    -fx-background-color: #55c4fe;  /* TODO: this probably is the "active" color" */
-}
-
-/*******************************************************************************
- *                                                                             *
- * Rating (ControlsFX)                                                         *
- *                                                                             *
- ******************************************************************************/
-
-.rating > .container > .button {
-    -fx-background-color: #bababa;
-    -fx-border-color: transparent;
-    -fx-shape: "M147.421,249.541l6.152,4.854l-2.393,7.355l6.521-4.361l6.549,4.361l-2.393-7.355l6.152-4.854h-7.738l-2.571-7.396l-2.543,7.396H147.421z";
-    -fx-background-image: null;
-    -fx-padding: 16 16;
-    -fx-background-image-repeat: no-repeat;
-}
-.rating > .container > .button.strong {
-    -fx-background-color: #00828b;
-    -fx-border-color: transparent;
-    -fx-background-image: null;
-
-}
-.rating > .container:hover > .button.strong {
-    -fx-background-color: #329aa3;
-}
-
-.rating > .container > .button:hover {
-    -fx-effect: null;
-}
-
-.rating > .container:pressed > .button.strong {
-    -fx-background-color: #25bbc4;
-}
-
-.rating > .container > .button:pressed {
-    -fx-background-color: #25bbc4;
-}
-
-.rating:disabled{
-    -fx-opacity: .6;
+    -fx-background-color: #55c4fe;
 }
 
 /*******************************************************************************
@@ -603,7 +513,7 @@
 
     -fx-prompt-text-fill: #9f9f9f;
 
-    -fx-highlight-fill: #008287; /* TODO: this probably is the "active" color" */
+    -fx-highlight-fill: #008287;
     -fx-highlight-text-fill: white;
 }
 
@@ -617,10 +527,6 @@
     -fx-text-fill: black;
 }
 
-/*.text-input > Pane{*/
-    /*-fx-padding: 0.333333em 0.583em 0.333333em 0em; *//* 4 7 4 0 */
-/*}*/
-
 .text-input > .right-button{
     -fx-cursor: default;
 
@@ -630,7 +536,7 @@
 .text-field > .right-button > .right-button-graphic {
     -fx-shape            : "M221.738,305.873l6.135,6.16l-2.875,2.863l-6.135-6.159l-6.263,6.237l-2.864-2.875l6.263-6.238l-6.177-6.202l2.875-2.863l6.177,6.201l6.244-6.22l2.864,2.876L221.738,305.873z";
 
-    -fx-padding: 0.5em 0.5em; /* TODO: put the real number here 18 18 */
+    -fx-padding: 0.5em 0.5em;
     -fx-background-color: black;
 }
 
@@ -655,17 +561,6 @@
 
 .item-title.disabled{
     -fx-text-fill: #adadad;
-}
-
-/*******************************************************************************
- *                                                                             *
- * PasswordBox                                                                 *
- *                                                                             *
- ******************************************************************************/
-.password-field > .right-button > .right-button-graphic {
-    -fx-shape            : "M307.688,399.564c0,1.484-1.203,2.688-2.688,2.688c-1.484,0-2.688-1.203-2.688-2.688s1.203-2.688,2.688-2.688C306.484,396.876,307.688,398.08,307.688,399.564z M297.5,399h2.5c0,0,1.063-4,5-4c3.688,0,5,4,5,4h2.5c0,0-2.063-6.5-7.5-6.5C299,392.5,297.5,399,297.5,399z";
-    -fx-scale-shape: false;
-    -fx-background-color: black;
 }
 
 /*******************************************************************************
@@ -729,101 +624,6 @@
 
 /*******************************************************************************
  *                                                                             *
- * ToggleSwitch                                                                *
- *                                                                             *
- ******************************************************************************/
-.toggle-switch .text {
-    -fx-fill: black;
-    -fx-font-size: 1em;
-    -fx-font-family: "Segoe UI Semibold", "Segoe UI";
-}
-
-.toggle-switch .thumb {
-    -fx-background-color: black;
-    -fx-padding: 0.583333em 0.333333em 0.583333em 0.333333em;  /* 7 4 7 4*/
-}
-
-.toggle-switch:selected .thumb-area{
-    -fx-background-insets: 0, 1, 2;
-    -fx-background-color: #a6a6a6, white, #219297; /* The last one is the accent color */
-}
-
-.toggle-switch .thumb-area{
-    -fx-background-insets: 0, 1, 2;
-    -fx-background-color: #a6a6a6, white, #a6a6a6;
-}
-
-.toggle-switch:selected:pressed .thumb-area{
-    -fx-background-insets: 0, 1, 2;
-    -fx-background-color: #a6a6a6, white, #25bbc4; /* The last one is the accent color */
-}
-
-.toggle-switch .thumb-area
-{
-    -fx-padding: 0.583333em 1.333333em 0.583333em 1.333333em; /* 7 16 7 16 */
-
-}
-
-.toggle-switch:disabled
-{
-    -fx-opacity: 0.4;
-}
-
-/*******************************************************************************
- *                                                                             *
- * ListSpinner (Jfxtras)                                                       *
- *                                                                             *
- ******************************************************************************/
-
-.ListSpinner {
-    -fx-skin: "jfxtras.labs.internal.scene.control.skin.ListSpinnerCaspianSkin";
-    -fx-background-color: #f0f0f0;
-    -fx-background-insets: 0 0 0 0;
-    -fx-background-radius: 0;
-    -fx-padding: 0.266667em 0.233333em 0.25em 0.233333em;
-    -fx-text-fill: #212121;
-}
-
-.ListSpinner:hover {
-    -fx-color: #f0f0f0;
-}
-
-.ListSpinner:focused {
-    -fx-color: -fx-focused-base;
-    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: -1.4, 0, 1, 2;
-    -fx-background-radius: 6.4, 5, 4, 3;
-}
-
-.ListSpinner .valuePane {
-    -fx-padding: 0.0em 0.2em 0.0em 0.2em;
-}
-
-.ListSpinner .left-arrow {
-    -fx-shape: "M4,-4 L0,0 L4,4 Z";
-    -fx-scale-shape: false;
-}
-.ListSpinner .right-arrow {
-    -fx-shape: "M0,-4 L4,0 L0,4 Z";
-    -fx-scale-shape: false;
-}
-.ListSpinner .down-arrow {
-    -fx-shape: "M-4,-2 L0,2 L4,-2 Z";
-    -fx-scale-shape: false;
-}
-.ListSpinner .up-arrow {
-    -fx-shape: "M4,2 L-4,2 L0,-2 Z";
-    -fx-scale-shape: false;
-}
-.ListSpinner .idle {
-    -fx-background-color: -fx-mark-color;
-}
-.ListSpinner .clicked {
-    -fx-background-color: -fx-focus-color;
-}
-
-/*******************************************************************************
- *                                                                             *
  * Spinner                                                                     *
  *                                                                             *
  ******************************************************************************/
@@ -866,108 +666,6 @@
 
 .spinner.split-arrows-horizontal .increment-arrow-button:pressed .increment-arrow, .spinner.split-arrows-horizontal .decrement-arrow-button:pressed .decrement-arrow{
     -fx-background-color: white;
-}
-
-
-/*******************************************************************************
- *                                                                             *
- * DatePicker                                                                  *
- *                                                                             *
- ******************************************************************************/
-.date-picker > .arrow-button > .arrow {
-    -fx-shape: "M0,0v9h9V0H0z M2,8H1V7h1V8z M2,6H1V5h1V6z M2,4H1V3h1V4z M4,8H3V7h1V8z M4,6H3V5h1V6z M4,4H3V3h1V4z M6,8H5V7h1V8z M6,6H5 V5h1V6z M6,4H5V3h1V4z M8,8H7V7h1V8z M8,6H7V5h1V6z M8,4H7V3h1V4z";
-    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
-    -fx-background-insets: 1 0 -1 0, 0;
-    -fx-padding: 0.416667em 0.416667em 0.333333em 0.333333em; /* 5 5 4 4 */
-    -fx-scale-shape: true;
-}
-
-.date-picker .text-field{
-    -fx-skin: "com.sun.javafx.scene.control.skin.TextFieldSkin";
-}
-
-.date-picker .text-input{
-    -fx-background-radius: 0, 0;
-
-    -fx-background-color: transparent, white;
-    -fx-background-insets: 2, 2;
-}
-
-.date-picker > .arrow-button:hover {
-    -fx-background-color: #d9d9d9;
-    -fx-background-insets: 3 3 3 3;
-    -fx-background-radius: 0;
-}
-
-.date-picker > .arrow-button:pressed {
-    -fx-background-color: black;
-}
-
-.date-picker > .arrow-button:pressed > .arrow {
-    -fx-background-color: white;
-}
-
-.date-picker-popup {
-    -fx-background-color: white;
-    -fx-background-insets: 0;
-}
-
-.date-picker-popup > .month-year-pane {
-    -fx-background-color: white;
-    -fx-background-insets: 0;
-}
-
-.date-picker-popup > * > .spinner > .button {
-    -fx-padding: 0.25em 0.583333em 0.25em 0.583333em; /* 3 7 3 7 */
-}
-
-.date-picker-popup > * > .spinner > .button {
-    -fx-background-color: white;
-    -fx-background-insets: 0;
-}
-
-.date-picker-popup > * > .spinner {
-    -fx-background-color: white;
-    -fx-background-insets: 0;
-}
-
-.date-picker-popup > * > .spinner > .button:hover {
-    -fx-background-color: #dadada;
-}
-
-.date-picker-popup > * > .spinner > .button:armed {
-    -fx-background-color: #606060;
-}
-
-.date-picker-popup > * > .spinner > .button > .left-arrow,
-.date-picker-popup > * > .spinner > .button > .right-arrow {
-    -fx-background-color: #606060;
-    -fx-background-insets: 0;
-    -fx-effect: null;
-}
-
-.date-picker-popup > * > .spinner > .button:pressed > .left-arrow,
-.date-picker-popup > * > .spinner > .button:pressed > .right-arrow {
-    -fx-background-color: white;
-    -fx-background-insets: 0;
-}
-
-.date-picker-popup > .calendar-grid {
-    -fx-background-color: white;
-    /*-fx-background-insets: 1 0 0 0;*/
-    -fx-padding: 0;
-}
-
-.date-picker-popup > * > .previous-month,
-.date-picker-popup > * > .next-month {
-    -fx-background-color: white;
-    -fx-opacity: 0.3;
-}
-
-.date-picker-popup > * > .day-name-cell,
-.date-picker-popup > * > .week-number-cell {
-    -fx-font-size: 0.75em;
-    -fx-font-family: "Segoe UI Semibold", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 /*******************************************************************************

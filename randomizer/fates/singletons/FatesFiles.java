@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FatesFileData
+public class FatesFiles
 {
-	private static FatesFileData instance;
+	private static FatesFiles instance;
 
 	// Used in file verification phase.
 	private List<File> originalFileList;
@@ -23,8 +23,7 @@ public class FatesFileData
 	// Individual files used by the randomizer.
     private File gameData;
     private File gMap;
-    private File gameDataText;
-    private File castleJoin;
+	private File castleJoin;
     private File bev;
     private File code;
 
@@ -33,14 +32,14 @@ public class FatesFileData
 	private boolean conquestVerified;
 	private boolean revelationVerified;
 
-	private FatesFileData() {
+	private FatesFiles() {
 
 	}
 	
-	public static FatesFileData getInstance()
+	public static FatesFiles getInstance()
 	{
 		if(instance == null)
-			instance = new FatesFileData();
+			instance = new FatesFiles();
 		return instance;
 	}
 
@@ -118,10 +117,6 @@ public class FatesFileData
 
     public void setGMap(File gMap) {
         this.gMap = gMap;
-    }
-
-    public void setGameDataText(File gameDataText) {
-        this.gameDataText = gameDataText;
     }
 
     public File getCastleJoin() {

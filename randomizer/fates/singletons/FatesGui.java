@@ -3,6 +3,7 @@ package randomizer.fates.singletons;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import randomizer.Randomizer;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.enums.SkillType;
 import randomizer.common.structures.Skill;
 
@@ -26,23 +27,24 @@ public class FatesGui {
     private transient List<String> options;
     private transient String[] paths = { "Birthright", "Conquest", "Revelation" };
 
-    private transient boolean[] selectedCharacters = new boolean[FatesData.getInstance().getCharacters().size()];
-    private boolean[] selectedJobs = new boolean[FatesData.getInstance().getJobs().size()];
-    private boolean[] selectedItems = new boolean[FatesData.getInstance().getWeapons().size()];
-    private boolean[] selectedSkills = new boolean[FatesData.getInstance().getSkills().size()];
+    private transient boolean[] selectedCharacters = new boolean[FatesCharacters.getInstance()
+            .getCharactersByType(CharacterType.NPC).size()];
+    private boolean[] selectedJobs = new boolean[FatesJobs.getInstance().getJobs().size()];
+    private boolean[] selectedItems = new boolean[FatesItems.getInstance().getWeapons().size()];
+    private boolean[] selectedSkills = new boolean[FatesSkills.getInstance().getSkills().size()];
     private boolean[] selectedPaths = new boolean[paths.length];
     private boolean[] selectedOptions;
 
     private FatesGui() {
         try {
             options = Files.readAllLines(Paths.get(Randomizer.class.getResource(
-                    "common/data/text/FatesOptions.txt").toURI()));
+                    "data/text/FatesOptions.txt").toURI()));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
 
         // Set up default selections.
-        List<Skill> skills = FatesData.getInstance().getSkills();
+        List<Skill> skills = FatesSkills.getInstance().getSkills();
         selectedOptions = new boolean[options.size()];
         for(int x = 0; x < selectedOptions.length; x++) {
             selectedOptions[x] = true;

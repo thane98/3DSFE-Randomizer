@@ -2,8 +2,8 @@ package randomizer.fates.model.processors.prep;
 
 import randomizer.common.enums.ChapterType;
 import randomizer.common.structures.Chapter;
-import randomizer.fates.singletons.FatesData;
-import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesChapters;
+import randomizer.fates.singletons.FatesFiles;
 
 import java.io.File;
 import java.io.IOException;
@@ -127,7 +127,7 @@ public class FatesVerifier {
         else
             failures.add(file);
 
-        for(Chapter c : FatesData.getInstance().getChapters()) {
+        for(Chapter c : FatesChapters.getInstance().getChapters()) {
             if(c.getType() == ChapterType.AllRoutes || c.getType() == ChapterType.Child
                     || c.getType() == ChapterType.Amiibo) {
                 file = new File(mainText, c.getCid() + ".bin.lz");
@@ -257,21 +257,21 @@ public class FatesVerifier {
         }
         if(!birthrightFlag) {
             verified.addAll(birthright);
-            FatesFileData.getInstance().setBirthrightVerified(true);
+            FatesFiles.getInstance().setBirthrightVerified(true);
         }
         if(!conquestFlag) {
             verified.addAll(conquest);
-            FatesFileData.getInstance().setConquestVerified(true);
+            FatesFiles.getInstance().setConquestVerified(true);
         }
         if(!revelationFlag) {
             verified.addAll(revelation);
-            FatesFileData.getInstance().setRevelationVerified(true);
+            FatesFiles.getInstance().setRevelationVerified(true);
         }
 
         for(File f : routeFailures)
             System.out.println(f.getName());
-        FatesFileData.getInstance().setOriginalFileList(verified);
-        FatesFileData.getInstance().setRom(dir);
+        FatesFiles.getInstance().setOriginalFileList(verified);
+        FatesFiles.getInstance().setRom(dir);
         return true;
     }
 

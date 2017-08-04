@@ -4,8 +4,9 @@ import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
 import randomizer.common.utils.ByteUtils;
-import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesGui;
+import randomizer.fates.singletons.FatesSkills;
 
 import java.util.Arrays;
 
@@ -60,12 +61,12 @@ public class FatesCharacter {
         }
         if(options[1]) {
             res.append("Skills: ").append(Arrays.toString(skills)).append("\n");
-            res.append("Personal Skill: ").append(FatesData.getInstance().getSkillById(personSkill)).append("\n");
+            res.append("Personal Skill: ").append(FatesSkills.getInstance().getSkillById(personSkill)).append("\n");
         }
         if(options[3]) {
-            res.append("Replacing: ").append(FatesData.getInstance().getByPid(targetPid).getName()).append("\n");
+            res.append("Replacing: ").append(FatesCharacters.getInstance().getByPid(targetPid).getName()).append("\n");
             if(linkedPid != null)
-                res.append("Parent/Child: ").append(FatesData.getInstance().getByPid(linkedPid).getName()).append("\n");
+                res.append("Parent/Child: ").append(FatesCharacters.getInstance().getByPid(linkedPid).getName()).append("\n");
             res.append("Level: ").append(level).append("\n");
             res.append("Internal Level: ").append(internalLevel).append("\n");
         }

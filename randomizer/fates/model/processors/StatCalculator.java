@@ -2,24 +2,25 @@ package randomizer.fates.model.processors;
 
 import randomizer.common.structures.Skill;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesGui;
+import randomizer.fates.singletons.FatesSkills;
 
 import java.util.List;
 import java.util.Random;
 
-class StatCalculator {
+public class StatCalculator {
     private static FatesGui gui = FatesGui.getInstance();
     private static Random random = new Random();
 
-    private static List<Skill> skills = FatesData.getInstance().getSelectedSkills();
-    private static List<Skill> personalSkills = FatesData.getInstance().getSelectedPersonalSkills();
+    private static List<Skill> skills = FatesSkills.getInstance().getSelectedSkills();
+    private static List<Skill> personalSkills = FatesSkills.getInstance().getSelectedPersonalSkills();
 
-    static void randomizeStats(List<FatesCharacter> characters) {
+    public static void randomizeStats(List<FatesCharacter> characters) {
         for(FatesCharacter c : characters) {
             if(c.getId() == 0 || c.hasSwappedStats())
                 continue;
-            FatesCharacter target = FatesData.getInstance().getByPid(c.getTargetPid());
+            FatesCharacter target = FatesCharacters.getInstance().getByPid(c.getTargetPid());
 
             // Randomize base stats, growths, and modifiers.
             byte[] originalStats = c.getStats();
@@ -28,7 +29,7 @@ class StatCalculator {
             Skill[] originalSkills = c.getSkills();
             byte originalLevel = c.getLevel();
             byte originalInternalLevel = c.getInternalLevel();
-            c.setLevel(originalLevel);
+            c.setLevel(target.getLevel());
             target.setLevel(originalLevel);
             c.setInternalLevel(target.getInternalLevel());
             target.setInternalLevel(originalInternalLevel);

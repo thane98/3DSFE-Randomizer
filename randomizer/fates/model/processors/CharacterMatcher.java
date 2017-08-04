@@ -1,28 +1,33 @@
 package randomizer.fates.model.processors;
 
+import randomizer.common.enums.ChapterType;
 import randomizer.common.enums.CharacterType;
+import randomizer.common.structures.Chapter;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesData;
+import randomizer.fates.singletons.FatesChapters;
+import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesGui;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Responsible for assigning characters new spots in the join
  * order and creating new parent/child combinations.
  */
-class CharacterMatcher {
+public class CharacterMatcher {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
 
-    static void matchCharacters(List<FatesCharacter> characters) {
+    public static void matchCharacters(List<FatesCharacter> characters) {
+        // No join order randomization.
         if(!options[3]) {
             for(FatesCharacter c : characters)
                 c.setTargetPid(c.getPid());
             return;
         }
+
+        // Sort by character type.
         List<FatesCharacter> firstGen = new ArrayList<>();
         List<FatesCharacter> secondGen = new ArrayList<>();
         List<FatesCharacter> npcs = new ArrayList<>();
@@ -36,6 +41,8 @@ class CharacterMatcher {
             else
                 npcs.add(c);
         }
+
+        // Perform matching.
         if(options[4]) {
             assignSameSexTargets(firstGen);
             assignSameSexTargets(secondGen);
@@ -74,17 +81,14 @@ class CharacterMatcher {
     }
 
     private static void assignParents(List<FatesCharacter> firstGen, List<FatesCharacter> secondGen) {
-        List<String> pids = new ArrayList<>();
-        Random random = new Random();
-        for (FatesCharacter aFirstGen : firstGen) {
-            pids.add(aFirstGen.getPid());
-        }
-        for(FatesCharacter c : secondGen) {
-            String parentPid = pids.get(random.nextInt(pids.size()));
-            FatesCharacter parent = FatesData.getInstance().getByPid(parentPid);
-            pids.remove(parentPid);
-            c.setLinkedPid(parentPid);
-            parent.setLinkedPid(c.getPid());
+        List<Chapter> fatesChapters = FatesChapters.getInstance().getChaptersByType(ChapterType.Child);
+        for(Chapter c : fatesChapters) {
+            FatesCharacter parent = FatesCharacters.getInstance().getReplacement(firstGen, c.getParentPid());
+            FatesCharacter child = FatesCharacters.getInstance().getReplacement(secondGen, c.getChildPid());
+            if(parent != null && child != null) {
+                parent.setLinkedPid(child.getPid());
+                child.setLinkedPid(parent.getPid());
+            }
         }
     }
 }

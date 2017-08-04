@@ -9,17 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.CheckListView;
-import randomizer.common.data.Gui;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.enums.ItemType;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
 import randomizer.common.structures.Skill;
-import randomizer.fates.model.processors.FatesHub;
+import randomizer.data.Gui;
+import randomizer.fates.FatesHub;
 import randomizer.fates.model.structures.FatesCharacter;
 import randomizer.fates.model.structures.SettingsWrapper;
-import randomizer.fates.singletons.FatesData;
-import randomizer.fates.singletons.FatesFileData;
-import randomizer.fates.singletons.FatesGui;
+import randomizer.fates.singletons.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -97,7 +96,7 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Characters":
-                for(FatesCharacter c : FatesData.getInstance().getCharacters()) {
+                for(FatesCharacter c : FatesCharacters.getInstance().getCharactersByType(CharacterType.NPC)) {
                     configList.getItems().add(c.getName());
                 }
                 for(int x = 0; x < configList.getItems().size(); x++) {
@@ -116,7 +115,7 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Classes":
-                for(Job j : FatesData.getInstance().getJobs()) {
+                for(Job j : FatesJobs.getInstance().getJobs()) {
                     configList.getItems().add(j.getName());
                 }
                 for(int x = 0; x < configList.getItems().size(); x++) {
@@ -135,7 +134,7 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Skills":
-                for(Skill s : FatesData.getInstance().getSkills()) {
+                for(Skill s : FatesSkills.getInstance().getSkills()) {
                     configList.getItems().add(s.getName());
                 }
                 for(int x = 0; x < configList.getItems().size(); x++) {
@@ -154,7 +153,7 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Items":
-                for(FEItem i : FatesData.getInstance().getItems()) {
+                for(FEItem i : FatesItems.getInstance().getItems()) {
                     if(i.getType() != ItemType.Treasure)
                         configList.getItems().add(i.getName());
                 }
@@ -231,15 +230,15 @@ public class FatesOptions implements Initializable {
             FatesGui.getInstance().setSelectedPaths(wrapper.getGui().getSelectedPaths());
             FatesGui.getInstance().setSelectedItems(wrapper.getGui().getSelectedItems());
             FatesGui.getInstance().setSelectedSkills(wrapper.getGui().getSelectedSkills());
-            if(wrapper.getGui().getSelectedPaths()[0] && !FatesFileData.getInstance().isBirthrightVerified()) {
+            if(wrapper.getGui().getSelectedPaths()[0] && !FatesFiles.getInstance().isBirthrightVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
-            if(wrapper.getGui().getSelectedPaths()[1] && !FatesFileData.getInstance().isConquestVerified()) {
+            if(wrapper.getGui().getSelectedPaths()[1] && !FatesFiles.getInstance().isConquestVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
-            if(wrapper.getGui().getSelectedPaths()[2] && !FatesFileData.getInstance().isRevelationVerified()) {
+            if(wrapper.getGui().getSelectedPaths()[2] && !FatesFiles.getInstance().isRevelationVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
@@ -257,7 +256,7 @@ public class FatesOptions implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fates Randomizer");
         alert.setHeaderText("Load code.bin?");
-        alert.setContentText("The option you selected requires a decompressed code.bin file." +
+        alert.setContentText("The option you selected requires a decompressed code.bin file. " +
                 "Would you like to select one now? If you don't, the option will be ignored!");
         Optional<ButtonType> res = alert.showAndWait();
         res.ifPresent(e -> {
@@ -268,7 +267,7 @@ public class FatesOptions implements Initializable {
                         "*.bin"));
                 File file = chooser.showOpenDialog(Gui.getInstance().getMainStage());
                 if(file != null) {
-                    FatesFileData.getInstance().setCode(file);
+                    FatesFiles.getInstance().setCode(file);
                 }
             }
         });

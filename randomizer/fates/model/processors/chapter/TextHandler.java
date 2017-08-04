@@ -1,12 +1,13 @@
-package randomizer.fates.model.processors;
+package randomizer.fates.model.processors.chapter;
 
 import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Chapter;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesData;
-import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesChapters;
+import randomizer.fates.singletons.FatesCharacters;
+import randomizer.fates.singletons.FatesFiles;
 import randomizer.fates.singletons.FatesGui;
 
 import java.io.File;
@@ -14,13 +15,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
-class TextHandler {
+public class TextHandler {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private static FatesData fatesData = FatesData.getInstance();
-    private static FatesFileData fileData = FatesFileData.getInstance();
+    private static FatesCharacters fatesCharacters = FatesCharacters.getInstance();
+    private static FatesChapters fatesChapters = FatesChapters.getInstance();
+    private static FatesFiles fileData = FatesFiles.getInstance();
 
-    static void randomizeText(List<FatesCharacter> characters) {
-        List<Chapter> chapters = fatesData.getSelectedChapters();
+    public static void randomizeText(List<FatesCharacter> characters) {
+        List<Chapter> chapters = fatesChapters.getSelectedChapters();
         for(Chapter c : chapters) {
             randomizeText(fileData.getText().get(c.getCid()), characters);
         }
@@ -45,7 +47,7 @@ class TextHandler {
                     for(FatesCharacter ch : characters) {
                         if(ch.getCharacterType() == CharacterType.Player)
                             continue;
-                        FatesCharacter target = fatesData.getByPid(ch.getTargetPid());
+                        FatesCharacter target = fatesCharacters.getByPid(ch.getTargetPid());
                         split[1] = split[1].replaceAll(target.getTaglessPid() +  "TMP", ch.getTaglessPid());
                         if(options[6])
                             split[1] = split[1].replaceAll(target.getSound() + "TMP", ch.getSound());

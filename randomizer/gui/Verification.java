@@ -13,8 +13,9 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import randomizer.Randomizer;
-import randomizer.common.data.Gui;
+import randomizer.data.Gui;
 import randomizer.fates.model.processors.prep.FatesVerifier;
+import randomizer.fates.singletons.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,8 +57,16 @@ public class Verification implements Initializable {
                 Task task = new Task<Void>() {
                     @Override public Void call() {
                         Platform.runLater(() -> progressBar.setProgress(-1));
+
+                        // Initialize Fates singletons.
+                        FatesItems.getInstance();
+                        FatesChapters.getInstance();
+                        FatesCharacters.getInstance();
+                        FatesSkills.getInstance();
+                        FatesJobs.getInstance();
+
                         boolean verified = FatesVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
-                        if(verified) { // Move on to options.
+                        if(verified) {
                             Parent root;
                             try {
                                 root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/FatesOptions.fxml"));

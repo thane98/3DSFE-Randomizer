@@ -1,13 +1,14 @@
-package randomizer.fates.model.processors;
+package randomizer.fates.model.processors.chapter;
 
 import randomizer.common.enums.ItemType;
 import randomizer.common.fs.model.Decompiler;
 import randomizer.common.fs.model.ScriptCompiler;
 import randomizer.common.structures.Chapter;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesData;
-import randomizer.fates.singletons.FatesFileData;
+import randomizer.fates.singletons.FatesChapters;
+import randomizer.fates.singletons.FatesFiles;
 import randomizer.fates.singletons.FatesGui;
+import randomizer.fates.singletons.FatesItems;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -15,13 +16,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class ScriptHandler {
+public class ScriptHandler {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private static FatesData fatesData = FatesData.getInstance();
-    private static FatesFileData fileData = FatesFileData.getInstance();
+    private static FatesItems fatesItems = FatesItems.getInstance();
+    private static FatesChapters fatesChapters = FatesChapters.getInstance();
+    private static FatesFiles fileData = FatesFiles.getInstance();
 
-    static void randomizeScript(List<FatesCharacter> characters) {
-        List<Chapter> chapters = fatesData.getSelectedChapters();
+    public static void randomizeScript(List<FatesCharacter> characters) {
+        List<Chapter> chapters = fatesChapters.getSelectedChapters();
         Decompiler decompiler = new Decompiler();
         ScriptCompiler compiler;
         for(Chapter c : chapters) {
@@ -91,7 +93,7 @@ class ScriptHandler {
                 StringBuilder script = new StringBuilder();
                 for(String line : lines) {
                     if(line.startsWith("ev::ItemGain(string\"")) { // TODO: Make sure the string is the ONLY parameter.
-                        line = "ev::ItemGain(string(\"" + fatesData.getSelectedItems(ItemType.Treasure) + "\"))";
+                        line = "ev::ItemGain(string(\"" + fatesItems.getSelectedItems(ItemType.Treasure) + "\"))";
                     }
                     script.append(line).append(System.lineSeparator());
                 }
