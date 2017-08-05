@@ -1,0 +1,760 @@
+[
+  {
+    "name": "Corrin (M)",
+    "pid": "PID_プレイヤー男",
+    "male": true,
+    "id": 1,
+    "promoted": false,
+    "characterType": "Player"
+  },
+  {
+    "name": "Corrin (F)",
+    "pid": "PID_プレイヤー女",
+    "male": false,
+    "id": 2,
+    "promoted": false,
+    "characterType": "Player"
+  },
+  {
+    "name": "Felicia",
+    "pid": "PID_フェリシア",
+    "sound": "FELICIA",
+    "id": 4,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Jakob",
+    "pid": "PID_ジョーカー",
+    "sound": "JOKER",
+    "id": 5,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Flora",
+    "pid": "PID_フローラ",
+    "sound": "FLORA",
+    "id": 47,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Fuga",
+    "pid": "PID_フウガ",
+    "sound": "FUUGA",
+    "id": 45,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Yukimura",
+    "pid": "PID_ユキムラ",
+    "sound": "YUKIMURA",
+    "id": 46,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Izana",
+    "pid": "PID_イザナ",
+    "sound": "IZANA",
+    "id": 44,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Azura",
+    "pid": "PID_アクア",
+    "sound": "AQUA",
+    "id": 9,
+    "male": false,
+    "promoted": false,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Hana",
+    "pid": "PID_カザハナ",
+    "sound": "KAZAHANA",
+    "id": 10,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Subaki",
+    "pid": "PID_ツバキ",
+    "sound": "TSUBAKI",
+    "id": 11,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Sakura",
+    "pid": "PID_サクラ",
+    "sound": "SAKURA",
+    "id": 8,
+    "male": false,
+    "promoted": false,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Kaze",
+    "pid": "PID_スズカゼ",
+    "sound": "SUZUKAZE",
+    "id": 7,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Rinkah",
+    "pid": "PID_リンカ",
+    "sound": "RINKA",
+    "id": 6,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Hayato",
+    "pid": "PID_ツクヨミ",
+    "sound": "TSUKUYOMI",
+    "id": 18,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Takumi",
+    "pid": "PID_タクミ",
+    "sound": "TAKUMI",
+    "id": 21,
+    "male": true,
+    "promoted": false,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Oboro",
+    "pid": "PID_オボロ",
+    "sound": "OBORO",
+    "id": 19,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Hinata",
+    "pid": "PID_ヒナタ",
+    "sound": "HINATA",
+    "id": 20,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Saizo",
+    "pid": "PID_サイゾウ",
+    "sound": "SAIZOU",
+    "id": 13,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Orochi",
+    "pid": "PID_オロチ",
+    "sound": "OROCHI",
+    "id": 14,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Reina",
+    "pid": "PID_ユウギリ",
+    "sound": "YUUGIRI",
+    "id": 23,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Kagero",
+    "pid": "PID_カゲロウ",
+    "sound": "KAGEROU",
+    "id": 22,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Camilla",
+    "pid": "PID_カミラ",
+    "sound": "CAMILLA",
+    "id": 34,
+    "male": false,
+    "promoted": true,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Selena",
+    "pid": "PID_ルーナ",
+    "sound": "LUNA",
+    "id": 35,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Beruka",
+    "pid": "PID_ベルカ",
+    "sound": "BERKA",
+    "id": 36,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Kaden",
+    "pid": "PID_ニシキ",
+    "sound": "NISHIKI",
+    "id": 24,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Keaton",
+    "pid": "PID_フランネル",
+    "sound": "FLANNEL",
+    "id": 42,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Elise",
+    "pid": "PID_エリーゼ",
+    "sound": "ELISE",
+    "id": 28,
+    "male": false,
+    "promoted": false,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Arthur",
+    "pid": "PID_ハロルド",
+    "sound": "HAROLD",
+    "id": 29,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Effie",
+    "pid": "PID_エルフィ",
+    "sound": "ELFI",
+    "id": 30,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Charlotte",
+    "pid": "PID_シャーロッテ",
+    "sound": "CHARLOTTE",
+    "id": 40,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Benny",
+    "pid": "PID_ブノワ",
+    "sound": "BENOIT",
+    "id": 39,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Silas",
+    "pid": "PID_サイラス",
+    "sound": "SILAS",
+    "id": 12,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Shura",
+    "pid": "PID_アシュラ",
+    "sound": "ASYURA",
+    "id": 27,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Nyx",
+    "pid": "PID_ニュクス",
+    "sound": "NYX",
+    "id": 33,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Hinoka",
+    "pid": "PID_ヒノカ",
+    "sound": "HINOKA",
+    "id": 15,
+    "male": false,
+    "promoted": false,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Azama",
+    "pid": "PID_アサマ",
+    "sound": "ASAMA",
+    "id": 16,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Setsuna",
+    "pid": "PID_セツナ",
+    "sound": "SETSUNA",
+    "id": 17,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Ryoma",
+    "pid": "PID_リョウマ",
+    "sound": "RYOUMA",
+    "id": 25,
+    "male": true,
+    "promoted": true,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Leo",
+    "pid": "PID_レオン",
+    "sound": "LEON",
+    "bevAliases": [
+      "法衣裏返しレオン"
+    ],
+    "id": 41,
+    "male": true,
+    "promoted": true,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Odin",
+    "pid": "PID_オーディン",
+    "sound": "ODIN",
+    "id": 31,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Niles",
+    "pid": "PID_ゼロ",
+    "sound": "ZERO",
+    "id": 32,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Xander",
+    "pid": "PID_マークス",
+    "sound": "MARKS",
+    "id": 43,
+    "male": true,
+    "promoted": true,
+    "royal": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Laslow",
+    "pid": "PID_ラズワルド",
+    "sound": "LAZWARD",
+    "id": 37,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Scarlet",
+    "pid": "PID_クリムゾン",
+    "sound": "CRIMSON",
+    "id": 26,
+    "male": false,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Peri",
+    "pid": "PID_ピエリ",
+    "sound": "PIERI",
+    "id": 38,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Gunter",
+    "pid": "PID_ギュンター",
+    "sound": "GUNTHER",
+    "id": 3,
+    "male": true,
+    "promoted": true,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Mozu",
+    "pid": "PID_モズメ",
+    "sound": "MOZUME",
+    "id": 48,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Anna",
+    "pid": "PID_アンナ",
+    "sound": "ANNA",
+    "id": 71,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Marth",
+    "pid": "PID_マルス",
+    "sound": "MARTH",
+    "id": 250,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Lucina",
+    "pid": "PID_ルキナ",
+    "sound": "LUCINA",
+    "id": 252,
+    "male": false,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Robin",
+    "pid": "PID_ルフレ",
+    "sound": "REFLET",
+    "id": 253,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Ike",
+    "pid": "PID_アイク",
+    "sound": "IKE",
+    "id": 251,
+    "male": true,
+    "promoted": false,
+    "characterType": "FirstGen"
+  },
+  {
+    "name": "Shigure",
+    "pid": "PID_シグレ",
+    "sound": "SHIGURE",
+    "id": 51,
+    "male": true,
+    "promoted": false,
+    "royal": true,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Dwyer",
+    "pid": "PID_ディーア",
+    "sound": "DEERE",
+    "id": 52,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Sophie",
+    "pid": "PID_ゾフィー",
+    "sound": "SOPHIE",
+    "id": 53,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Midori",
+    "pid": "PID_ミドリコ",
+    "sound": "MIDORIKO",
+    "id": 54,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Shiro",
+    "pid": "PID_シノノメ",
+    "sound": "SHINONOME",
+    "id": 55,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Kiragi",
+    "pid": "PID_キサラギ",
+    "sound": "KISARAGI",
+    "id": 56,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Asugi",
+    "pid": "PID_グレイ",
+    "sound": "GUREI",
+    "id": 57,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Selkie",
+    "pid": "PID_キヌ",
+    "sound": "KINU",
+    "id": 58,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Hisame",
+    "pid": "PID_ヒサメ",
+    "sound": "HISAME",
+    "id": 59,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Mitama",
+    "pid": "PID_ミタマ",
+    "sound": "MITAMA",
+    "id": 60,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Caeldori",
+    "pid": "PID_マトイ",
+    "sound": "MATOI",
+    "id": 61,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Rhajat",
+    "pid": "PID_シャラ",
+    "sound": "SYALLA",
+    "id": 62,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Siegbert",
+    "pid": "PID_ジークベルト",
+    "sound": "SIEGBERT",
+    "id": 63,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Forrest",
+    "pid": "PID_フォレオ",
+    "sound": "FOLEO",
+    "id": 64,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Ignatius",
+    "pid": "PID_イグニス",
+    "sound": "IGNIS",
+    "id": 65,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Velouria",
+    "pid": "PID_ベロア",
+    "sound": "VELOUR",
+    "id": 66,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Percy",
+    "pid": "PID_ルッツ",
+    "sound": "LUTZ",
+    "id": 67,
+    "male": true,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Ophelia",
+    "pid": "PID_オフェリア",
+    "sound": "OPHELIA",
+    "id": 68,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Soleil",
+    "pid": "PID_ソレイユ",
+    "sound": "SOLEIL",
+    "id": 69,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Nina",
+    "pid": "PID_エポニーヌ",
+    "sound": "EPONINE",
+    "id": 70,
+    "male": false,
+    "promoted": false,
+    "characterType": "SecondGen"
+  },
+  {
+    "name": "Hans",
+    "pid": "PID_ガンズ",
+    "sound": "GANZ",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Iago",
+    "pid": "PID_マクベス",
+    "sound": "MAKUBEX",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Garon",
+    "pid": "PID_ガロン",
+    "sound": "GARON",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Kotaro",
+    "pid": "PID_コタロウ",
+    "sound": "BOSS1",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Zola",
+    "pid": "PID_ゾーラ",
+    "sound": "ZOLA",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Sumeragi",
+    "pid": "PID_スメラギ",
+    "sound": "SUMERAGI",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Arete",
+    "pid": "PID_シェンメイ",
+    "sound": "SHENMEY",
+    "id": 0,
+    "male": false,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Omozu",
+    "pid": "PID_モズ",
+    "sound": "ENEMY_M1",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Mikoto",
+    "pid": "PID_ミコト",
+    "sound": "MIKOTO",
+    "id": 0,
+    "male": false,
+    "promoted": true,
+    "characterType": "NPC"
+  },
+  {
+    "name": "Kilma",
+    "pid": "PID_クーリア",
+    "sound": "BOSS2",
+    "id": 0,
+    "male": true,
+    "promoted": true,
+    "characterType": "NPC"
+  }
+]

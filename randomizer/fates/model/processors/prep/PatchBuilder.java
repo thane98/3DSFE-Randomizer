@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class PatchBuilder {
     /**
      * Copies the relevant patch files from the ROM to a new directory,
-     * adds the copied files to the FatesFiles singleton, and decompresses
+     * adds the copied files to the AFiles singleton, and decompresses
      * every bin file.
      */
     public static void createPatch() {

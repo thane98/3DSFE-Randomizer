@@ -13,6 +13,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import randomizer.Randomizer;
+import randomizer.awakening.model.processors.prep.AVerifier;
 import randomizer.data.Gui;
 import randomizer.fates.model.processors.prep.FatesVerifier;
 import randomizer.fates.singletons.*;
@@ -54,42 +55,96 @@ public class Verification implements Initializable {
                 regionBox.setDisable(true);
                 gameBox.setDisable(true);
 
+                Platform.runLater(() -> progressBar.setProgress(-1));
+
+                // Initialize Fates singletons.
+                FatesItems.getInstance();
+                FatesChapters.getInstance();
+                FatesCharacters.getInstance();
+                FatesSkills.getInstance();
+                FatesJobs.getInstance();
+
+                boolean verified;
+                if(gameBox.getSelectionModel().getSelectedIndex() == 0) {
+                    verified = AVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
+                }
+                else {
+                    verified = FatesVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
+                }
+                if(verified) {
+                    Parent root;
+                    try {
+                        if(gameBox.getSelectionModel().getSelectedIndex() == 0) {
+                            root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/AwakeningOptions.fxml"));
+                        }
+                        else
+                            root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/FatesOptions.fxml"));
+                        Scene scene = new Scene(root,500,550);
+                        scene.getStylesheets().add(Randomizer.class.getResource("gui/jmetro/JMetroLightTheme.css")
+                                .toExternalForm());
+                        Stage stage = Gui.getInstance().getMainStage();
+                        Platform.runLater(() -> {
+                            progressBar.setProgress(1);
+                            stage.setResizable(true);
+                            stage.setTitle("Randomizer Options");
+                            stage.setScene(scene);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    Platform.runLater(() -> {
+                        progressBar.setProgress(0);
+                        errorLabel.setVisible(true);
+                    });
+                }
                 Task task = new Task<Void>() {
                     @Override public Void call() {
-                        Platform.runLater(() -> progressBar.setProgress(-1));
-
-                        // Initialize Fates singletons.
-                        FatesItems.getInstance();
-                        FatesChapters.getInstance();
-                        FatesCharacters.getInstance();
-                        FatesSkills.getInstance();
-                        FatesJobs.getInstance();
-
-                        boolean verified = FatesVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
-                        if(verified) {
-                            Parent root;
-                            try {
-                                root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/FatesOptions.fxml"));
-                                Scene scene = new Scene(root,500,550);
-                                scene.getStylesheets().add(Randomizer.class.getResource("gui/jmetro/JMetroLightTheme.css")
-                                        .toExternalForm());
-                                Stage stage = Gui.getInstance().getMainStage();
-                                Platform.runLater(() -> {
-                                    progressBar.setProgress(1);
-                                    stage.setResizable(true);
-                                    stage.setTitle("Randomizer Options");
-                                    stage.setScene(scene);
-                                });
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        else {
-                            Platform.runLater(() -> {
-                                progressBar.setProgress(0);
-                                errorLabel.setVisible(true);
-                            });
-                        }
+//                        Platform.runLater(() -> progressBar.setProgress(-1));
+//
+//                        // Initialize Fates singletons.
+//                        FatesItems.getInstance();
+//                        FatesChapters.getInstance();
+//                        FatesCharacters.getInstance();
+//                        FatesSkills.getInstance();
+//                        FatesJobs.getInstance();
+//
+//                        boolean verified;
+//                        if(gameBox.getSelectionModel().getSelectedIndex() == 0) {
+//                            verified = AVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
+//                        }
+//                        else {
+//                            verified = FatesVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
+//                        }
+//                        if(verified) {
+//                            Parent root;
+//                            try {
+//                                if(gameBox.getSelectionModel().getSelectedIndex() == 0) {
+//                                    root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/AwakeningOptions.fxml"));
+//                                }
+//                                else
+//                                    root = FXMLLoader.load(Randomizer.class.getResource("gui/fxml/FatesOptions.fxml"));
+//                                Scene scene = new Scene(root,500,550);
+//                                scene.getStylesheets().add(Randomizer.class.getResource("gui/jmetro/JMetroLightTheme.css")
+//                                        .toExternalForm());
+//                                Stage stage = Gui.getInstance().getMainStage();
+//                                Platform.runLater(() -> {
+//                                    progressBar.setProgress(1);
+//                                    stage.setResizable(true);
+//                                    stage.setTitle("Randomizer Options");
+//                                    stage.setScene(scene);
+//                                });
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                        else {
+//                            Platform.runLater(() -> {
+//                                progressBar.setProgress(0);
+//                                errorLabel.setVisible(true);
+//                            });
+//                        }
                         return null;
                     }
                 };

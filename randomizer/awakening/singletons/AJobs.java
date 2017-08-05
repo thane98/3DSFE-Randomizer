@@ -1,4 +1,4 @@
-package randomizer.fates.singletons;
+package randomizer.awakening.singletons;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,16 +17,16 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FatesJobs {
-    private static FatesJobs instance;
+public class AJobs {
+    private static AJobs instance;
     private List<Job> jobs;
 
-    private FatesJobs() {
+    private AJobs() {
         Type jobType = new TypeToken<List<Job>>() {}.getType();
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/FatesClasses.json"))));
+                    .getResourceAsStream("data/json/AwakeningClasses.json"))));
             jobs = gson.fromJson(reader, jobType);
             reader.close();
         } catch (IOException e) {
@@ -34,15 +34,15 @@ public class FatesJobs {
         }
     }
 
-    public static FatesJobs getInstance() {
+    public static AJobs getInstance() {
         if (instance == null)
-            instance = new FatesJobs();
+            instance = new AJobs();
         return instance;
     }
 
     public List<Job> getMaleBaseClasses() {
         List<Job> current = new ArrayList<>();
-        boolean[] selectedJobs = FatesGui.getInstance().getSelectedJobs();
+        boolean[] selectedJobs = AGui.getInstance().getSelectedJobs();
         for(int x = 0; x < jobs.size(); x++) {
             Job j = jobs.get(x);
             if((j.getGender() == 0 || j.getGender() == 2) && j.getState() != JobState.Promoted && selectedJobs[x])
@@ -53,7 +53,7 @@ public class FatesJobs {
 
     public List<Job> getFemaleBaseClasses() {
         List<Job> current = new ArrayList<>();
-        boolean[] selectedJobs = FatesGui.getInstance().getSelectedJobs();
+        boolean[] selectedJobs = AGui.getInstance().getSelectedJobs();
         for(int x = 0; x < jobs.size(); x++) {
             Job j = jobs.get(x);
             if((j.getGender() == 1 || j.getGender() == 2) && j.getState() != JobState.Promoted && selectedJobs[x])
@@ -64,7 +64,7 @@ public class FatesJobs {
 
     public List<Job> getMalePromotedClasses() {
         List<Job> current = new ArrayList<>();
-        boolean[] selectedJobs = FatesGui.getInstance().getSelectedJobs();
+        boolean[] selectedJobs = AGui.getInstance().getSelectedJobs();
         for(int x = 0; x < jobs.size(); x++) {
             Job j = jobs.get(x);
             if((j.getGender() == 0 || j.getGender() == 2) && j.getState() != JobState.Base && selectedJobs[x])
@@ -75,7 +75,7 @@ public class FatesJobs {
 
     public List<Job> getFemalePromotedClasses() {
         List<Job> current = new ArrayList<>();
-        boolean[] selectedJobs = FatesGui.getInstance().getSelectedJobs();
+        boolean[] selectedJobs = AGui.getInstance().getSelectedJobs();
         for(int x = 0; x < jobs.size(); x++) {
             Job j = jobs.get(x);
             if((j.getGender() == 1 || j.getGender() == 2) && j.getState() != JobState.Base && selectedJobs[x])
@@ -104,7 +104,7 @@ public class FatesJobs {
     }
     
     public byte[] generateWeaponsRanks(Job j) {
-        byte[] weaponRanks = new byte[8];
+        byte[] weaponRanks = new byte[5];
         if(j.getItemType() == ItemType.Swords) {
             weaponRanks[0] = (byte) WeaponRank.C.value();
         }
@@ -114,20 +114,11 @@ public class FatesJobs {
         else if(j.getItemType() == ItemType.Axes) {
             weaponRanks[2] = (byte) WeaponRank.C.value();
         }
-        else if(j.getItemType() == ItemType.Shurikens) {
+        else if(j.getItemType() == ItemType.Bows) {
             weaponRanks[3] = (byte) WeaponRank.C.value();
         }
-        else if(j.getItemType() == ItemType.Bows) {
-            weaponRanks[4] = (byte) WeaponRank.C.value();
-        }
         else if(j.getItemType() == ItemType.Tomes) {
-            weaponRanks[5] = (byte) WeaponRank.C.value();
-        }
-        else if(j.getItemType() == ItemType.Staves) {
-            weaponRanks[6] = (byte) WeaponRank.C.value();
-        }
-        else {
-            weaponRanks[7] = (byte) WeaponRank.C.value();
+            weaponRanks[4] = (byte) WeaponRank.C.value();
         }
         return weaponRanks;
     }

@@ -1,0 +1,547 @@
+[
+  {
+    "type": "AllRoutes",
+    "cid": "A000",
+    "id": 2
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A001",
+    "id": 3
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A002",
+    "id": 4
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A003",
+    "id": 5
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A004",
+    "id": 6
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A005",
+    "id": 7
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "P006",
+    "id": 108
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "X001",
+    "id": 77
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "A006",
+    "id": 8
+  },
+  {
+    "type": "Birthright",
+    "cid": "A007",
+    "id": 9
+  },
+  {
+    "type": "Birthright",
+    "cid": "A008",
+    "id": 10
+  },
+  {
+    "type": "Birthright",
+    "cid": "A009",
+    "id": 11
+  },
+  {
+    "type": "Birthright",
+    "cid": "A010",
+    "id": 12
+  },
+  {
+    "type": "Birthright",
+    "cid": "A011",
+    "id": 13
+  },
+  {
+    "type": "Birthright",
+    "cid": "A012",
+    "id": 14
+  },
+  {
+    "type": "Birthright",
+    "cid": "A013",
+    "id": 15
+  },
+  {
+    "type": "Birthright",
+    "cid": "A014",
+    "id": 16
+  },
+  {
+    "type": "Birthright",
+    "cid": "A015",
+    "id": 17
+  },
+  {
+    "type": "Birthright",
+    "cid": "A016",
+    "id": 18
+  },
+  {
+    "type": "Birthright",
+    "cid": "A017",
+    "id": 19
+  },
+  {
+    "type": "Birthright",
+    "cid": "A018",
+    "id": 20
+  },
+  {
+    "type": "Birthright",
+    "cid": "A019",
+    "id": 21
+  },
+  {
+    "type": "Birthright",
+    "cid": "A020",
+    "id": 22
+  },
+  {
+    "type": "Birthright",
+    "cid": "A021",
+    "id": 23
+  },
+  {
+    "type": "Birthright",
+    "cid": "A022",
+    "id": 24
+  },
+  {
+    "type": "Birthright",
+    "cid": "A023",
+    "id": 25
+  },
+  {
+    "type": "Birthright",
+    "cid": "A024",
+    "id": 26
+  },
+  {
+    "type": "Birthright",
+    "cid": "A025",
+    "id": 27
+  },
+  {
+    "type": "Birthright",
+    "cid": "A026",
+    "id": 28
+  },
+  {
+    "type": "Birthright",
+    "cid": "A027",
+    "id": 29
+  },
+  {
+    "type": "Birthright",
+    "cid": "A028",
+    "id": 30
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "B006",
+    "id": 31
+  },
+  {
+    "type": "Conquest",
+    "cid": "B007",
+    "id": 32
+  },
+  {
+    "type": "Conquest",
+    "cid": "B008",
+    "id": 33
+  },
+  {
+    "type": "Conquest",
+    "cid": "B009",
+    "id": 34
+  },
+  {
+    "type": "Conquest",
+    "cid": "B010",
+    "id": 35
+  },
+  {
+    "type": "Conquest",
+    "cid": "B011",
+    "id": 36
+  },
+  {
+    "type": "Conquest",
+    "cid": "B012",
+    "id": 37
+  },
+  {
+    "type": "Conquest",
+    "cid": "B013",
+    "id": 38
+  },
+  {
+    "type": "Conquest",
+    "cid": "B014",
+    "id": 39
+  },
+  {
+    "type": "Conquest",
+    "cid": "B015",
+    "id": 40
+  },
+  {
+    "type": "Conquest",
+    "cid": "B016",
+    "id": 41
+  },
+  {
+    "type": "Conquest",
+    "cid": "B017",
+    "id": 42
+  },
+  {
+    "type": "Conquest",
+    "cid": "B018",
+    "id": 43
+  },
+  {
+    "type": "Conquest",
+    "cid": "B019",
+    "id": 44
+  },
+  {
+    "type": "Conquest",
+    "cid": "B020",
+    "id": 45
+  },
+  {
+    "type": "Conquest",
+    "cid": "B021",
+    "id": 46
+  },
+  {
+    "type": "Conquest",
+    "cid": "B022",
+    "id": 47
+  },
+  {
+    "type": "Conquest",
+    "cid": "B023",
+    "id": 48
+  },
+  {
+    "type": "Conquest",
+    "cid": "B024",
+    "id": 49
+  },
+  {
+    "type": "Conquest",
+    "cid": "B025",
+    "id": 50
+  },
+  {
+    "type": "Conquest",
+    "cid": "B026",
+    "id": 51
+  },
+  {
+    "type": "Conquest",
+    "cid": "B027",
+    "id": 52
+  },
+  {
+    "type": "Conquest",
+    "cid": "B028",
+    "id": 53
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "C006",
+    "id": 54
+  },
+  {
+    "type": "Revelation",
+    "cid": "C007",
+    "id": 55
+  },
+  {
+    "type": "Revelation",
+    "cid": "C008",
+    "id": 56
+  },
+  {
+    "type": "Revelation",
+    "cid": "C009",
+    "id": 57
+  },
+  {
+    "type": "Revelation",
+    "cid": "C010",
+    "id": 58
+  },
+  {
+    "type": "Revelation",
+    "cid": "C011",
+    "id": 59
+  },
+  {
+    "type": "Revelation",
+    "cid": "C012",
+    "id": 60
+  },
+  {
+    "type": "Revelation",
+    "cid": "C013",
+    "id": 61
+  },
+  {
+    "type": "Revelation",
+    "cid": "C014",
+    "id": 62
+  },
+  {
+    "type": "Revelation",
+    "cid": "C015",
+    "id": 63
+  },
+  {
+    "type": "Revelation",
+    "cid": "C016",
+    "id": 64
+  },
+  {
+    "type": "Revelation",
+    "cid": "C017",
+    "id": 65
+  },
+  {
+    "type": "Revelation",
+    "cid": "C018",
+    "id": 66
+  },
+  {
+    "type": "Revelation",
+    "cid": "C019",
+    "id": 67
+  },
+  {
+    "type": "Revelation",
+    "cid": "C020",
+    "id": 68
+  },
+  {
+    "type": "Revelation",
+    "cid": "C021",
+    "id": 69
+  },
+  {
+    "type": "Revelation",
+    "cid": "C022",
+    "id": 70
+  },
+  {
+    "type": "Revelation",
+    "cid": "C023",
+    "id": 71
+  },
+  {
+    "type": "Revelation",
+    "cid": "C024",
+    "id": 72
+  },
+  {
+    "type": "Revelation",
+    "cid": "C025",
+    "id": 73
+  },
+  {
+    "type": "Revelation",
+    "cid": "C026",
+    "id": 74
+  },
+  {
+    "type": "Revelation",
+    "cid": "C027",
+    "id": 75
+  },
+  {
+    "type": "Revelation",
+    "cid": "C028",
+    "id": 76
+  },
+  {
+    "type": "Amiibo",
+    "cid": "M001",
+    "id": 117
+  },
+  {
+    "type": "Amiibo",
+    "cid": "M002",
+    "id": 118
+  },
+  {
+    "type": "Amiibo",
+    "cid": "M003",
+    "id": 119
+  },
+  {
+    "type": "AllRoutes",
+    "cid": "M004",
+    "id": 120
+  },
+  {
+    "type": "Child",
+    "cid": "X003",
+    "parentPid": "PID_アクア",
+    "childPid": "PID_シグレ",
+    "id": 79
+  },
+  {
+    "type": "Child",
+    "cid": "X004",
+    "parentPid": "PID_ジョーカー",
+    "childPid": "PID_ディーア",
+    "id": 80
+  },
+  {
+    "type": "Child",
+    "cid": "X005",
+    "parentPid": "PID_サイラス",
+    "childPid": "PID_ゾフィー",
+    "id": 81
+  },
+  {
+    "type": "Child",
+    "cid": "X006",
+    "parentPid": "PID_スズカゼ",
+    "childPid": "PID_ミドリコ",
+    "id": 82
+  },
+  {
+    "type": "Child",
+    "cid": "X007",
+    "parentPid": "PID_リョウマ",
+    "childPid": "PID_シノノメ",
+    "id": 83
+  },
+  {
+    "type": "Child",
+    "cid": "X008",
+    "parentPid": "PID_タクミ",
+    "childPid": "PID_キサラギ",
+    "id": 84
+  },
+  {
+    "type": "Child",
+    "cid": "X009",
+    "parentPid": "PID_サイゾウ",
+    "childPid": "PID_グレイ",
+    "id": 85
+  },
+  {
+    "type": "Child",
+    "cid": "X010",
+    "parentPid": "PID_ニシキ",
+    "childPid": "PID_キヌ",
+    "id": 86
+  },
+  {
+    "type": "Child",
+    "cid": "X011",
+    "parentPid": "PID_ヒナタ",
+    "childPid": "PID_ヒサメ",
+    "id": 87
+  },
+  {
+    "type": "Child",
+    "cid": "X012",
+    "parentPid": "PID_アサマ",
+    "childPid": "PID_ミタマ",
+    "id": 88
+  },
+  {
+    "type": "Child",
+    "cid": "X013",
+    "parentPid": "PID_ツバキ",
+    "childPid": "PID_マトイ",
+    "id": 89
+  },
+  {
+    "type": "Child",
+    "cid": "X014",
+    "parentPid": "PID_ツクヨミ",
+    "childPid": "PID_シャラ",
+    "id": 90
+  },
+  {
+    "type": "Child",
+    "cid": "X015",
+    "parentPid": "PID_マークス",
+    "childPid": "PID_ジークベルト",
+    "id": 91
+  },
+  {
+    "type": "Child",
+    "cid": "X016",
+    "parentPid": "PID_レオン",
+    "childPid": "PID_フォレオ",
+    "id": 92
+  },
+  {
+    "type": "Child",
+    "cid": "X017",
+    "parentPid": "PID_ブノワ",
+    "childPid": "PID_イグニス",
+    "id": 93
+  },
+  {
+    "type": "Child",
+    "cid": "X018",
+    "parentPid": "PID_フランネル",
+    "childPid": "PID_ベロア",
+    "id": 94
+  },
+  {
+    "type": "Child",
+    "cid": "X019",
+    "parentPid": "PID_ハロルド",
+    "childPid": "PID_ルッツ",
+    "id": 95
+  },
+  {
+    "type": "Child",
+    "cid": "X020",
+    "parentPid": "PID_オーディン",
+    "childPid": "PID_オフェリア",
+    "id": 96
+  },
+  {
+    "type": "Child",
+    "cid": "X021",
+    "parentPid": "PID_ラズワルド",
+    "childPid": "PID_ソレイユ",
+    "id": 97
+  },
+  {
+    "type": "Child",
+    "cid": "X022",
+    "parentPid": "PID_ゼロ",
+    "childPid": "PID_エポニーヌ",
+    "id": 98
+  }
+]

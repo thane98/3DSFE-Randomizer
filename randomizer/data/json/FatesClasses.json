@@ -1,0 +1,1073 @@
+[
+  {
+    "state": "Promoted",
+    "jid": "JID_ダークブラッド男",
+    "itemType": "Swords",
+    "tiedJob": 3,
+    "id": 1,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ダークプリンス男",
+    "itemType": "Swords",
+    "tiedJob": 1,
+    "id": 3,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_白の血族男",
+    "itemType": "Swords",
+    "tiedJob": 3,
+    "id": 5,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_パラディン男",
+    "itemType": "Swords",
+    "tiedJob": 9,
+    "id": 7,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ソシアルナイト男",
+    "itemType": "Swords",
+    "tiedJob": 7,
+    "id": 9,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_グレートナイト男",
+    "itemType": "Swords",
+    "tiedJob": 9,
+    "id": 11,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_アーマーナイト男",
+    "itemType": "Lances",
+    "tiedJob": 15,
+    "id": 13,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ジェネラル男",
+    "itemType": "Lances",
+    "tiedJob": 13,
+    "id": 15,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_バーサーカー男",
+    "itemType": "Axes",
+    "tiedJob": 19,
+    "id": 17,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_アクスファイター男",
+    "itemType": "Axes",
+    "tiedJob": 17,
+    "id": 19,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ブレイブヒーロー男",
+    "itemType": "Swords",
+    "tiedJob": 23,
+    "id": 21,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_マーシナリー男",
+    "itemType": "Swords",
+    "tiedJob": 21,
+    "id": 23,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ボウナイト男",
+    "itemType": "Bows",
+    "tiedJob": 23,
+    "id": 25,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_シーフ男",
+    "itemType": "Bows",
+    "tiedJob": 29,
+    "id": 27,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_アドベンチャラー男",
+    "itemType": "Bows",
+    "tiedJob": 27,
+    "id": 29,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_剣聖男",
+    "itemType": "Swords",
+    "tiedJob": 33,
+    "id": 31,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_侍男",
+    "itemType": "Swords",
+    "tiedJob": 31,
+    "id": 33,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_兵法者男",
+    "itemType": "Swords",
+    "tiedJob": 33,
+    "id": 35,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_修羅男",
+    "itemType": "Axes",
+    "tiedJob": 39,
+    "id": 37,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_鬼人男",
+    "itemType": "Axes",
+    "tiedJob": 37,
+    "id": 39,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_鍛冶男",
+    "itemType": "Axes",
+    "tiedJob": 39,
+    "id": 41,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_槍聖男",
+    "itemType": "Lances",
+    "tiedJob": 45,
+    "id": 43,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_槍術士男",
+    "itemType": "Lances",
+    "tiedJob": 43,
+    "id": 45,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_婆娑羅男",
+    "itemType": "Lances",
+    "tiedJob": 45,
+    "id": 47,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_呪い師男",
+    "itemType": "Tomes",
+    "tiedJob": 51,
+    "id": 49,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_陰陽師男",
+    "itemType": "Tomes",
+    "tiedJob": 49,
+    "id": 51,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_修験者男",
+    "itemType": "Staves",
+    "tiedJob": 55,
+    "id": 53,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_山伏男",
+    "itemType": "Lances",
+    "tiedJob": 53,
+    "id": 55,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_聖天馬武者男",
+    "itemType": "Lances",
+    "tiedJob": 59,
+    "id": 57,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_天馬武者男",
+    "itemType": "Lances",
+    "tiedJob": 57,
+    "id": 59,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_金鵄武者男",
+    "itemType": "Bows",
+    "tiedJob": 59,
+    "id": 61,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_弓使い男",
+    "itemType": "Bows",
+    "tiedJob": 65,
+    "id": 63,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_弓聖男",
+    "itemType": "Bows",
+    "tiedJob": 63,
+    "id": 65,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ドラゴンマスター男",
+    "itemType": "Axes",
+    "tiedJob": 69,
+    "id": 67,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ドラゴンナイト男",
+    "itemType": "Axes",
+    "tiedJob": 67,
+    "id": 69,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_レヴナントナイト男",
+    "itemType": "Axes",
+    "tiedJob": 69,
+    "id": 71,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_上忍男",
+    "itemType": "Shurikens",
+    "tiedJob": 75,
+    "id": 73,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_忍男",
+    "itemType": "Shurikens",
+    "tiedJob": 73,
+    "id": 75,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_絡繰師男",
+    "itemType": "Shurikens",
+    "tiedJob": 75,
+    "id": 77,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_薬商人男",
+    "itemType": "Bows",
+    "tiedJob": 81,
+    "id": 79,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_大商人男",
+    "itemType": "Bows",
+    "tiedJob": 79,
+    "id": 81,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ソーサラー男",
+    "itemType": "Tomes",
+    "tiedJob": 85,
+    "id": 83,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ダークマージ男",
+    "itemType": "Tomes",
+    "tiedJob": 83,
+    "id": 85,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ダークナイト男",
+    "itemType": "Tomes",
+    "tiedJob": 85,
+    "id": 87,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ストラテジスト男",
+    "itemType": "Tomes",
+    "tiedJob": 91,
+    "id": 89,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ロッドナイト男",
+    "itemType": "Staves",
+    "tiedJob": 89,
+    "id": 91,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_バトラー男",
+    "itemType": "Shurikens",
+    "tiedJob": 91,
+    "id": 93,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ガルー男",
+    "itemType": "Beaststone",
+    "tiedJob": 97,
+    "id": 95,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_マーナガルム男",
+    "itemType": "Beaststone",
+    "tiedJob": 95,
+    "id": 97,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_妖狐男",
+    "itemType": "Beaststone",
+    "tiedJob": 101,
+    "id": 99,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_九尾の狐男",
+    "itemType": "Beaststone",
+    "tiedJob": 99,
+    "id": 101,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Base",
+    "jid": "JID_村人男",
+    "itemType": "Lances",
+    "tiedJob": 81,
+    "id": 104,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_魔戦士男",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 118,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_シューター男",
+    "itemType": "Bows",
+    "tiedJob": 0,
+    "id": 122,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_スターロード男",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 124,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ヴァンガード男",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 125,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_神軍師男",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 127,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ダークブラッド女",
+    "itemType": "Swords",
+    "tiedJob": 4,
+    "id": 2,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ダークプリンセス女",
+    "itemType": "Swords",
+    "tiedJob": 2,
+    "id": 4,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_白の血族女",
+    "itemType": "Swords",
+    "tiedJob": 4,
+    "id": 6,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_パラディン女",
+    "itemType": "Swords",
+    "tiedJob": 10,
+    "id": 8,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ソシアルナイト女",
+    "itemType": "Swords",
+    "tiedJob": 8,
+    "id": 10,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_グレートナイト女",
+    "itemType": "Swords",
+    "tiedJob": 8,
+    "id": 12,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_アーマーナイト女",
+    "itemType": "Lances",
+    "tiedJob": 16,
+    "id": 14,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ジェネラル女",
+    "itemType": "Lances",
+    "tiedJob": 14,
+    "id": 16,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_バーサーカー女",
+    "itemType": "Axes",
+    "tiedJob": 20,
+    "id": 18,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_アクスファイター女",
+    "itemType": "Axes",
+    "tiedJob": 18,
+    "id": 20,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ブレイブヒーロー女",
+    "itemType": "Swords",
+    "tiedJob": 24,
+    "id": 22,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_マーシナリー女",
+    "itemType": "Swords",
+    "tiedJob": 22,
+    "id": 24,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ボウナイト女",
+    "itemType": "Bows",
+    "tiedJob": 24,
+    "id": 26,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_シーフ女",
+    "itemType": "Bows",
+    "tiedJob": 30,
+    "id": 28,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_アドベンチャラー女",
+    "itemType": "Bows",
+    "tiedJob": 28,
+    "id": 30,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_剣聖女",
+    "itemType": "Swords",
+    "tiedJob": 34,
+    "id": 32,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_侍女",
+    "itemType": "Swords",
+    "tiedJob": 32,
+    "id": 34,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_兵法者女",
+    "itemType": "Swords",
+    "tiedJob": 34,
+    "id": 36,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_修羅女",
+    "itemType": "Axes",
+    "tiedJob": 40,
+    "id": 38,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_鬼人女",
+    "itemType": "Axes",
+    "tiedJob": 38,
+    "id": 40,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_鍛冶女",
+    "itemType": "Axes",
+    "tiedJob": 40,
+    "id": 42,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_槍聖女",
+    "itemType": "Lances",
+    "tiedJob": 46,
+    "id": 44,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_槍術士女",
+    "itemType": "Lances",
+    "tiedJob": 44,
+    "id": 46,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_婆娑羅女",
+    "itemType": "Lances",
+    "tiedJob": 46,
+    "id": 48,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_呪い師女",
+    "itemType": "Tomes",
+    "tiedJob": 52,
+    "id": 50,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_陰陽師女",
+    "itemType": "Tomes",
+    "tiedJob": 50,
+    "id": 52,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_巫女女",
+    "itemType": "Staves",
+    "tiedJob": 56,
+    "id": 54,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_戦巫女女",
+    "itemType": "Staves",
+    "tiedJob": 54,
+    "id": 56,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_聖天馬武者女",
+    "itemType": "Lances",
+    "tiedJob": 60,
+    "id": 58,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_天馬武者女",
+    "itemType": "Lances",
+    "tiedJob": 58,
+    "id": 60,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_金鵄武者女",
+    "itemType": "Bows",
+    "tiedJob": 60,
+    "id": 62,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_弓使い女",
+    "itemType": "Bows",
+    "tiedJob": 66,
+    "id": 64,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_弓聖女",
+    "itemType": "Bows",
+    "tiedJob": 64,
+    "id": 66,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ドラゴンマスター女",
+    "itemType": "Axes",
+    "tiedJob": 70,
+    "id": 68,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ドラゴンナイト女",
+    "itemType": "Axes",
+    "tiedJob": 68,
+    "id": 70,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_レヴナントナイト女",
+    "itemType": "Axes",
+    "tiedJob": 70,
+    "id": 72,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_上忍女",
+    "itemType": "Shurikens",
+    "tiedJob": 76,
+    "id": 74,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_忍女",
+    "itemType": "Shurikens",
+    "tiedJob": 74,
+    "id": 76,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_絡繰師女",
+    "itemType": "Shurikens",
+    "tiedJob": 76,
+    "id": 78,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_薬商人女",
+    "itemType": "Bows",
+    "tiedJob": 82,
+    "id": 80,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_大商人女",
+    "itemType": "Bows",
+    "tiedJob": 80,
+    "id": 82,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ソーサラー女",
+    "itemType": "Tomes",
+    "tiedJob": 86,
+    "id": 84,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ダークマージ女",
+    "itemType": "Tomes",
+    "tiedJob": 84,
+    "id": 86,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ダークナイト女",
+    "itemType": "Tomes",
+    "tiedJob": 86,
+    "id": 88,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_ストラテジスト女",
+    "itemType": "Tomes",
+    "tiedJob": 92,
+    "id": 90,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ロッドナイト女",
+    "itemType": "Staves",
+    "tiedJob": 90,
+    "id": 92,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_メイド女",
+    "itemType": "Shurikens",
+    "tiedJob": 92,
+    "id": 94,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_ガルー女",
+    "itemType": "Beaststone",
+    "tiedJob": 98,
+    "id": 96,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_マーナガルム女",
+    "itemType": "Beaststone",
+    "tiedJob": 96,
+    "id": 98,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_妖狐女",
+    "itemType": "Beaststone",
+    "tiedJob": 102,
+    "id": 100,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Promoted",
+    "jid": "JID_九尾の狐女",
+    "itemType": "Beaststone",
+    "tiedJob": 100,
+    "id": 102,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "Base",
+    "jid": "JID_村人女",
+    "itemType": "Lances",
+    "tiedJob": 82,
+    "id": 105,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_歌姫女",
+    "itemType": "Lances",
+    "tiedJob": 0,
+    "id": 103,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_魔戦士女",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 119,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_魔女女",
+    "itemType": "Tomes",
+    "tiedJob": 0,
+    "id": 123,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_マスターロード女",
+    "itemType": "Swords",
+    "tiedJob": 0,
+    "id": 126,
+    "weaponRank": 0,
+    "gender": 1
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ランサー男",
+    "itemType": "Lances",
+    "tiedJob": 0,
+    "id": 106,
+    "weaponRank": 0,
+    "gender": 2
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ゴーレム男",
+    "itemType": "Stones",
+    "tiedJob": 0,
+    "id": 108,
+    "weaponRank": 0,
+    "gender": 2
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ダークロード男",
+    "itemType": "Axes",
+    "tiedJob": 0,
+    "id": 116,
+    "weaponRank": 0,
+    "gender": 2
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_水の眷属男",
+    "itemType": "Axes",
+    "tiedJob": 0,
+    "id": 117,
+    "weaponRank": 0,
+    "gender": 2
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ダークペガサス男",
+    "itemType": "Tomes",
+    "tiedJob": 0,
+    "id": 120,
+    "weaponRank": 0,
+    "gender": 0
+  },
+  {
+    "state": "SpecialPromote",
+    "jid": "JID_ダークペガサス女",
+    "itemType": "Tomes",
+    "tiedJob": 0,
+    "id": 121,
+    "weaponRank": 0,
+    "gender": 1
+  }
+]
