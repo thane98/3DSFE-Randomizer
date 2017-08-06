@@ -3,6 +3,7 @@ package randomizer.awakening.model.processors;
 import randomizer.awakening.model.structures.ACharacter;
 import randomizer.awakening.singletons.ACharacters;
 import randomizer.awakening.singletons.AGui;
+import randomizer.awakening.singletons.ASkills;
 import randomizer.common.structures.Skill;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class StatCalculator {
     private static AGui gui = AGui.getInstance();
     private static Random random = new Random();
 
-    //private static List<Skill> skills = ASkills.getInstance().getSelectedSkills();
+    private static List<Skill> skills = ASkills.getInstance().getSelectedSkills();
 
     public static void randomizeStats(List<ACharacter> characters) {
         for(ACharacter c : characters) {
@@ -38,8 +39,8 @@ public class StatCalculator {
 
             // Randomize skills.
             if(gui.getSelectedOptions()[1]) {
-                //c.setSkills(randomizeSkills(target.getSkills()));
-                //target.setSkills(randomizeSkills(originalSkills));
+                c.setSkills(randomizeSkills(target.getSkills()));
+                target.setSkills(randomizeSkills(originalSkills));
             }
             c.setHasSwappedStats(true);
             target.setHasSwappedStats(true);
@@ -63,18 +64,18 @@ public class StatCalculator {
         return input;
     }
 
-//    private static Skill[] randomizeSkills(Skill[] original) {
-//        Skill[] randomized = new Skill[5];
-//        for(int x = 0; x < original.length; x++) {
-//            if(original[x] == null)
-//                break;
-//            Skill generated = skills.get(random.nextInt(skills.size()));
-//            for(int y = 0; y < x; y++) {
-//                while(generated.getId() == randomized[y].getId())
-//                    generated = skills.get(random.nextInt(skills.size()));
-//            }
-//            randomized[x] = generated;
-//        }
-//        return randomized;
-//    }
+    private static Skill[] randomizeSkills(Skill[] original) {
+        Skill[] randomized = new Skill[5];
+        for(int x = 0; x < original.length; x++) {
+            if(original[x] == null)
+                break;
+            Skill generated = skills.get(random.nextInt(skills.size()));
+            for(int y = 0; y < x; y++) {
+                while(generated.getId() == randomized[y].getId())
+                    generated = skills.get(random.nextInt(skills.size()));
+            }
+            randomized[x] = generated;
+        }
+        return randomized;
+    }
 }

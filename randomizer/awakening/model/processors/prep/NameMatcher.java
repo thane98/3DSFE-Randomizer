@@ -4,9 +4,11 @@ import randomizer.awakening.model.structures.ACharacter;
 import randomizer.awakening.singletons.ACharacters;
 import randomizer.awakening.singletons.AItems;
 import randomizer.awakening.singletons.AJobs;
+import randomizer.awakening.singletons.ASkills;
 import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.FEItem;
 import randomizer.common.structures.Job;
+import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 
@@ -36,9 +38,9 @@ public class NameMatcher {
             if(c.getCharacterType() != CharacterType.Player)
                 c.setName(map.get(c.getMPid()));
         }
-//        for(Skill s : FatesSkills.getInstance().getSkills()) {
-//            s.setName(map.get("M" + s.getSeid()));
-//        }
+        for(Skill s : ASkills.getInstance().getSkills()) {
+            s.setName(map.get("M" + s.getSeid()));
+        }
         for(FEItem i : AItems.getInstance().getItems()) {
             i.setName(map.get("M" + i.getIid()));
         }

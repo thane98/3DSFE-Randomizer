@@ -21,6 +21,12 @@ public class FatesItems {
     private static FatesItems instance;
     private List<FEItem> items;
 
+    private String[] debugIids = {
+            "IID_青銅の剣", "IID_青銅の槍", "IID_青銅の斧", "IID_青銅の暗器",
+            "IID_青銅の弓", "IID_ファイアー", "IID_ライブ", "IID_獣石",
+            "IID_乱拳", "IID_岩塊"
+    };
+
     private FatesItems() {
         Type itemType = new TypeToken<List<FEItem>>() {}.getType();
 
@@ -79,6 +85,32 @@ public class FatesItems {
         Random random = new Random();
         List<FEItem> items = getSelectedItems(j.getItemType());
         return items.get(random.nextInt(items.size()));
+    }
+
+    public FEItem generateDebugItem(Job j) {
+        Random random = new Random();
+        List<FEItem> weapons = getDebugItems();
+        List<FEItem> selected = new ArrayList<>();
+        for (FEItem weapon : weapons) {
+            if (weapon.getType() == j.getItemType())
+                selected.add(weapon);
+        }
+        return selected.get(random.nextInt(selected.size()));
+    }
+
+    private List<FEItem> getDebugItems() {
+        List<FEItem> eligible = new ArrayList<>();
+        for(String s : debugIids)
+            eligible.add(getByIid(s));
+        return  eligible;
+    }
+
+    private FEItem getByIid(String iid) {
+        for(FEItem i : getWeapons()) {
+            if(i.getIid().equals(iid))
+                return i;
+        }
+        return null;
     }
 
     public List<FEItem> getItems() {

@@ -14,6 +14,8 @@ import randomizer.awakening.model.structures.ACharacter;
 import randomizer.awakening.singletons.ACharacters;
 import randomizer.awakening.singletons.AFiles;
 import randomizer.awakening.singletons.AGui;
+import randomizer.awakening.singletons.ASkills;
+import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 
 import java.io.File;
@@ -24,7 +26,7 @@ import java.util.List;
 
 public class AwakeningHub {
 
-    //private ASkills aSkills = ASkills.getInstance();
+    private ASkills aSkills = ASkills.getInstance();
     private boolean[] options = AGui.getInstance().getSelectedOptions();
     private List<ACharacter> selectedCharacters;
     private AwakeningPerson data;
@@ -72,13 +74,13 @@ public class AwakeningHub {
             character.setLevel((byte) c.getLevel());
 
             // Skills.
-//            Skill[] skills = new Skill[5];
-//            short[] skillIds = c.getSkills();
-//            for(int x = 0; x < 5; x++) {
-//                if(skillIds[x] != 0)
-//                    skills[x] = ASkills.getSkillById(skillIds[x]);
-//            }
-//            character.setSkills(skills);
+            Skill[] skills = new Skill[5];
+            short[] skillIds = c.getSkills();
+            for(int x = 0; x < 5; x++) {
+                if(skillIds[x] != 0)
+                    skills[x] = aSkills.getSkillById(skillIds[x]);
+            }
+            character.setSkills(skills);
         }
 
         // Perform matching, make edits to GameData.
@@ -89,7 +91,7 @@ public class AwakeningHub {
         // TODO: Actually edit this file.
         try {
             Files.write(AFiles.getInstance().getGameData().toPath(),
-                    CompressionUtils.compress(data.getRaw()));
+                    CompressionUtils.compress(Files.readAllBytes(AFiles.getInstance().getGameData().toPath())));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -67,12 +67,17 @@ public class ClassRandomizer {
     }
 
     private static Job[] generateReclasses(boolean isMale) {
-        Job[] reclasses = new Job[2];
-        reclasses[0] = generateClass(isMale, false);
+        Job[] reclasses = new Job[6];
+        int start = isMale ? 0 : 3;
+        reclasses[start] = generateClass(isMale, false);
         Job tmp = generateClass(isMale, false);
-        while(tmp.getJid().equals(reclasses[0].getJid()))
+        while(tmp.getJid().equals(reclasses[start].getJid()))
             tmp = generateClass(isMale, false);
-        reclasses[1] = tmp;
+        reclasses[start + 1] = tmp;
+        tmp = generateClass(isMale, false);
+        while(tmp.getJid().equals(reclasses[start].getJid()) || tmp.getJid().equals(reclasses[start + 1].getJid()))
+            tmp = generateClass(isMale, false);
+        reclasses[start + 2] = tmp;
         return reclasses;
     }
 }

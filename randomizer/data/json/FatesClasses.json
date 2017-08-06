@@ -1023,7 +1023,7 @@
     "tiedJob": 0,
     "id": 106,
     "weaponRank": 0,
-    "gender": 2
+    "gender": 0
   },
   {
     "state": "SpecialPromote",
@@ -1041,7 +1041,7 @@
     "tiedJob": 0,
     "id": 116,
     "weaponRank": 0,
-    "gender": 2
+    "gender": 0
   },
   {
     "state": "SpecialPromote",
@@ -1050,7 +1050,7 @@
     "tiedJob": 0,
     "id": 117,
     "weaponRank": 0,
-    "gender": 2
+    "gender": 0
   },
   {
     "state": "SpecialPromote",

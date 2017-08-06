@@ -98,6 +98,10 @@ public class ChapterHandler {
                         // Swap out aliases and distribute items.
                         for(String s : aliasMap.get(c.getPid())) {
                             if(s.equals(b.getPid())) {
+                                if(chapter.getCid().equals("A001")) {
+                                    b.setItem(fatesItems.generateDebugItem(c.getCharacterClass()).getIid(), 0);
+                                    break;
+                                }
                                 b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 0);
                                 if(s.contains("ボス")) { // Workaround for bugged bosses.
                                     b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 1);

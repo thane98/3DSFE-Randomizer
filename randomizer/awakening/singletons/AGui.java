@@ -4,8 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import randomizer.Randomizer;
 import randomizer.common.enums.CharacterType;
+import randomizer.common.enums.SkillType;
 import randomizer.common.structures.Skill;
-import randomizer.fates.singletons.FatesSkills;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,7 +30,7 @@ public class AGui {
             .getCharactersByType(CharacterType.FirstGen).size()];
     private boolean[] selectedJobs = new boolean[AJobs.getInstance().getJobs().size()];
     private boolean[] selectedItems = new boolean[AItems.getInstance().getWeapons().size()];
-    private boolean[] selectedSkills = new boolean[0];
+    private boolean[] selectedSkills = new boolean[ASkills.getInstance().getSkills().size()];
     private boolean[] selectedOptions;
 
     private AGui() {
@@ -42,7 +42,7 @@ public class AGui {
         }
 
         // Set up default selections.
-        List<Skill> skills = FatesSkills.getInstance().getSkills();
+        List<Skill> skills = ASkills.getInstance().getSkills();
         selectedOptions = new boolean[options.size()];
         for(int x = 0; x < selectedOptions.length; x++) {
             selectedOptions[x] = true;
@@ -53,9 +53,9 @@ public class AGui {
         for(int x = 0; x < selectedJobs.length; x++) {
             selectedJobs[x] = true;
         }
-//        for(int x = 0; x < skills.size(); x++) {
-//            selectedSkills[x] = skills.get(x).getType() != SkillType.Enemy;
-//        }
+        for(int x = 0; x < skills.size(); x++) {
+            selectedSkills[x] = skills.get(x).getType() != SkillType.Enemy;
+        }
         for(int x = 0; x < selectedItems.length; x++) {
             selectedItems[x] = true;
         }

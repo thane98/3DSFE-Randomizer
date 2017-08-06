@@ -1,8 +1,12 @@
 package randomizer.awakening.model.processors;
 
 import randomizer.awakening.model.structures.ACharacter;
+import randomizer.awakening.singletons.AChapters;
+import randomizer.awakening.singletons.ACharacters;
 import randomizer.awakening.singletons.AGui;
+import randomizer.common.enums.ChapterType;
 import randomizer.common.enums.CharacterType;
+import randomizer.common.structures.Chapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,7 +53,7 @@ public class CharacterMatcher {
             assignTargets(secondGen);
             assignTargets(npcs);
         }
-        //assignParents(firstGen, secondGen);
+        assignParents(firstGen, secondGen);
     }
 
     private static void assignSameSexTargets(List<ACharacter> characters) {
@@ -77,6 +81,14 @@ public class CharacterMatcher {
     }
 
     private static void assignParents(List<ACharacter> firstGen, List<ACharacter> secondGen) {
-
+        List<Chapter> fatesChapters = AChapters.getInstance().getChaptersByType(ChapterType.Child);
+        for(Chapter c : fatesChapters) {
+            ACharacter parent = ACharacters.getInstance().getReplacement(firstGen, c.getParentPid());
+            ACharacter child = ACharacters.getInstance().getReplacement(secondGen, c.getChildPid());
+            if(parent != null && child != null) {
+                parent.setLinkedPid(child.getPid());
+                child.setLinkedPid(parent.getPid());
+            }
+        }
     }
 }

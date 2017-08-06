@@ -23,6 +23,14 @@ public class StaticHandler {
             ACharacterBlock b = data.getCharacters().get(c.getId() + 1); // Offset by 1 because of AVATAR_N
             if(options[0]) {
                 b.setJob(c.getCharacterClass().getJid());
+                String[] reclassJids = new String[6];
+                for(int x = 0; x < 6; x++) {
+                    if(c.getReclasses()[x] != null)
+                        reclassJids[x] = c.getReclasses()[x].getJid();
+                    else
+                        reclassJids[x] = null;
+                }
+                b.setReclasses(reclassJids);
                 b.setWeaponRanks(AJobs.getInstance().generateWeaponsRanks(c.getCharacterClass()));
             }
 
@@ -40,20 +48,16 @@ public class StaticHandler {
     private static void writeStats(ACharacter c, ACharacterBlock b) {
         b.setStats(c.getStats());
         b.setModifiers(c.getModifiers());
-        if(options[3]) {
-            b.setLevel(c.getLevel());
-            if(c.getCharacterType() == CharacterType.SecondGen) {
-                b.setParent(c.getLinkedPid());
-            }
+        b.setLevel(c.getLevel());
+        if(c.getCharacterType() == CharacterType.SecondGen) {
+            b.setParent(c.getLinkedPid());
         }
-        if(options[1]) {
-            short[] skillIds = new short[5];
-            for(int x = 0; x < 5; x++) {
-                if(c.getSkills()[x] == null)
-                    break;
-                skillIds[x] = c.getSkills()[x].getId();
-            }
-            b.setSkills(skillIds);
+        short[] skillIds = new short[5];
+        for(int x = 0; x < 5; x++) {
+            if(c.getSkills()[x] == null)
+                break;
+            skillIds[x] = c.getSkills()[x].getId();
         }
+        b.setSkills(skillIds);
     }
 }

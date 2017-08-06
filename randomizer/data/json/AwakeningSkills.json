@@ -1,0 +1,477 @@
+[
+  {
+    "seid": "RSID_最大ＨＰ＋５",
+    "type": "Basic",
+    "id": 1
+  },
+  {
+    "seid": "RSID_力＋２",
+    "type": "Basic",
+    "id": 2
+  },
+  {
+    "seid": "RSID_魔力＋２",
+    "type": "Basic",
+    "id": 3
+  },
+  {
+    "seid": "RSID_技＋２",
+    "type": "Basic",
+    "id": 4
+  },
+  {
+    "seid": "RSID_速さ＋２",
+    "type": "Basic",
+    "id": 5
+  },
+  {
+    "seid": "RSID_守備＋２",
+    "type": "Basic",
+    "id": 6
+  },
+  {
+    "seid": "RSID_魔防＋２",
+    "type": "Basic",
+    "id": 7
+  },
+  {
+    "seid": "RSID_命中＋１０",
+    "type": "Basic",
+    "id": 8
+  },
+  {
+    "seid": "RSID_命中＋２０",
+    "type": "Basic",
+    "id": 9
+  },
+  {
+    "seid": "RSID_回避＋１０",
+    "type": "Basic",
+    "id": 10
+  },
+  {
+    "seid": "RSID_移動＋１",
+    "type": "Basic",
+    "id": 11
+  },
+  {
+    "seid": "RSID_鍵開け",
+    "type": "Basic",
+    "id": 12
+  },
+  {
+    "seid": "RSID_戦知識",
+    "type": "Basic",
+    "id": 13
+  },
+  {
+    "seid": "RSID_良成長",
+    "type": "Basic",
+    "id": 14
+  },
+  {
+    "seid": "RSID_練磨",
+    "type": "Basic",
+    "id": 15
+  },
+  {
+    "seid": "RSID_武器節約",
+    "type": "Basic",
+    "id": 16
+  },
+  {
+    "seid": "RSID_デュアルサポート＋",
+    "type": "Basic",
+    "id": 17
+  },
+  {
+    "seid": "RSID_デュアルアタック＋",
+    "type": "Basic",
+    "id": 18
+  },
+  {
+    "seid": "RSID_デュアルガード＋",
+    "type": "Basic",
+    "id": 19
+  },
+  {
+    "seid": "RSID_王の器",
+    "type": "Basic",
+    "id": 20
+  },
+  {
+    "seid": "RSID_バイオリズム・奇数",
+    "type": "Basic",
+    "id": 21
+  },
+  {
+    "seid": "RSID_バイオリズム・偶数",
+    "type": "Basic",
+    "id": 22
+  },
+  {
+    "seid": "RSID_ホットスタート",
+    "type": "Basic",
+    "id": 23
+  },
+  {
+    "seid": "RSID_スロースタート",
+    "type": "Basic",
+    "id": 24
+  },
+  {
+    "seid": "RSID_ラッキー７",
+    "type": "Basic",
+    "id": 25
+  },
+  {
+    "seid": "RSID_熱い心",
+    "type": "Basic",
+    "id": 26
+  },
+  {
+    "seid": "RSID_屋外戦闘",
+    "type": "Basic",
+    "id": 27
+  },
+  {
+    "seid": "RSID_屋内戦闘",
+    "type": "Basic",
+    "id": 28
+  },
+  {
+    "seid": "RSID_単騎駆け",
+    "type": "Basic",
+    "id": 29
+  },
+  {
+    "seid": "RSID_集中",
+    "type": "Basic",
+    "id": 30
+  },
+  {
+    "seid": "RSID_一発屋",
+    "type": "Basic",
+    "id": 31
+  },
+  {
+    "seid": "RSID_怒り",
+    "type": "Basic",
+    "id": 32
+  },
+  {
+    "seid": "RSID_先の先",
+    "type": "Basic",
+    "id": 33
+  },
+  {
+    "seid": "RSID_後の先",
+    "type": "Basic",
+    "id": 34
+  },
+  {
+    "seid": "RSID_下剋上",
+    "type": "Basic",
+    "id": 35
+  },
+  {
+    "seid": "RSID_カリスマ",
+    "type": "Basic",
+    "id": 36
+  },
+  {
+    "seid": "RSID_方陣",
+    "type": "Basic",
+    "id": 37
+  },
+  {
+    "seid": "RSID_深窓の令嬢",
+    "type": "Basic",
+    "id": 38
+  },
+  {
+    "seid": "RSID_呪い",
+    "type": "Basic",
+    "id": 39
+  },
+  {
+    "seid": "RSID_赤の呪い",
+    "type": "Basic",
+    "id": 40
+  },
+  {
+    "seid": "RSID_いやしの心",
+    "type": "Basic",
+    "id": 41
+  },
+  {
+    "seid": "RSID_リフレッシュ",
+    "type": "Basic",
+    "id": 42
+  },
+  {
+    "seid": "RSID_回復",
+    "type": "Basic",
+    "id": 43
+  },
+  {
+    "seid": "RSID_運び手",
+    "type": "Basic",
+    "id": 44
+  },
+  {
+    "seid": "RSID_守り手",
+    "type": "Basic",
+    "id": 45
+  },
+  {
+    "seid": "RSID_軽業",
+    "type": "Basic",
+    "id": 46
+  },
+  {
+    "seid": "RSID_すり抜け",
+    "type": "Basic",
+    "id": 47
+  },
+  {
+    "seid": "RSID_剣の達人",
+    "type": "Basic",
+    "id": 48
+  },
+  {
+    "seid": "RSID_槍の達人",
+    "type": "Basic",
+    "id": 49
+  },
+  {
+    "seid": "RSID_斧の達人",
+    "type": "Basic",
+    "id": 50
+  },
+  {
+    "seid": "RSID_弓の達人",
+    "type": "Basic",
+    "id": 51
+  },
+  {
+    "seid": "RSID_魔の達人",
+    "type": "Basic",
+    "id": 52
+  },
+  {
+    "seid": "RSID_踊る",
+    "type": "Basic",
+    "id": 53
+  },
+  {
+    "seid": "RSID_特別な踊り",
+    "type": "Basic",
+    "id": 54
+  },
+  {
+    "seid": "RSID_力の叫び",
+    "type": "Basic",
+    "id": 55
+  },
+  {
+    "seid": "RSID_魔力の叫び",
+    "type": "Basic",
+    "id": 56
+  },
+  {
+    "seid": "RSID_技の叫び",
+    "type": "Basic",
+    "id": 57
+  },
+  {
+    "seid": "RSID_速さの叫び",
+    "type": "Basic",
+    "id": 58
+  },
+  {
+    "seid": "RSID_幸運の叫び",
+    "type": "Basic",
+    "id": 59
+  },
+  {
+    "seid": "RSID_守備の叫び",
+    "type": "Basic",
+    "id": 60
+  },
+  {
+    "seid": "RSID_魔防の叫び",
+    "type": "Basic",
+    "id": 61
+  },
+  {
+    "seid": "RSID_移動の叫び",
+    "type": "Basic",
+    "id": 62
+  },
+  {
+    "seid": "RSID_七色の叫び",
+    "type": "Basic",
+    "id": 63
+  },
+  {
+    "seid": "RSID_剣殺し",
+    "type": "Basic",
+    "id": 64
+  },
+  {
+    "seid": "RSID_槍殺し",
+    "type": "Basic",
+    "id": 65
+  },
+  {
+    "seid": "RSID_斧殺し",
+    "type": "Basic",
+    "id": 66
+  },
+  {
+    "seid": "RSID_弓殺し",
+    "type": "Basic",
+    "id": 67
+  },
+  {
+    "seid": "RSID_魔殺し",
+    "type": "Basic",
+    "id": 68
+  },
+  {
+    "seid": "RSID_竜特効",
+    "type": "Basic",
+    "id": 69
+  },
+  {
+    "seid": "RSID_獣特効",
+    "type": "Basic",
+    "id": 70
+  },
+  {
+    "seid": "RSID_滅殺",
+    "type": "Basic",
+    "id": 71
+  },
+  {
+    "seid": "RSID_天空",
+    "type": "Basic",
+    "id": 72
+  },
+  {
+    "seid": "RSID_流星",
+    "type": "Basic",
+    "id": 73
+  },
+  {
+    "seid": "RSID_太陽",
+    "type": "Basic",
+    "id": 74
+  },
+  {
+    "seid": "RSID_月光",
+    "type": "Basic",
+    "id": 75
+  },
+  {
+    "seid": "RSID_華炎",
+    "type": "Basic",
+    "id": 76
+  },
+  {
+    "seid": "RSID_復讐",
+    "type": "Basic",
+    "id": 77
+  },
+  {
+    "seid": "RSID_待ち伏せ",
+    "type": "Basic",
+    "id": 78
+  },
+  {
+    "seid": "RSID_大盾",
+    "type": "Basic",
+    "id": 79
+  },
+  {
+    "seid": "RSID_聖盾",
+    "type": "Basic",
+    "id": 80
+  },
+  {
+    "seid": "RSID_カウンター",
+    "type": "Basic",
+    "id": 81
+  },
+  {
+    "seid": "RSID_祈り",
+    "type": "Basic",
+    "id": 82
+  },
+  {
+    "seid": "RSID_強奪",
+    "type": "Basic",
+    "id": 83
+  },
+  {
+    "seid": "RSID_疾風迅雷",
+    "type": "Basic",
+    "id": 84
+  },
+  {
+    "seid": "RSID_生命吸収",
+    "type": "Basic",
+    "id": 85
+  },
+  {
+    "seid": "RSID_覇王",
+    "type": "Basic",
+    "id": 86
+  },
+  {
+    "seid": "RSID_暗闇の加護",
+    "type": "Basic",
+    "id": 87
+  },
+  {
+    "seid": "RSID_邪竜の鱗",
+    "type": "Basic",
+    "id": 88
+  },
+  {
+    "seid": "RSID_絶対命中",
+    "type": "Basic",
+    "id": 89
+  },
+  {
+    "seid": "RSID_幸運＋４",
+    "type": "Basic",
+    "id": 90
+  },
+  {
+    "seid": "RSID_月光＋",
+    "type": "Enemy",
+    "id": 91
+  },
+  {
+    "seid": "RSID_待ち伏せ＋",
+    "type": "Enemy",
+    "id": 92
+  },
+  {
+    "seid": "RSID_大盾＋",
+    "type": "Enemy",
+    "id": 93
+  },
+  {
+    "seid": "RSID_聖盾＋",
+    "type": "Enemy",
+    "id": 94
+  },
+  {
+    "seid": "RSID_神の器",
+    "type": "Enemy",
+    "id": 95
+  }
+]
