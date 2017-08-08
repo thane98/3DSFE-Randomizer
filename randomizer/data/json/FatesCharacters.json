@@ -736,7 +736,7 @@
     "sound": "ENEMY_M1",
     "id": 0,
     "male": true,
-    "promoted": true,
+    "promoted": false,
     "characterType": "NPC"
   },
   {

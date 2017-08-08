@@ -1017,7 +1017,7 @@
     "gender": 1
   },
   {
-    "state": "SpecialPromote",
+    "state": "Base",
     "jid": "JID_ランサー男",
     "itemType": "Lances",
     "tiedJob": 0,
@@ -1035,7 +1035,7 @@
     "gender": 2
   },
   {
-    "state": "SpecialPromote",
+    "state": "Promoted",
     "jid": "JID_ダークロード男",
     "itemType": "Axes",
     "tiedJob": 0,
@@ -1044,7 +1044,7 @@
     "gender": 0
   },
   {
-    "state": "SpecialPromote",
+    "state": "Promoted",
     "jid": "JID_水の眷属男",
     "itemType": "Axes",
     "tiedJob": 0,

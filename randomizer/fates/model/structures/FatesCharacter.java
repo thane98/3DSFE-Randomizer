@@ -41,7 +41,6 @@ public class FatesCharacter {
     // Randomizer-only data.
     private String targetPid;
     private String linkedPid; // Used for Parent/child randomization.
-    private transient boolean hasSwappedStats;
 
     public FatesCharacter() {}
 
@@ -251,14 +250,6 @@ public class FatesCharacter {
 
     public void setLinkedPid(String linkedPid) {
         this.linkedPid = linkedPid;
-    }
-
-    public boolean hasSwappedStats() {
-        return hasSwappedStats;
-    }
-
-    public void setHasSwappedStats(boolean hasSwappedStats) {
-        this.hasSwappedStats = hasSwappedStats;
     }
 
     public boolean isRoyal() {

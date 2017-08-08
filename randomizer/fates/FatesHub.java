@@ -29,7 +29,6 @@ import java.util.List;
 
 public class FatesHub {
 
-    private FatesItems fatesItems;
     private FatesSkills fatesSkills = FatesSkills.getInstance();
     private boolean[] options = FatesGui.getInstance().getSelectedOptions();
     private List<FatesCharacter> selectedCharacters;
@@ -37,7 +36,6 @@ public class FatesHub {
 
     public FatesHub() {
         PatchBuilder.createPatch();
-        fatesItems = FatesItems.getInstance();
         selectedCharacters = FatesCharacters.getInstance().getSelectedCharacters();
         data = new FatesGameData(FatesFiles.getInstance().getGameData());
     }
@@ -61,9 +59,12 @@ public class FatesHub {
      * Performs the initial setup required to randomize the game. This includes reading
      * GameData's character blocks, pairing up characters for join order swaps, generating
      * new classes, and recalculating stats.
-     *
      */
     private void setup() {
+        /* Assign target characters. If "Randomize Join Order" is not selected,
+         * the target will be the same as the original character.
+         */
+        CharacterMatcher.matchCharacters(selectedCharacters);
 
         // Synchronize randomizer and GameData's characters.
         for(CharacterBlock c : data.getCharacters()) {
@@ -72,6 +73,7 @@ public class FatesHub {
                 continue;
             if(character.getId() == 0)
                 continue;
+            FatesCharacter replacement = FatesCharacters.getInstance().getReplacement(selectedCharacters, c.getPid());
 
             // Promote Jakob/Felicia.
             if(character.getPid().equals("PID_フェリシア") || character.getPid().equals("PID_ジョーカー")
@@ -80,11 +82,11 @@ public class FatesHub {
             }
 
             // Stats.
-            character.setStats(c.getStats());
-            character.setGrowths(c.getGrowths());
-            character.setModifiers(c.getModifiers());
-            character.setLevel((byte) c.getLevel());
-            character.setInternalLevel((byte) c.getInternalLevel());
+            replacement.setStats(c.getStats());
+            replacement.setGrowths(c.getGrowths());
+            replacement.setModifiers(c.getModifiers());
+            replacement.setLevel((byte) c.getLevel());
+            replacement.setInternalLevel((byte) c.getInternalLevel());
 
             // Skills.
             Skill[] skills = new Skill[5];
@@ -93,12 +95,11 @@ public class FatesHub {
                 if(skillIds[x] != 0)
                     skills[x] = fatesSkills.getSkillById(skillIds[x]);
             }
-            character.setSkills(skills);
-            character.setPersonSkill(c.getPersonalSkills()[0]);
+            replacement.setSkills(skills);
+            replacement.setPersonSkill(c.getPersonalSkills()[0]);
         }
 
         // Perform matching, make edits to GameData.
-        CharacterMatcher.matchCharacters(selectedCharacters);
         ClassRandomizer.randomizeClasses(selectedCharacters);
         StatCalculator.randomizeStats(selectedCharacters);
     }

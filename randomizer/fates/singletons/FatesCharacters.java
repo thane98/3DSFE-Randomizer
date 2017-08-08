@@ -11,12 +11,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FatesCharacters {
     private static FatesCharacters instance;
     private List<FatesCharacter> characters;
+    private List<String> bannedPids;
 
     private FatesCharacters() {
         Type characterType = new TypeToken<List<FatesCharacter>>() {}.getType();
@@ -26,6 +29,9 @@ public class FatesCharacters {
                     .getResourceAsStream("data/json/FatesCharacters.json"))));
             characters = gson.fromJson(reader, characterType);
             reader.close();
+
+            bannedPids = Files.readAllLines(Paths.get(System.getProperty("user.dir")
+                    + "/resources/text/FatesBannedPids.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,5 +86,9 @@ public class FatesCharacters {
 
     public List<FatesCharacter> getCharacters() {
         return characters;
+    }
+
+    public List<String> getBannedPids() {
+        return bannedPids;
     }
 }

@@ -51,20 +51,22 @@ public class ChapterHandler {
                     p.setMPid(c.getMPid());
                     p.setMPidH(c.getMPidH());
 
-                    // Reclass block.
-                    if(options[13]) {
-                        p.setClasses(new short[] { c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob() });
-                        p.setWeaponRanks(fatesJobs.generateWeaponsRanks(c.getCharacterClass()));
-                    }
+                    if(!fatesCharacters.getBannedPids().contains(p.getPid())) {
+                        // Reclass block.
+                        if(options[13]) {
+                            p.setClasses(new short[] { c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob() });
+                            p.setWeaponRanks(fatesJobs.generateWeaponsRanks(c.getCharacterClass()));
+                        }
 
-                    // Add block to alias map.
-                    if(aliasMap.containsKey(c.getPid())) {
-                        aliasMap.get(c.getPid()).add(p.getPid());
-                    }
-                    else {
-                        List<String> aliases = new ArrayList<>();
-                        aliases.add(p.getPid());
-                        aliasMap.put(c.getPid(), aliases);
+                        // Add block to alias map.
+                        if(aliasMap.containsKey(c.getPid())) {
+                            aliasMap.get(c.getPid()).add(p.getPid());
+                        }
+                        else {
+                            List<String> aliases = new ArrayList<>();
+                            aliases.add(p.getPid());
+                            aliasMap.put(c.getPid(), aliases);
+                        }
                     }
                     break;
                 }
@@ -89,9 +91,9 @@ public class ChapterHandler {
                     FatesCharacter target = fatesCharacters.getByPid(c.getTargetPid());
                     if(pidMatches(target, b)) {
                         b.setPid(c.getPid());
-                        b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 0);
+                        b.addItem(fatesItems.generateItem(c.getCharacterClass()).getIid());
                         if(c.getCharacterType() == CharacterType.Player)
-                            b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 1);
+                            b.addItem(fatesItems.generateItem(c.getCharacterClass()).getIid());
                         break;
                     }
                     else if(aliasMap.get(c.getPid()) != null && options[13]) {
@@ -99,12 +101,12 @@ public class ChapterHandler {
                         for(String s : aliasMap.get(c.getPid())) {
                             if(s.equals(b.getPid())) {
                                 if(chapter.getCid().equals("A001")) {
-                                    b.setItem(fatesItems.generateDebugItem(c.getCharacterClass()).getIid(), 0);
+                                    b.addItem(fatesItems.generateDebugItem(c.getCharacterClass()).getIid());
                                     break;
                                 }
-                                b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 0);
+                                b.addItem(fatesItems.generateItem(c.getCharacterClass()).getIid());
                                 if(s.contains("ボス")) { // Workaround for bugged bosses.
-                                    b.setItem(fatesItems.generateItem(c.getCharacterClass()).getIid(), 1);
+                                    b.addItem(fatesItems.generateItem(c.getCharacterClass()).getIid());
                                 }
                                 break;
                             }

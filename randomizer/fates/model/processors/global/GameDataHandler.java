@@ -12,7 +12,6 @@ import java.util.List;
 
 public class GameDataHandler {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private static FatesItems fatesItems = FatesItems.getInstance();
     private static FatesJobs fatesJobs = FatesJobs.getInstance();
     private static FatesCharacters fatesCharacters = FatesCharacters.getInstance();
 
@@ -82,6 +81,7 @@ public class GameDataHandler {
             if(c.getCharacterType() == CharacterType.SecondGen) {
                 b.setParent(fatesCharacters.getByPid(c.getLinkedPid()).getId());
             }
+            b.setSupportRoute((byte) 0x7);
         }
         if(options[1]) {
             short[] skillIds = new short[5];

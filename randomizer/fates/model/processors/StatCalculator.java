@@ -2,7 +2,6 @@ package randomizer.fates.model.processors;
 
 import randomizer.common.structures.Skill;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesGui;
 import randomizer.fates.singletons.FatesSkills;
 
@@ -18,43 +17,22 @@ public class StatCalculator {
 
     public static void randomizeStats(List<FatesCharacter> characters) {
         for(FatesCharacter c : characters) {
-            if(c.getId() == 0 || c.hasSwappedStats())
+            if(c.getId() == 0)
                 continue;
-            FatesCharacter target = FatesCharacters.getInstance().getByPid(c.getTargetPid());
 
             // Randomize base stats, growths, and modifiers.
-            byte[] originalStats = c.getStats();
-            byte[] originalGrowths = c.getGrowths();
-            byte[] originalMods = c.getModifiers();
-            Skill[] originalSkills = c.getSkills();
-            byte originalLevel = c.getLevel();
-            byte originalInternalLevel = c.getInternalLevel();
-            c.setLevel(target.getLevel());
-            target.setLevel(originalLevel);
-            c.setInternalLevel(target.getInternalLevel());
-            target.setInternalLevel(originalInternalLevel);
-            c.setStats(calculateStats(target.getStats(), gui.getBaseStatPasses(), 
+            c.setStats(calculateStats(c.getStats(), gui.getBaseStatPasses(), 
                     gui.getBaseStatMin(), gui.getBaseStatMax(), true));
-            c.setGrowths(calculateStats(target.getGrowths(), gui.getGrowthPasses(),
+            c.setGrowths(calculateStats(c.getGrowths(), gui.getGrowthPasses(),
                     gui.getGrowthMin(), gui.getGrowthMax(), true));
-            c.setModifiers(calculateStats(target.getModifiers(), gui.getModPasses(),
-                    gui.getModMin(), gui.getModMax(), false));
-            target.setStats(calculateStats(originalStats, gui.getBaseStatPasses(),
-                    gui.getBaseStatMin(), gui.getBaseStatMax(), true));
-            target.setGrowths(calculateStats(originalGrowths, gui.getGrowthPasses(),
-                    gui.getGrowthMin(), gui.getGrowthMax(), true));
-            target.setModifiers(calculateStats(originalMods, gui.getModPasses(),
+            c.setModifiers(calculateStats(c.getModifiers(), gui.getModPasses(),
                     gui.getModMin(), gui.getModMax(), false));
 
             // Randomize skills.
             if(gui.getSelectedOptions()[1]) {
-                c.setSkills(randomizeSkills(target.getSkills()));
-                target.setSkills(randomizeSkills(originalSkills));
+                c.setSkills(randomizeSkills(c.getSkills()));
                 c.setPersonSkill(personalSkills.get(random.nextInt(personalSkills.size())).getId());
-                target.setPersonSkill(personalSkills.get(random.nextInt(personalSkills.size())).getId());
             }
-            c.setHasSwappedStats(true);
-            target.setHasSwappedStats(true);
         }
     }
 

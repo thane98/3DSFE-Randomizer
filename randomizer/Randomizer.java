@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import randomizer.data.Gui;
 import randomizer.fates.singletons.FatesGui;
 
+import java.io.File;
+import java.nio.file.Files;
+
 
 public class Randomizer extends Application {
 	@Override
