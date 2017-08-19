@@ -5,6 +5,7 @@ import randomizer.fates.model.structures.FatesCharacter;
 import randomizer.fates.singletons.FatesGui;
 import randomizer.fates.singletons.FatesSkills;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 

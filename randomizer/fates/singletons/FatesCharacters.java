@@ -7,9 +7,7 @@ import randomizer.Randomizer;
 import randomizer.common.enums.CharacterType;
 import randomizer.fates.model.structures.FatesCharacter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,9 +28,17 @@ public class FatesCharacters {
             characters = gson.fromJson(reader, characterType);
             reader.close();
 
-            bannedPids = Files.readAllLines(Paths.get(System.getProperty("user.dir")
-                    + "/resources/text/FatesBannedPids.txt"));
-        } catch (IOException e) {
+            bannedPids = Files.readAllLines(Paths.get(Randomizer.class.getResource(
+                    "data/text/FatesBannedPids.txt").toURI()));
+
+            // Parse custom characters.
+            File customFile = new File(System.getProperty("user.dir"), "CustomCharacters.json");
+            if(customFile.exists()) {
+                reader = new JsonReader(new BufferedReader(new FileReader(customFile)));
+                characters.addAll(gson.fromJson(reader, characterType));
+                reader.close();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -69,6 +75,14 @@ public class FatesCharacters {
     }
 
     public FatesCharacter getByPid(String pid) {
+        for(FatesCharacter c : characters) {
+            if(c.getPid().equals(pid))
+                return c;
+        }
+        return null;
+    }
+
+    public FatesCharacter getByPid(List<FatesCharacter> characters, String pid) {
         for(FatesCharacter c : characters) {
             if(c.getPid().equals(pid))
                 return c;

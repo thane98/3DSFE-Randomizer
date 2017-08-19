@@ -4,6 +4,7 @@ import randomizer.common.utils.BinUtils;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.common.utils.MessageBinUtils;
 import randomizer.fates.singletons.FatesFiles;
+import randomizer.fates.singletons.FatesGui;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +55,12 @@ public class PatchBuilder {
         }
 
         for(File f : FatesFiles.getInstance().getOriginalFileList()) {
+            if(!FatesGui.getInstance().getSelectedPaths()[0] && f.getAbsolutePath().contains("\\A\\"))
+                continue;
+            if(!FatesGui.getInstance().getSelectedPaths()[1] && f.getAbsolutePath().contains("\\B\\"))
+                continue;
+            if(!FatesGui.getInstance().getSelectedPaths()[2] && f.getAbsolutePath().contains("\\C\\"))
+                continue;
             File copy = new File(f.getAbsolutePath().replace(FatesFiles.getInstance().getRom().getAbsolutePath(),
                     dir.getAbsolutePath()));
             if(!copy.getName().endsWith(".lz") && !copy.getName().endsWith(".cmb"))

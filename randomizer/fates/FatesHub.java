@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import feflib.fates.gamedata.CharacterBlock;
 import feflib.fates.gamedata.FatesGameData;
+import randomizer.common.enums.CharacterType;
 import randomizer.common.structures.Skill;
 import randomizer.common.utils.CompressionUtils;
 import randomizer.fates.model.processors.CharacterMatcher;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FatesHub {
@@ -68,10 +70,10 @@ public class FatesHub {
 
         // Synchronize randomizer and GameData's characters.
         for(CharacterBlock c : data.getCharacters()) {
-            FatesCharacter character = FatesCharacters.getInstance().getByPid(c.getPid());
+            FatesCharacter character = FatesCharacters.getInstance().getByPid(selectedCharacters, c.getPid());
             if(character == null)
                 continue;
-            if(character.getId() == 0)
+            if(character.getCharacterType() == CharacterType.NPC)
                 continue;
             FatesCharacter replacement = FatesCharacters.getInstance().getReplacement(selectedCharacters, c.getPid());
 

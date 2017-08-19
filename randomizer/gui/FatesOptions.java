@@ -3,7 +3,9 @@ package randomizer.gui;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -32,20 +34,31 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class FatesOptions implements Initializable {
-    @FXML private CheckListView<String> configList;
-    @FXML private ComboBox<String> menuBox;
+    @FXML
+    private CheckListView<String> configList;
+    @FXML
+    private ComboBox<String> menuBox;
+    @FXML
+    private Slider baseStatPasses;
+    @FXML
+    private Slider baseStatMax;
+    @FXML
+    private Slider baseStatMin;
+    @FXML
+    private Slider growthPasses;
+    @FXML
+    private Slider growthMin;
+    @FXML
+    private Slider growthMax;
+    @FXML
+    private Slider modPasses;
+    @FXML
+    private Slider modMin;
+    @FXML
+    private Slider modMax;
 
-    @FXML private Slider baseStatPasses;
-    @FXML private Slider baseStatMax;
-    @FXML private Slider baseStatMin;
-    @FXML private Slider growthPasses;
-    @FXML private Slider growthMin;
-    @FXML private Slider growthMax;
-    @FXML private Slider modPasses;
-    @FXML private Slider modMin;
-    @FXML private Slider modMax;
-
-    @FXML private ProgressBar progressBar;
+    @FXML
+    private ProgressBar progressBar;
 
     private ListChangeListener<Integer> listener;
 
@@ -73,21 +86,21 @@ public class FatesOptions implements Initializable {
     @FXML
     private void changeMenu(String newValue) {
         configList.getItems().clear();
-        if(listener != null)
+        if (listener != null)
             configList.getCheckModel().getCheckedIndices().removeListener(listener);
-        switch(newValue) {
+        switch (newValue) {
             case "Basic Options":
-                for(String s : FatesGui.getInstance().getOptions()) {
+                for (String s : FatesGui.getInstance().getOptions()) {
                     configList.getItems().add(s);
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedOptions()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedOptions()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -96,17 +109,17 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Characters":
-                for(FatesCharacter c : FatesCharacters.getInstance().getCharactersByType(CharacterType.NPC)) {
+                for (FatesCharacter c : FatesCharacters.getInstance().getCharactersByType(CharacterType.NPC)) {
                     configList.getItems().add(c.getName());
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedCharacters()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedCharacters()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -115,17 +128,17 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Classes":
-                for(Job j : FatesJobs.getInstance().getJobs()) {
+                for (Job j : FatesJobs.getInstance().getJobs()) {
                     configList.getItems().add(j.getName());
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedJobs()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedJobs()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -134,17 +147,17 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Skills":
-                for(Skill s : FatesSkills.getInstance().getSkills()) {
+                for (Skill s : FatesSkills.getInstance().getSkills()) {
                     configList.getItems().add(s.getName());
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedSkills()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedSkills()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -153,18 +166,18 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Items":
-                for(FEItem i : FatesItems.getInstance().getItems()) {
-                    if(i.getType() != ItemType.Treasure)
+                for (FEItem i : FatesItems.getInstance().getItems()) {
+                    if (i.getType() != ItemType.Treasure)
                         configList.getItems().add(i.getName());
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedItems()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedItems()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -173,17 +186,17 @@ public class FatesOptions implements Initializable {
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
             case "Paths":
-                for(String s : FatesGui.getInstance().getPaths()) {
+                for (String s : FatesGui.getInstance().getPaths()) {
                     configList.getItems().add(s);
                 }
-                for(int x = 0; x < configList.getItems().size(); x++) {
-                    if(FatesGui.getInstance().getSelectedPaths()[x])
+                for (int x = 0; x < configList.getItems().size(); x++) {
+                    if (FatesGui.getInstance().getSelectedPaths()[x])
                         configList.getCheckModel().check(x);
                 }
                 listener = c -> {
                     c.next();
                     int index;
-                    if(c.wasAdded())
+                    if (c.wasAdded())
                         index = c.getAddedSubList().get(0);
                     else
                         index = c.getRemoved().get(0);
@@ -196,8 +209,7 @@ public class FatesOptions implements Initializable {
 
     @FXML
     private void randomize() {
-        if(FatesGui.getInstance().getSelectedCharacters()[0] || FatesGui.getInstance().getSelectedCharacters()[1])
-            loadCodeBin();
+        loadCodeBin();
 //        Task task = new Task<Void>() {
 //            @Override
 //            public Void call() {
@@ -221,7 +233,8 @@ public class FatesOptions implements Initializable {
                 "JSON Files (*.json)", "*.json"));
         File file = chooser.showOpenDialog(Gui.getInstance().getMainStage());
         try {
-            Type type = new TypeToken<SettingsWrapper>() {}.getType();
+            Type type = new TypeToken<SettingsWrapper>() {
+            }.getType();
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new FileReader(file)));
             SettingsWrapper wrapper = gson.fromJson(reader, type);
@@ -230,21 +243,20 @@ public class FatesOptions implements Initializable {
             FatesGui.getInstance().setSelectedPaths(wrapper.getGui().getSelectedPaths());
             FatesGui.getInstance().setSelectedItems(wrapper.getGui().getSelectedItems());
             FatesGui.getInstance().setSelectedSkills(wrapper.getGui().getSelectedSkills());
-            if(wrapper.getGui().getSelectedPaths()[0] && !FatesFiles.getInstance().isBirthrightVerified()) {
+            if (wrapper.getGui().getSelectedPaths()[0] && !FatesFiles.getInstance().isBirthrightVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
-            if(wrapper.getGui().getSelectedPaths()[1] && !FatesFiles.getInstance().isConquestVerified()) {
+            if (wrapper.getGui().getSelectedPaths()[1] && !FatesFiles.getInstance().isConquestVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
-            if(wrapper.getGui().getSelectedPaths()[2] && !FatesFiles.getInstance().isRevelationVerified()) {
+            if (wrapper.getGui().getSelectedPaths()[2] && !FatesFiles.getInstance().isRevelationVerified()) {
                 throwUnverifiedPathDialog();
                 return;
             }
             List<FatesCharacter> selectedCharacters = wrapper.getCharacters();
-            if(FatesGui.getInstance().getSelectedCharacters()[0] && FatesGui.getInstance().getSelectedCharacters()[1])
-                loadCodeBin();
+            loadCodeBin();
             FatesHub hub = new FatesHub();
             hub.randomizeWithSettings(selectedCharacters);
         } catch (IOException e) {
@@ -260,13 +272,13 @@ public class FatesOptions implements Initializable {
                 "Would you like to select one now? If you don't, the option will be ignored!");
         Optional<ButtonType> res = alert.showAndWait();
         res.ifPresent(e -> {
-            if(e == ButtonType.OK) {
+            if (e == ButtonType.OK) {
                 FileChooser chooser = new FileChooser();
                 chooser.setTitle("Select code.bin");
                 chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Bin Files (*.bin)",
                         "*.bin"));
                 File file = chooser.showOpenDialog(Gui.getInstance().getMainStage());
-                if(file != null) {
+                if (file != null) {
                     FatesFiles.getInstance().setCode(file);
                 }
             }

@@ -67,6 +67,7 @@ public class ScriptHandler {
         for(File f : arrfile) {
             try {
                 String script = decompiler.decompile(f.toPath());
+                script = script.replaceAll("\"法衣裏返しレオン\"", "\"レオン\""); // Leo chapter 1 model.
                 for(FatesCharacter ch : characters) {
                     script = script.replaceAll(ch.getTaglessPid(), ch.getAid() + "RANDOMIZERTMP");
                 }
@@ -92,7 +93,7 @@ public class ScriptHandler {
                 String lines[] = tmp.split("\\r?\\n");
                 StringBuilder script = new StringBuilder();
                 for(String line : lines) {
-                    if(line.startsWith("ev::ItemGain(string\"")) { // TODO: Make sure the string is the ONLY parameter.
+                    if(line.startsWith("ev::ItemGain(string\"")) {
                         line = "ev::ItemGain(string(\"" + fatesItems.getSelectedItems(ItemType.Treasure) + "\"))";
                     }
                     script.append(line).append(System.lineSeparator());

@@ -36,8 +36,8 @@ public class CodeHandler {
 
                 // Male player.
                 if(c.getId() == 1) {
-                    byte[] itemBytes = FatesItems.getInstance().generateEligibleItem(c.getCharacterClass().getItemType(),
-                            0xF).getIid().getBytes("shift-jis");
+                    byte[] itemBytes = FatesItems.getInstance().generateDebugItem(c.getCharacterClass())
+                            .getIid().getBytes("shift-jis");
                     byte[] maleClassBytes = c.getCharacterClass().getJid().getBytes("shift-jis");
                     for(int x = 0; x < 0x14; x++) {
                         raw[maleCreationOffset + x] = 0;
@@ -52,8 +52,8 @@ public class CodeHandler {
 
                 // Female player.
                 if(c.getId() == 2) {
-                    byte[] itemBytes = FatesItems.getInstance().generateEligibleItem(c.getCharacterClass().getItemType(),
-                            0xF).getIid().getBytes("shift-jis");
+                    byte[] itemBytes = FatesItems.getInstance().generateDebugItem(c.getCharacterClass())
+                            .getIid().getBytes("shift-jis");
                     byte[] femaleClassBytes = c.getCharacterClass().getJid().getBytes("shift-jis");
                     for(int x = 0; x < 0x14; x++) {
                         raw[femaleCreationOffset + x] = 0;

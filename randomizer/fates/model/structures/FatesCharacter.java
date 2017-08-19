@@ -14,6 +14,10 @@ public class FatesCharacter {
     // Character label data.
     private String name;
     private String pid;
+    private String fid;
+    private String aid;
+    private String mPid;
+    private String mPidH;
     private String sound;
     private String[] bevAliases;
 
@@ -213,19 +217,31 @@ public class FatesCharacter {
     }
 
     public String getAid() {
-        return pid.replace("PID_", "AID_");
+        if(aid != null)
+            return aid;
+        else
+            return pid.replace("PID_", "AID_");
     }
 
     public String getFid() {
-        return pid.replace("PID_", "FID_");
+        if(fid != null)
+            return fid;
+        else
+            return pid.replace("PID_", "FID_");
     }
 
     public String getMPid() {
-        return pid.replace("PID_", "MPID_");
+        if(mPid != null)
+            return mPid;
+        else
+            return pid.replace("PID_", "MPID_");
     }
 
     public String getMPidH() {
-        return pid.replace("PID_", "MPID_H_");
+        if(mPidH != null)
+            return mPidH;
+        else
+            return pid.replace("PID_", "MPID_H_");
     }
 
     public CharacterType getCharacterType() {
@@ -270,5 +286,21 @@ public class FatesCharacter {
 
     public String getPidC() {
         return pid.replace("PID_", "PID_C_");
+    }
+
+    public void setFid(String fid) {
+        this.fid = fid;
+    }
+
+    public void setAid(String aid) {
+        this.aid = aid;
+    }
+
+    public void setmPid(String mPid) {
+        this.mPid = mPid;
+    }
+
+    public void setmPidH(String mPidH) {
+        this.mPidH = mPidH;
     }
 }
