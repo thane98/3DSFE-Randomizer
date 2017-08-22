@@ -39,6 +39,8 @@ public class TextHandler {
                     for(FatesCharacter ch : characters) {
                         if(ch.getCharacterType() == CharacterType.Player)
                             continue;
+                        if(ch.getCharacterType() == CharacterType.NPC && file.getName().startsWith("X001")) // Fix for broken Mozu portrait.
+                            continue;
                         split[1] = split[1].replaceAll(ch.getTaglessPid(), ch.getTaglessPid() + "TMP");
                         if(options[6])
                             split[1] = split[1].replaceAll(ch.getSound(), ch.getSound() + "TMP");
@@ -46,6 +48,8 @@ public class TextHandler {
                     }
                     for(FatesCharacter ch : characters) {
                         if(ch.getCharacterType() == CharacterType.Player)
+                            continue;
+                        if(ch.getCharacterType() == CharacterType.NPC && file.getName().startsWith("X001")) // Fix for broken Mozu portrait.
                             continue;
                         FatesCharacter target = fatesCharacters.getByPid(ch.getTargetPid());
                         split[1] = split[1].replaceAll(target.getTaglessPid() +  "TMP", ch.getTaglessPid());

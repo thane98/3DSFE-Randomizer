@@ -30,8 +30,6 @@ public class ChapterHandler {
     public static void randomizeChapterData(List<FatesCharacter> selected) {
         List<Chapter> chapters = fatesChapters.getSelectedChapters();
         for(Chapter c : chapters) {
-            if(c.getCid().equals("A000")) // Fix for chapter 1 crash.
-                continue;
             HashMap<String, List<String>> aliasMap = randomizePerson(c, selected);
             randomizeDispo(c, selected, aliasMap);
         }
@@ -42,6 +40,8 @@ public class ChapterHandler {
         HashMap<String, List<String>> aliasMap = new HashMap<>();
         FatesPerson person = new FatesPerson(fileData.getPerson().get(chapter.getCid()));
         for(PersonBlock p : person.getCharacters()) {
+            if(chapter.getCid().equals("A001")) // Fix for chapter 1 crash.
+                break;
             for(FatesCharacter c : selected) {
                 if(c.getCharacterType() == CharacterType.Player)
                     continue;
