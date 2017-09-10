@@ -32,9 +32,7 @@ public class FatesFiles
 	private boolean conquestVerified;
 	private boolean revelationVerified;
 
-	private FatesFiles() {
-
-	}
+	private FatesFiles() { }
 	
 	public static FatesFiles getInstance()
 	{

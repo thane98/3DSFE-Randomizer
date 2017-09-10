@@ -24,7 +24,7 @@ public class AChapters {
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/AwakeningChapters.json"))));
+                    .getResourceAsStream("data/json/AwakeningChapters.json"), "UTF-8")));
             chapters = gson.fromJson(reader, chapterType);
             reader.close();
         } catch (IOException e) {

@@ -24,7 +24,7 @@ public class ASkills {
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/AwakeningSkills.json"))));
+                    .getResourceAsStream("data/json/AwakeningSkills.json"), "UTF-8")));
             skills = gson.fromJson(reader, skillType);
             reader.close();
         } catch (IOException e) {

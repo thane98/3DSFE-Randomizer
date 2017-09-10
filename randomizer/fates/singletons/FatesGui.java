@@ -7,10 +7,13 @@ import randomizer.common.enums.CharacterType;
 import randomizer.common.enums.SkillType;
 import randomizer.common.structures.Skill;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FatesGui {
@@ -37,9 +40,15 @@ public class FatesGui {
 
     private FatesGui() {
         try {
-            options = Files.readAllLines(Paths.get(Randomizer.class.getResource(
-                    "data/text/FatesOptions.txt").toURI()));
-        } catch (IOException | URISyntaxException e) {
+            // Parse options.
+            BufferedReader streamReader = new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("data/text/FatesOptions.txt")));
+            options = new ArrayList<>();
+            String line;
+            while((line = streamReader.readLine()) != null) {
+                options.add(line);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

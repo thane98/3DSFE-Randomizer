@@ -5,14 +5,12 @@ import randomizer.common.fs.model.Decompiler;
 import randomizer.common.fs.model.ScriptCompiler;
 import randomizer.common.structures.Chapter;
 import randomizer.fates.model.structures.FatesCharacter;
-import randomizer.fates.singletons.FatesChapters;
-import randomizer.fates.singletons.FatesFiles;
-import randomizer.fates.singletons.FatesGui;
-import randomizer.fates.singletons.FatesItems;
+import randomizer.fates.singletons.*;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,12 +20,15 @@ public class ScriptHandler {
     private static FatesChapters fatesChapters = FatesChapters.getInstance();
     private static FatesFiles fileData = FatesFiles.getInstance();
 
-    public static void randomizeScript(List<FatesCharacter> characters) {
+    public static void randomizeScript() {
+        List<FatesCharacter> characters = FatesCharacters.getInstance().getWorkingCharacters();
         List<Chapter> chapters = fatesChapters.getSelectedChapters();
+
         Decompiler decompiler = new Decompiler();
         ScriptCompiler compiler;
         for(Chapter c : chapters) {
             try {
+                // Swap PID values within the script.
                 Path path = fileData.getScript().get(c.getCid()).toPath();
                 String script = decompiler.decompile(path);
                 for(FatesCharacter ch : characters) {
@@ -36,13 +37,22 @@ public class ScriptHandler {
                 for(FatesCharacter ch : characters) {
                     script = script.replaceAll(ch.getTargetPid().replace("PID_", "AID_")
                             + "RANDOMIZERTMP", ch.getPid());
-                    if(ch.getId() == 1 && c.getCid().equals("A005")) { // Fix for chapter 5 forced class.
+
+                    // Replace the forced reclass in chapter 5 with the player's newly
+                    // assigned class.
+                    if(ch.getId() == 1 && c.getCid().equals("A005")) {
                         script = script.replaceAll("JID_ダークプリンス男", ch.getCharacterClass().getJid());
                     }
                     else if(ch.getId() == 2 && c.getCid().equals("A005")) {
                         script = script.replaceAll("JID_ダークプリンセス女", ch.getCharacterClass().getJid());
                     }
                 }
+
+                // Patch unusual map scripts.
+                if(c.getCid().equals("A011") && options[3])
+                    script = patchA011Script(script);
+
+                // Recompile for use in game.
                 compiler = new ScriptCompiler(path.toFile().getName());
                 compiler.compile(path, script);
 
@@ -57,6 +67,13 @@ public class ScriptHandler {
     }
 
     private static void randomizeBev(Chapter chapter, List<FatesCharacter> characters) {
+        if(chapter == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeBev. chapter must not be null.");
+        if(characters == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeBev. characters must not be null.");
+
         ArrayList<File> arrfile = new ArrayList<>();
         File[] tempFiles = fileData.getBev().listFiles((dir, name) -> name.startsWith(chapter.getCid()));
         if(tempFiles != null) {
@@ -66,6 +83,7 @@ public class ScriptHandler {
         ScriptCompiler compiler;
         for(File f : arrfile) {
             try {
+                // Swap tagless PIDs.
                 String script = decompiler.decompile(f.toPath());
                 script = script.replaceAll("\"法衣裏返しレオン\"", "\"レオン\""); // Leo chapter 1 model.
                 for(FatesCharacter ch : characters) {
@@ -75,6 +93,8 @@ public class ScriptHandler {
                     script = script.replaceAll(ch.getTargetPid().replace("PID_", "AID_")
                             + "RANDOMIZERTMP", ch.getTaglessPid());
                 }
+
+                // Recompile the script for use in game.
                 compiler = new ScriptCompiler(f.getName());
                 compiler.compile(f.toPath(), script);
             } catch (Exception e) {
@@ -84,8 +104,13 @@ public class ScriptHandler {
     }
 
     private static void randomizeTerrain(Chapter chapter) {
+        if(chapter == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeTerrain. chapter must not be null.");
+
         if(fileData.getTerrain().containsKey(chapter.getCid())) {
             try {
+                // Generate new chest items.
                 Decompiler decompiler = new Decompiler();
                 ScriptCompiler compiler;
                 Path path = fileData.getTerrain().get(chapter.getCid()).toPath();
@@ -105,5 +130,22 @@ public class ScriptHandler {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static String patchA011Script(String script) {
+        if(script == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchA011Script. chapter must not be null.");
+
+        // Remove all references to the Birthright handover file.
+        String[] arr = script.split("\\r?\\n");
+        List<String> lines = new ArrayList<>();
+        lines.addAll(Arrays.asList(arr));
+        lines.removeIf(s -> s.contains("A_HANDOVER"));
+        StringBuilder builder = new StringBuilder();
+        for(String line : lines)
+            builder.append(line).append(System.lineSeparator());
+        builder.append(System.lineSeparator());
+        return builder.toString();
     }
 }

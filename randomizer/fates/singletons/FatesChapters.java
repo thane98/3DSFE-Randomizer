@@ -19,12 +19,11 @@ public class FatesChapters {
     private List<Chapter> chapters;
 
     private FatesChapters() {
-        Type chapterType = new TypeToken<List<Chapter>>() {}.getType();
-
         try {
+            Type chapterType = new TypeToken<List<Chapter>>() {}.getType();
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/FatesChapters.json"))));
+                    .getResourceAsStream("data/json/FatesChapters.json"), "UTF-8")));
             chapters = gson.fromJson(reader, chapterType);
             reader.close();
         } catch (IOException e) {
@@ -39,6 +38,10 @@ public class FatesChapters {
     }
 
     public List<Chapter> getChaptersByType(ChapterType type) {
+        if(type == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getChaptersByType. type must not be null.");
+
         List<Chapter> selected = new ArrayList<>();
         for(Chapter c : chapters) {
             if(c.getType() == type)

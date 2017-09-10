@@ -23,7 +23,7 @@ public class ACharacters {
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/AwakeningCharacters.json"))));
+                    .getResourceAsStream("data/json/AwakeningCharacters.json"), "UTF-8")));
             characters = gson.fromJson(reader, characterType);
             reader.close();
         } catch (IOException e) {

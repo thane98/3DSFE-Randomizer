@@ -15,11 +15,19 @@ public class GameDataHandler {
     private static FatesJobs fatesJobs = FatesJobs.getInstance();
     private static FatesCharacters fatesCharacters = FatesCharacters.getInstance();
 
-    public static void randomizeGameData(FatesGameData data, List<FatesCharacter> characters) {
+    public static void randomizeGameData(FatesGameData data) {
+        if(data == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeGameData. data must not be null.");
+        
+        List<FatesCharacter> characters = fatesCharacters.getWorkingCharacters();
+        
+        // Patch character table.
         for(FatesCharacter c : characters) {
             if(c.getId() == 0) // NPCs are not located in GameData!
                 continue;
 
+            // Write class information.
             CharacterBlock b = data.getCharacters().get(c.getId());
             if(options[0]) {
                 b.setClasses(new short[] {c.getCharacterClass().getId(), c.getCharacterClass().getTiedJob()});
@@ -27,17 +35,21 @@ public class GameDataHandler {
                 b.setWeaponRanks(fatesJobs.generateWeaponsRanks(c.getCharacterClass()));
             }
 
-            writeStats(c, b);
-            writeBitflags(c, b);
+            patchStats(c, b);
+            patchBitflags(c, b);
         }
-        patchChapters(characters, data);
+        patchChapters(data);
     }
 
-    private static void patchChapters(List<FatesCharacter> characters, FatesGameData data) {
+    private static void patchChapters(FatesGameData data) {
+        if(data == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchChapters. data must not be null.");
+        
         if(options[3]) {
             for(Chapter c : FatesChapters.getInstance().getChaptersByType(ChapterType.Child)) {
                 data.getChapters().get(c.getId()).setMarriedCharacter(fatesCharacters.getByPid(
-                        fatesCharacters.getReplacement(characters, c.getChildPid()).getLinkedPid()).getId());
+                        fatesCharacters.getReplacement(c.getChildPid()).getLinkedPid()).getId());
             }
         }
         if(options[11]) {
@@ -47,8 +59,20 @@ public class GameDataHandler {
         }
     }
 
-    private static void writeBitflags(FatesCharacter c, CharacterBlock b) {
+    private static void patchBitflags(FatesCharacter c, CharacterBlock b) {
+        if(c == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchBitflags. c must not be null.");
+        if(b == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchBitflags. b must not be null.");
+        
         FatesCharacter target = fatesCharacters.getByPid(c.getTargetPid());
+        if(target == null)
+            throw new RuntimeException("Error: patchBitflags. Target character for " +
+                    c.getName() + " returned null.");
+
+        // Set royal weapon and dragon vein flags for royal replacements.
         byte[] bitflags = b.getBitflags();
         if(target.isRoyal()) {
             bitflags[4] = 0x8;
@@ -71,18 +95,30 @@ public class GameDataHandler {
         }
     }
 
-    private static void writeStats(FatesCharacter c, CharacterBlock b) {
+    private static void patchStats(FatesCharacter c, CharacterBlock b) {
+        if(c == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchStats. c must not be null.");
+        if(b == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "patchStats. b must not be null.");
+
+        // Write randomized stats to the block.
         b.setStats(c.getStats());
         b.setGrowths(c.getGrowths());
         b.setModifiers(c.getModifiers());
+
+        // Write join-order specific stats to the block.
         if(options[3]) {
             b.setLevel(c.getLevel());
             b.setInternalLevel(c.getInternalLevel());
             if(c.getCharacterType() == CharacterType.SecondGen) {
                 b.setParent(fatesCharacters.getByPid(c.getLinkedPid()).getId());
             }
-            b.setSupportRoute((byte) 0x7);
+            b.setSupportRoute((byte) 0x7); // Unlock supports on all routes.
         }
+
+        // Write randomized skills to the block.
         if(options[1]) {
             short[] skillIds = new short[5];
             for(int x = 0; x < 5; x++) {

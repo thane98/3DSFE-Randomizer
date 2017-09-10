@@ -18,7 +18,9 @@ public class ClassRandomizer {
     private static List<Job> femalePlayerJobs = FatesJobs.getInstance().getEligibleJobs(false, 0x14);
     private static Random random = new Random();
 
-    public static void randomizeClasses(List<FatesCharacter> characters) {
+    public static void randomizeClasses() {
+        List<FatesCharacter> characters = FatesCharacters.getInstance().getWorkingCharacters();
+
         int pc = 0;
         for(FatesCharacter c : characters) {
             FatesCharacter target = FatesCharacters.getInstance().getByPid(c.getTargetPid());
@@ -38,7 +40,7 @@ public class ClassRandomizer {
             c.setReclasses(generateReclasses(c.isMale()));
         }
 
-        // The players classes must use the same weapons.
+        // Both players must be from classes that use the same weapon type.
         if(pc == 2) {
             while(characters.get(0).getCharacterClass().getItemType()
                     != characters.get(1).getCharacterClass().getItemType()) {

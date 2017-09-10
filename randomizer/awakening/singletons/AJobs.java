@@ -26,7 +26,7 @@ public class AJobs {
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/AwakeningClasses.json"))));
+                    .getResourceAsStream("data/json/AwakeningClasses.json"), "UTF-8")));
             jobs = gson.fromJson(reader, jobType);
             reader.close();
         } catch (IOException e) {

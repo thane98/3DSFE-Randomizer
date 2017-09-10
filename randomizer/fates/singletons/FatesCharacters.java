@@ -7,10 +7,11 @@ import randomizer.Randomizer;
 import randomizer.common.enums.CharacterType;
 import randomizer.fates.model.structures.FatesCharacter;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +20,26 @@ public class FatesCharacters {
     private List<FatesCharacter> characters;
     private List<String> bannedPids;
 
+    private List<FatesCharacter> workingCharacters;
+
     private FatesCharacters() {
-        Type characterType = new TypeToken<List<FatesCharacter>>() {}.getType();
         try {
+            // Parse default characters from JSON.
+            Type characterType = new TypeToken<List<FatesCharacter>>() {}.getType();
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/FatesCharacters.json"))));
+                    .getResourceAsStream("data/json/FatesCharacters.json"), "UTF-8")));
             characters = gson.fromJson(reader, characterType);
             reader.close();
 
-            bannedPids = Files.readAllLines(Paths.get(Randomizer.class.getResource(
-                    "data/text/FatesBannedPids.txt").toURI()));
+            // Parse banned PIDs.
+            BufferedReader streamReader = new BufferedReader(new InputStreamReader(Randomizer.class
+                    .getResourceAsStream("data/text/FatesBannedPids.txt"), "UTF-8"));
+            bannedPids = new ArrayList<>();
+            String line;
+            while((line = streamReader.readLine()) != null) {
+                bannedPids.add(line);
+            }
 
             // Parse custom characters.
             File customFile = new File(System.getProperty("user.dir"), "CustomCharacters.json");
@@ -49,7 +59,7 @@ public class FatesCharacters {
         return instance;
     }
 
-    public List<FatesCharacter> getSelectedCharacters() {
+    public List<FatesCharacter> getSelectedCharacters() { // TODO: Refactor getSelectedCharacters
         boolean[] selected = FatesGui.getInstance().getSelectedCharacters();
         List<FatesCharacter> selectedCharacters = new ArrayList<>();
         List<FatesCharacter> npcs = getCharactersByType(CharacterType.NPC);
@@ -66,6 +76,10 @@ public class FatesCharacters {
     }
 
     public List<FatesCharacter> getCharactersByType(CharacterType type) {
+        if(type == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getCharactersByType. type must not be null.");
+
         List<FatesCharacter> fatesCharacters = new ArrayList<>();
         for(FatesCharacter c : characters) {
             if(c.getCharacterType() == type)
@@ -75,23 +89,23 @@ public class FatesCharacters {
     }
 
     public FatesCharacter getByPid(String pid) {
-        for(FatesCharacter c : characters) {
+        if(pid == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getByPid. pid must not be null.");
+
+        for(FatesCharacter c : workingCharacters) {
             if(c.getPid().equals(pid))
                 return c;
         }
         return null;
     }
 
-    public FatesCharacter getByPid(List<FatesCharacter> characters, String pid) {
-        for(FatesCharacter c : characters) {
-            if(c.getPid().equals(pid))
-                return c;
-        }
-        return null;
-    }
+    public FatesCharacter getReplacement(String pid) {
+        if(pid == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getReplacement. pid must not be null.");
 
-    public FatesCharacter getReplacement(List<FatesCharacter> characters, String pid) {
-        for(FatesCharacter c : characters) {
+        for(FatesCharacter c : workingCharacters) {
             if(c.getTargetPid().equals(pid))
                 return c;
         }
@@ -104,5 +118,13 @@ public class FatesCharacters {
 
     public List<String> getBannedPids() {
         return bannedPids;
+    }
+
+    public List<FatesCharacter> getWorkingCharacters() {
+        return workingCharacters;
+    }
+
+    public void setWorkingCharacters(List<FatesCharacter> workingCharacters) {
+        this.workingCharacters = workingCharacters;
     }
 }

@@ -21,20 +21,31 @@ public class TextHandler {
     private static FatesChapters fatesChapters = FatesChapters.getInstance();
     private static FatesFiles fileData = FatesFiles.getInstance();
 
-    public static void randomizeText(List<FatesCharacter> characters) {
+    public static void randomizeText() {
+        List<FatesCharacter> characters = fatesCharacters.getWorkingCharacters();
         List<Chapter> chapters = fatesChapters.getSelectedChapters();
-        for(Chapter c : chapters) {
+        for(Chapter c : chapters)
             randomizeText(fileData.getText().get(c.getCid()), characters);
-        }
         randomizeText(fileData.getGMap(), characters);
     }
 
     private static void randomizeText(File file, List<FatesCharacter> characters) {
+        if(file == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeText. file must not be null.");
+        if(characters == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeText. characters must not be null.");
+
         try {
             List<String> text = Files.readAllLines(file.toPath());
+
             for(int x = 0; x < text.size(); x++) {
                 String s = text.get(x);
+
+                // Only valid text data should be modified.
                 if(s.startsWith("MID_")) {
+                    // Assign temporary labels to avoid getting duplicate copies of characters.
                     String[] split = s.split(": ", 2);
                     for(FatesCharacter ch : characters) {
                         if(ch.getCharacterType() == CharacterType.Player)
@@ -46,6 +57,8 @@ public class TextHandler {
                             split[1] = split[1].replaceAll(ch.getSound(), ch.getSound() + "TMP");
                         split[1] = split[1].replaceAll(ch.getName(), ch.getName() + "TMP");
                     }
+
+                    // Swap character names, portraits, and voice lines.
                     for(FatesCharacter ch : characters) {
                         if(ch.getCharacterType() == CharacterType.Player)
                             continue;
@@ -60,9 +73,10 @@ public class TextHandler {
                     text.set(x, split[0] + ": " + split[1]);
                 }
             }
+
+            // Write the text back to the binary file for usage in game.
             String[] lines = new String[text.size()];
-            for(int x = 0; x < text.size(); x++)
-                lines[x] = text.get(x);
+            text.toArray(lines);
             byte[] raw = MessageBinUtils.makeMessageArchive(lines);
             Files.write(file.toPath(), CompressionUtils.compress(raw));
         } catch (IOException e) {

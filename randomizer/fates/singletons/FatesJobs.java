@@ -22,11 +22,12 @@ public class FatesJobs {
     private List<Job> jobs;
 
     private FatesJobs() {
-        Type jobType = new TypeToken<List<Job>>() {}.getType();
         try {
+            // Parse jobs from JSON.
+            Type jobType = new TypeToken<List<Job>>() {}.getType();
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/FatesClasses.json"))));
+                    .getResourceAsStream("data/json/FatesClasses.json"), "UTF-8")));
             jobs = gson.fromJson(reader, jobType);
             reader.close();
         } catch (IOException e) {
@@ -85,6 +86,10 @@ public class FatesJobs {
     }
 
     public List<Job> getEligibleJobs(boolean male, int maxLength) {
+        if(maxLength < 1)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getEligibleJobs. maxLength must be greater than 0.");
+
         List<Job> eligible = new ArrayList<>();
         List<Job> pool;
         if(male)
@@ -104,6 +109,10 @@ public class FatesJobs {
     }
     
     public byte[] generateWeaponsRanks(Job j) {
+        if(j == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "generateItem. j must not be null.");
+
         byte[] weaponRanks = new byte[8];
         if(j.getItemType() == ItemType.Swords) {
             weaponRanks[0] = (byte) WeaponRank.C.value();

@@ -20,11 +20,12 @@ public class FatesSkills {
     private List<Skill> skills;
 
     private FatesSkills() {
-        Type skillType = new TypeToken<List<Skill>>() {}.getType();
         try {
+            // Parse skills from JSON.
+            Type skillType = new TypeToken<List<Skill>>() {}.getType();
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/FatesSkills.json"))));
+                    .getResourceAsStream("data/json/FatesSkills.json"), "UTF-8")));
             skills = gson.fromJson(reader, skillType);
             reader.close();
         } catch (IOException e) {
@@ -39,6 +40,10 @@ public class FatesSkills {
     }
 
     public Skill getSkillById(int id) {
+        if(id < 0)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "getSkillById. id must not be negative.");
+
         for(Skill s : skills) {
             if(s.getId() == id)
                 return s;

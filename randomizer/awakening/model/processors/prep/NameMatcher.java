@@ -35,8 +35,10 @@ public class NameMatcher {
 
         // Use the map to assign names.
         for(ACharacter c : ACharacters.getInstance().getCharacters()) {
-            if(c.getCharacterType() != CharacterType.Player)
-                c.setName(map.get(c.getMPid()));
+            if(c.getCharacterType() != CharacterType.Player) {
+                if(map.containsKey(c.getMPid()))
+                    c.setName(map.get(c.getMPid()));
+            }
         }
         for(Skill s : ASkills.getInstance().getSkills()) {
             s.setName(map.get("M" + s.getSeid()));

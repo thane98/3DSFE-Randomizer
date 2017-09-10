@@ -2,6 +2,7 @@ package randomizer.fates.model.processors.global;
 
 import randomizer.common.utils.BinUtils;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesFiles;
 import randomizer.fates.singletons.FatesItems;
 
@@ -20,7 +21,7 @@ public class CodeHandler {
             0x43, 0x49, 0x44, 0x5F, 0x41, 0x30, 0x30, 0x30
     };
 
-    public static void process(List<FatesCharacter> selected) {
+    public static void process() {
         try {
             // Find label offsets in code.bin
             byte[] raw = Files.readAllBytes(FatesFiles.getInstance().getCode().toPath());
@@ -30,13 +31,13 @@ public class CodeHandler {
             int maleClassOffset = classOffset + MALE_CLASS_OFFSET;
             int femaleClassOffset = classOffset + FEMALE_CLASS_OFFSET;
 
-            for(FatesCharacter c : selected) {
+            for(FatesCharacter c : FatesCharacters.getInstance().getWorkingCharacters()) {
                 if(c.getId() > 2)
                     break;
 
                 // Male player.
                 if(c.getId() == 1) {
-                    byte[] itemBytes = FatesItems.getInstance().generateDebugItem(c.getCharacterClass())
+                    byte[] itemBytes = FatesItems.getInstance().generatePlayerItem(c.getCharacterClass())
                             .getIid().getBytes("shift-jis");
                     byte[] maleClassBytes = c.getCharacterClass().getJid().getBytes("shift-jis");
                     for(int x = 0; x < 0x14; x++) {
@@ -52,7 +53,7 @@ public class CodeHandler {
 
                 // Female player.
                 if(c.getId() == 2) {
-                    byte[] itemBytes = FatesItems.getInstance().generateDebugItem(c.getCharacterClass())
+                    byte[] itemBytes = FatesItems.getInstance().generatePlayerItem(c.getCharacterClass())
                             .getIid().getBytes("shift-jis");
                     byte[] femaleClassBytes = c.getCharacterClass().getJid().getBytes("shift-jis");
                     for(int x = 0; x < 0x14; x++) {

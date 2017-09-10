@@ -2,7 +2,9 @@ package randomizer.gui.jmetro;
 
 import com.sun.javafx.scene.control.behavior.SliderBehavior;
 import com.sun.javafx.scene.control.skin.BehaviorSkinBase;
+
 import javafx.animation.Transition;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Point2D;
 import javafx.geometry.Side;
@@ -18,15 +20,14 @@ import javafx.util.StringConverter;
  */
 public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
 
-    /**
-     * Track if slider is vertical/horizontal and cause re layout
-     */
+    /** Track if slider is vertical/horizontal and cause re layout */
 //    private boolean horizontal;
     private NumberAxis tickLine = null;
     private double trackToTickGap = 2;
 
     private boolean showTickMarks;
     private double thumbWidth;
+    private double thumbHeight;
 
     private double trackStart;
     private double trackLength;
@@ -38,7 +39,8 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
     private StackPane thumb;
     private StackPane track;
     private StackPane fill;
-    //    private double visibleAmount = 16;
+    private boolean trackClicked = false;
+//    private double visibleAmount = 16;
 
     public FilledSliderSkin(Slider slider) {
         super(slider, new SliderBehavior(slider));
@@ -69,29 +71,56 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         getChildren().addAll(track, fill, thumb);
         setShowTickMarks(getSkinnable().isShowTickMarks(), getSkinnable().isShowTickLabels());
 
-        track.setOnMousePressed(this::mousePressedOnTrack);
-        track.setOnMouseDragged(this::mouseDraggedOnTrack);
-        fill.setOnMousePressed(this::mousePressedOnTrack);
-        fill.setOnMouseDragged(this::mouseDraggedOnTrack);
-
-        thumb.setOnMousePressed(me -> {
-            getBehavior().thumbPressed(me, 0.0f);
-            dragStart = thumb.localToParent(me.getX(), me.getY());
-            preDragThumbPos = (getSkinnable().getValue() - getSkinnable().getMin()) /
-                    (getSkinnable().getMax() - getSkinnable().getMin());
+        track.setOnMousePressed( new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent me) {
+                mousePressedOnTrack(me);
+            }
+        });
+        track.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                mouseDraggedOnTrack(me);
+            }
+        });
+        fill.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                mousePressedOnTrack(me);
+            }
+        });
+        fill.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                mouseDraggedOnTrack(me);
+            }
         });
 
-        thumb.setOnMouseReleased(me -> getBehavior().thumbReleased(me));
+        thumb.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent me) {
+                getBehavior().thumbPressed(me, 0.0f);
+                dragStart = thumb.localToParent(me.getX(), me.getY());
+                preDragThumbPos = (getSkinnable().getValue() - getSkinnable().getMin()) /
+                        (getSkinnable().getMax() - getSkinnable().getMin());
+            }
+        });
 
-        thumb.setOnMouseDragged(me -> {
-            Point2D cur = thumb.localToParent(me.getX(), me.getY());
-            double dragPos = (getSkinnable().getOrientation() == Orientation.HORIZONTAL) ?
-                    cur.getX() - dragStart.getX() : -(cur.getY() - dragStart.getY());
-            getBehavior().thumbDragged(me, preDragThumbPos + dragPos / trackLength);
+        thumb.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent me) {
+                getBehavior().thumbReleased(me);
+            }
+        });
+
+        thumb.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent me) {
+                Point2D cur = thumb.localToParent(me.getX(), me.getY());
+                double dragPos = (getSkinnable().getOrientation() == Orientation.HORIZONTAL)?
+                        cur.getX() - dragStart.getX() : -(cur.getY() - dragStart.getY());
+                getBehavior().thumbDragged(me, preDragThumbPos + dragPos / trackLength);
+            }
         });
     }
 
-    private void mousePressedOnTrack(MouseEvent mouseEvent) {
+    private void mousePressedOnTrack(MouseEvent mouseEvent)
+    {
         if (!thumb.isPressed()) {
             if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
                 getBehavior().trackPress(mouseEvent, (mouseEvent.getX() / trackLength));
@@ -101,7 +130,8 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    private void mouseDraggedOnTrack(MouseEvent mouseEvent) {
+    private void mouseDraggedOnTrack(MouseEvent mouseEvent)
+    {
         if (!thumb.isPressed()) {
             if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
                 getBehavior().trackPress(mouseEvent, (mouseEvent.getX() / trackLength));
@@ -111,16 +141,12 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    private StringConverter<Number> stringConverterWrapper = new StringConverter<Number>() {
+    StringConverter<Number> stringConverterWrapper = new StringConverter<Number>() {
         Slider slider = getSkinnable();
-
-        @Override
-        public String toString(Number object) {
-            return (object != null) ? slider.getLabelFormatter().toString(object.doubleValue()) : "";
+        @Override public String toString(Number object) {
+            return(object != null) ? slider.getLabelFormatter().toString(object.doubleValue()) : "";
         }
-
-        @Override
-        public Number fromString(String string) {
+        @Override public Number fromString(String string) {
             return slider.getLabelFormatter().fromString(string);
         }
     };
@@ -132,7 +158,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
             if (tickLine == null) {
                 tickLine = new NumberAxis();
                 tickLine.setAutoRanging(false);
-                tickLine.setSide(slider.getOrientation() == Orientation.VERTICAL ? Side.RIGHT : (slider.getOrientation() == null) ? Side.RIGHT : Side.BOTTOM);
+                tickLine.setSide(slider.getOrientation() == Orientation.VERTICAL ? Side.RIGHT : (slider.getOrientation() == null) ? Side.RIGHT: Side.BOTTOM);
                 tickLine.setUpperBound(slider.getMax());
                 tickLine.setLowerBound(slider.getMin());
                 tickLine.setTickUnit(slider.getMajorTickUnit());
@@ -141,7 +167,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
                 tickLine.setMinorTickVisible(ticksVisible);
                 // add 1 to the slider minor tick count since the axis draws one
                 // less minor ticks than the number given.
-                tickLine.setMinorTickCount(Math.max(slider.getMinorTickCount(), 0) + 1);
+                tickLine.setMinorTickCount(Math.max(slider.getMinorTickCount(),0) + 1);
                 if (slider.getLabelFormatter() != null) {
                     tickLine.setTickLabelFormatter(stringConverterWrapper);
                 }
@@ -152,7 +178,8 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
                 tickLine.setTickMarkVisible(ticksVisible);
                 tickLine.setMinorTickVisible(ticksVisible);
             }
-        } else {
+        }
+        else  {
             getChildren().clear();
             getChildren().addAll(track, fill, thumb);
 //            tickLine = null;
@@ -161,19 +188,18 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         getSkinnable().requestLayout();
     }
 
-    @Override
-    protected void handleControlPropertyChanged(String p) {
+    @Override protected void handleControlPropertyChanged(String p) {
         super.handleControlPropertyChanged(p);
         Slider slider = getSkinnable();
         if ("ORIENTATION".equals(p)) {
             if (showTickMarks && tickLine != null) {
-                tickLine.setSide(slider.getOrientation() == Orientation.VERTICAL ? Side.RIGHT : (slider.getOrientation() == null) ? Side.RIGHT : Side.BOTTOM);
+                tickLine.setSide(slider.getOrientation() == Orientation.VERTICAL ? Side.RIGHT : (slider.getOrientation() == null) ? Side.RIGHT: Side.BOTTOM);
             }
             getSkinnable().requestLayout();
         } else if ("VALUE".equals(p)) {
             // only animate thumb if the track was clicked - not if the thumb is dragged
-            positionThumb(false);
-        } else if ("MIN".equals(p)) {
+            positionThumb(trackClicked);
+        } else if ("MIN".equals(p) ) {
             if (showTickMarks && tickLine != null) {
                 tickLine.setLowerBound(slider.getMin());
             }
@@ -185,14 +211,14 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
             getSkinnable().requestLayout();
         } else if ("SHOW_TICK_MARKS".equals(p) || "SHOW_TICK_LABELS".equals(p)) {
             setShowTickMarks(slider.isShowTickMarks(), slider.isShowTickLabels());
-        } else if ("MAJOR_TICK_UNIT".equals(p)) {
+        }  else if ("MAJOR_TICK_UNIT".equals(p)) {
             if (tickLine != null) {
                 tickLine.setTickUnit(slider.getMajorTickUnit());
                 getSkinnable().requestLayout();
             }
         } else if ("MINOR_TICK_COUNT".equals(p)) {
             if (tickLine != null) {
-                tickLine.setMinorTickCount(Math.max(slider.getMinorTickCount(), 0) + 1);
+                tickLine.setMinorTickCount(Math.max(slider.getMinorTickCount(),0) + 1);
                 getSkinnable().requestLayout();
             }
         } else if ("TICK_LABEL_FORMATTER".equals(p)) {
@@ -210,12 +236,12 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
     /**
      * Called when ever either min, max or value changes, so thumb's layoutX, Y is recomputed.
      */
-    private void positionThumb(final boolean animate) {
+    void positionThumb(final boolean animate) {
         Slider s = getSkinnable();
         if (s.getValue() > s.getMax()) return;// this can happen if we are bound to something
         boolean horizontal = s.getOrientation() == Orientation.HORIZONTAL;
         final double endX = (horizontal) ? trackStart + (((trackLength * ((s.getValue() - s.getMin()) /
-                (s.getMax() - s.getMin()))) - thumbWidth / 2)) : thumbLeft;
+                (s.getMax() - s.getMin()))) - thumbWidth/2)) : thumbLeft;
         final double endY = (horizontal) ? thumbTop :
                 snappedTopInset() + trackLength - (trackLength * ((s.getValue() - s.getMin()) /
                         (s.getMax() - s.getMin()))); //  - thumbHeight/2
@@ -229,8 +255,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
                     setCycleDuration(Duration.millis(200));
                 }
 
-                @Override
-                protected void interpolate(double frac) {
+                @Override protected void interpolate(double frac) {
                     if (!Double.isNaN(startX)) {
                         thumb.setLayoutX(startX + frac * (endX - startX));
                     }
@@ -246,48 +271,47 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    @Override
-    protected void layoutChildren(final double x, final double y,
-                                  final double w, final double h) {
+    @Override protected void layoutChildren(final double x, final double y,
+                                            final double w, final double h) {
         // calculate the available space
         // resize thumb to preferred size
         thumbWidth = snapSize(thumb.prefWidth(-1));
-        double thumbHeight = snapSize(thumb.prefHeight(-1));
+        thumbHeight = snapSize(thumb.prefHeight(-1));
         thumb.resize(thumbWidth, thumbHeight);
         // we are assuming the is common radius's for all corners on the track
         double trackRadius = track.getBackground() == null ? 0 : track.getBackground().getFills().size() > 0 ?
                 track.getBackground().getFills().get(0).getRadii().getTopLeftHorizontalRadius() : 0;
 
         if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
-            double tickLineHeight = (showTickMarks) ? tickLine.prefHeight(-1) : 0;
+            double tickLineHeight =  (showTickMarks) ? tickLine.prefHeight(-1) : 0;
             double trackHeight = snapSize(track.prefHeight(-1));
-            double trackAreaHeight = Math.max(trackHeight, thumbHeight);
-            double totalHeightNeeded = trackAreaHeight + ((showTickMarks) ? trackToTickGap + tickLineHeight : 0);
-            double startY = y + ((h - totalHeightNeeded) / 2); // center slider in available height vertically
+            double trackAreaHeight = Math.max(trackHeight,thumbHeight);
+            double totalHeightNeeded = trackAreaHeight  + ((showTickMarks) ? trackToTickGap+tickLineHeight : 0);
+            double startY = y + ((h - totalHeightNeeded)/2); // center slider in available height vertically
             trackLength = snapSize(w - thumbWidth);
-            trackStart = snapPosition(x + (thumbWidth / 2));
-            double trackTop = (int) (startY + ((trackAreaHeight - trackHeight) / 2));
-            thumbTop = (int) (startY + ((trackAreaHeight - thumbHeight) / 2));
+            trackStart = snapPosition(x + (thumbWidth/2));
+            double trackTop = (int)(startY + ((trackAreaHeight-trackHeight)/2));
+            thumbTop = (int)(startY + ((trackAreaHeight-thumbHeight)/2));
 
             positionThumb(false);
             // layout track
-            track.resizeRelocate((int) (trackStart - trackRadius),
-                    trackTop,
-                    (int) (trackLength + trackRadius + trackRadius),
+            track.resizeRelocate((int)(trackStart - trackRadius),
+                    trackTop ,
+                    (int)(trackLength + trackRadius + trackRadius),
                     trackHeight);
-            fill.resizeRelocate((int) (trackStart - trackRadius),
-                    trackTop,
-                    ((int) trackStart - trackRadius) + thumb.getLayoutX(),
+            fill.resizeRelocate((int)(trackStart - trackRadius),
+                    trackTop ,
+                    ((int)trackStart - trackRadius) + thumb.getLayoutX(),
                     trackHeight);
             // layout tick line
             if (showTickMarks) {
                 tickLine.setLayoutX(trackStart);
-                tickLine.setLayoutY(trackTop + trackHeight + trackToTickGap);
+                tickLine.setLayoutY(trackTop+trackHeight+trackToTickGap);
                 tickLine.resize(trackLength, tickLineHeight);
                 tickLine.requestAxisLayout();
             } else {
                 if (tickLine != null) {
-                    tickLine.resize(0, 0);
+                    tickLine.resize(0,0);
                     tickLine.requestAxisLayout();
                 }
                 tickLine = null;
@@ -295,33 +319,33 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         } else {
             double tickLineWidth = (showTickMarks) ? tickLine.prefWidth(-1) : 0;
             double trackWidth = snapSize(track.prefWidth(-1));
-            double trackAreaWidth = Math.max(trackWidth, thumbWidth);
-            double totalWidthNeeded = trackAreaWidth + ((showTickMarks) ? trackToTickGap + tickLineWidth : 0);
-            double startX = x + ((w - totalWidthNeeded) / 2); // center slider in available width horizontally
+            double trackAreaWidth = Math.max(trackWidth,thumbWidth);
+            double totalWidthNeeded = trackAreaWidth  + ((showTickMarks) ? trackToTickGap+tickLineWidth : 0) ;
+            double startX = x + ((w - totalWidthNeeded)/2); // center slider in available width horizontally
             trackLength = snapSize(h - thumbHeight);
-            trackStart = snapPosition(y + (thumbHeight / 2));
-            double trackLeft = (int) (startX + ((trackAreaWidth - trackWidth) / 2));
-            thumbLeft = (int) (startX + ((trackAreaWidth - thumbWidth) / 2));
+            trackStart = snapPosition(y + (thumbHeight/2));
+            double trackLeft = (int)(startX + ((trackAreaWidth-trackWidth)/2));
+            thumbLeft = (int)(startX + ((trackAreaWidth-thumbWidth)/2));
 
             positionThumb(false);
             // layout track
             track.resizeRelocate(trackLeft,
-                    (int) (trackStart - trackRadius),
+                    (int)(trackStart - trackRadius),
                     trackWidth,
-                    (int) (trackLength + trackRadius + trackRadius));
+                    (int)(trackLength + trackRadius + trackRadius));
             fill.resizeRelocate(trackLeft,
-                    (int) (trackStart - trackRadius),
+                    (int)(trackStart - trackRadius),
                     trackWidth,
-                    ((int) trackStart - trackRadius) + thumb.getLayoutY());
+                    ((int)trackStart - trackRadius) + thumb.getLayoutY());
             // layout tick line
             if (showTickMarks) {
-                tickLine.setLayoutX(trackLeft + trackWidth + trackToTickGap);
+                tickLine.setLayoutX(trackLeft+trackWidth+trackToTickGap);
                 tickLine.setLayoutY(trackStart);
                 tickLine.resize(tickLineWidth, trackLength);
                 tickLine.requestAxisLayout();
             } else {
                 if (tickLine != null) {
-                    tickLine.resize(0, 0);
+                    tickLine.resize(0,0);
                     tickLine.requestAxisLayout();
                 }
                 tickLine = null;
@@ -329,53 +353,49 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    private double minTrackLength() {
-        return 2 * thumb.prefWidth(-1);
+    double minTrackLength() {
+        return 2*thumb.prefWidth(-1);
     }
 
-    @Override
-    protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
         final Slider s = getSkinnable();
         if (s.getOrientation() == Orientation.HORIZONTAL) {
             return (leftInset + minTrackLength() + thumb.minWidth(-1) + rightInset);
         } else {
-            return (leftInset + thumb.prefWidth(-1) + rightInset);
+            return(leftInset + thumb.prefWidth(-1) + rightInset);
         }
     }
 
-    @Override
-    protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computeMinHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
         final Slider s = getSkinnable();
         if (s.getOrientation() == Orientation.HORIZONTAL) {
-            return (topInset + thumb.prefHeight(-1) + bottomInset);
+            return(topInset + thumb.prefHeight(-1) + bottomInset);
         } else {
-            return (topInset + minTrackLength() + thumb.prefHeight(-1) + bottomInset);
+            return(topInset + minTrackLength() + thumb.prefHeight(-1) + bottomInset);
         }
     }
 
-    @Override
-    protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computePrefWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
         final Slider s = getSkinnable();
         if (s.getOrientation() == Orientation.HORIZONTAL) {
-            if (showTickMarks) {
+            if(showTickMarks) {
                 return Math.max(140, tickLine.prefWidth(-1));
             } else {
                 return 140;
             }
         } else {
             return leftInset + Math.max(thumb.prefWidth(-1), track.prefWidth(-1)) +
-                    ((showTickMarks) ? (trackToTickGap + tickLine.prefWidth(-1)) : 0) + rightInset;
+                    ((showTickMarks) ? (trackToTickGap+tickLine.prefWidth(-1)) : 0) + rightInset;
         }
     }
 
-    @Override
-    protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computePrefHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
         final Slider s = getSkinnable();
         if (s.getOrientation() == Orientation.HORIZONTAL) {
             return topInset + Math.max(thumb.prefHeight(-1), track.prefHeight(-1)) +
-                    ((showTickMarks) ? (trackToTickGap + tickLine.prefHeight(-1)) : 0) + bottomInset;
+                    ((showTickMarks) ? (trackToTickGap+tickLine.prefHeight(-1)) : 0)  + bottomInset;
         } else {
-            if (showTickMarks) {
+            if(showTickMarks) {
                 return Math.max(140, tickLine.prefHeight(-1));
             } else {
                 return 140;
@@ -383,8 +403,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    @Override
-    protected double computeMaxWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computeMaxWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {
         if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
             return Double.MAX_VALUE;
         } else {
@@ -392,8 +411,7 @@ public class FilledSliderSkin extends BehaviorSkinBase<Slider, SliderBehavior> {
         }
     }
 
-    @Override
-    protected double computeMaxHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
+    @Override protected double computeMaxHeight(double width, double topInset, double rightInset, double bottomInset, double leftInset) {
         if (getSkinnable().getOrientation() == Orientation.HORIZONTAL) {
             return getSkinnable().prefHeight(width);
         } else {

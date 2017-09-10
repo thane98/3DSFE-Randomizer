@@ -700,7 +700,7 @@
     "sound": "BOSS1",
     "id": 0,
     "male": true,
-    "promoted": true,
+    "promoted": false,
     "characterType": "NPC"
   },
   {
@@ -709,7 +709,7 @@
     "sound": "ZOLA",
     "id": 0,
     "male": true,
-    "promoted": true,
+    "promoted": false,
     "characterType": "NPC"
   },
   {
@@ -754,7 +754,7 @@
     "sound": "BOSS2",
     "id": 0,
     "male": true,
-    "promoted": true,
+    "promoted": false,
     "characterType": "NPC"
   }
 ]

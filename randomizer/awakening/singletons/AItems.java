@@ -27,7 +27,7 @@ public class AItems {
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new BufferedReader(new InputStreamReader(Randomizer.class
-                    .getResourceAsStream("data/json/AwakeningItems.json"))));
+                    .getResourceAsStream("data/json/AwakeningItems.json"), "UTF-8")));
             items = gson.fromJson(reader, itemType);
             reader.close();
         } catch (IOException e) {

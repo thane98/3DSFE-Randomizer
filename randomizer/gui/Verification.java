@@ -80,6 +80,7 @@ public class Verification implements Initializable {
                             verified = FatesVerifier.verify(file, regionBox.getSelectionModel().getSelectedItem());
                         }
                         if(verified) {
+                            // Since the folder passed verification, move on to the options stage.
                             Parent root;
                             try {
                                 if(gameBox.getSelectionModel().getSelectedIndex() == 0) {

@@ -62,8 +62,8 @@ public class MessageBinUtils
                 string[i] = bytes.get(i);
             }
             String archiveName = new String(string, "Shift_JIS");
-            int textPartitionLen = DecUtils.getUInt32(archive, 4);
-            int stringCount = DecUtils.getUInt32(archive, 0xC);
+            int textPartitionLen = ByteUtils.toInt(archive, 4);
+            int stringCount = ByteUtils.toInt(archive, 0xC);
             int stringMetaOffset = 0x20 + textPartitionLen;
             int namesOffset = stringMetaOffset + 0x8 * stringCount;
             if (archive.length < (0x20 + (long) textPartitionLen +
@@ -73,23 +73,21 @@ public class MessageBinUtils
             String[] messageNames = new String[stringCount];
             String[] messages = new String[stringCount];
             for (int i = 0; i < stringCount; i++) {
-                int messageOffset = 0x20 + DecUtils.getUInt32(archive,
+                int messageOffset = 0x20 + ByteUtils.toInt(archive,
                         stringMetaOffset + 0x8 * i);
                 int messageLen = 0;
-                while (DecUtils.getUInt16(archive, messageOffset + messageLen) != 0) {
+                while (ByteUtils.toShort(archive, messageOffset + messageLen) != 0) {
                     messageLen += 2;
                 }
                 byte[] message = new byte[messageLen];
-                for (int j = 0; j < messageLen; j++) {
-                    message[j] = archive[messageOffset + j];
-                }
+                System.arraycopy(archive, messageOffset + 0, message, 0, messageLen);
                 try {
                     messages[i] = new String(message, "UTF-16LE").replace("\n","\\n")
                             .replace("\r","\\r");
                 } catch (UnsupportedEncodingException ex) {
                     ex.printStackTrace();
                 }
-                int nameOffset = namesOffset + DecUtils.getUInt32(archive,
+                int nameOffset = namesOffset + ByteUtils.toInt(archive,
                         stringMetaOffset + (0x8 * i) + 4);
                 bytes.clear();
                 for (int j = nameOffset; j < archive.length; j++) {

@@ -33,16 +33,18 @@ public class FatesHub {
 
     private FatesSkills fatesSkills = FatesSkills.getInstance();
     private boolean[] options = FatesGui.getInstance().getSelectedOptions();
-    private List<FatesCharacter> selectedCharacters;
     private FatesGameData data;
-
+    
+    private FatesCharacters characters = FatesCharacters.getInstance();
+    
     public FatesHub() {
         PatchBuilder.createPatch();
-        selectedCharacters = FatesCharacters.getInstance().getSelectedCharacters();
         data = new FatesGameData(FatesFiles.getInstance().getGameData());
     }
 
     public void randomize() {
+        characters.setWorkingCharacters(characters.getSelectedCharacters());
+        
         setup();
         randomizeGlobalFiles();
         randomizeChapters();
@@ -51,7 +53,14 @@ public class FatesHub {
     }
 
     public void randomizeWithSettings(List<FatesCharacter> selectedCharacters) {
-        this.selectedCharacters = selectedCharacters;
+        if(selectedCharacters == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeWithSettings. selectedCharacters must not be null.");
+        if(selectedCharacters.size() == 0)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "randomizeWithSettings. selectedCharacters must have a size > 0");
+
+        characters.setWorkingCharacters(selectedCharacters);
         randomizeGlobalFiles();
         randomizeChapters();
         createOutputText();
@@ -63,19 +72,18 @@ public class FatesHub {
      * new classes, and recalculating stats.
      */
     private void setup() {
-        /* Assign target characters. If "Randomize Join Order" is not selected,
-         * the target will be the same as the original character.
-         */
-        CharacterMatcher.matchCharacters(selectedCharacters);
+        // Assign target characters. If "Randomize Join Order" is not selected,
+        // the target will be the same as the original character.
+        CharacterMatcher.matchCharacters();
 
         // Synchronize randomizer and GameData's characters.
         for(CharacterBlock c : data.getCharacters()) {
-            FatesCharacter character = FatesCharacters.getInstance().getByPid(selectedCharacters, c.getPid());
+            FatesCharacter character = FatesCharacters.getInstance().getByPid(c.getPid());
             if(character == null)
                 continue;
             if(character.getCharacterType() == CharacterType.NPC)
                 continue;
-            FatesCharacter replacement = FatesCharacters.getInstance().getReplacement(selectedCharacters, c.getPid());
+            FatesCharacter replacement = FatesCharacters.getInstance().getReplacement(c.getPid());
 
             // Promote Jakob/Felicia.
             if(character.getPid().equals("PID_フェリシア") || character.getPid().equals("PID_ジョーカー")
@@ -102,20 +110,20 @@ public class FatesHub {
         }
 
         // Perform matching, make edits to GameData.
-        ClassRandomizer.randomizeClasses(selectedCharacters);
-        StatCalculator.randomizeStats(selectedCharacters);
+        ClassRandomizer.randomizeClasses();
+        StatCalculator.randomizeStats();
     }
 
     private void randomizeChapters() {
-        ChapterHandler.randomizeChapterData(selectedCharacters);
-        ScriptHandler.randomizeScript(selectedCharacters);
+        ChapterHandler.randomizeChapterData();
+        ScriptHandler.randomizeScript();
         if(options[5])
-            TextHandler.randomizeText(selectedCharacters);
+            TextHandler.randomizeText();
     }
 
     private void randomizeGlobalFiles() {
         // GameData.bin.lz
-        GameDataHandler.randomizeGameData(data, selectedCharacters);
+        GameDataHandler.randomizeGameData(data);
         try {
             Files.write(FatesFiles.getInstance().getGameData().toPath(),
                     CompressionUtils.compress(data.getRaw()));
@@ -125,7 +133,7 @@ public class FatesHub {
 
         // code.bin
         if(FatesFiles.getInstance().getCode() != null)
-            CodeHandler.process(selectedCharacters);
+            CodeHandler.process();
     }
 
     private void createSettings() {
@@ -136,7 +144,7 @@ public class FatesHub {
             Gson gson = builder.create();
             SettingsWrapper wrapper = new SettingsWrapper();
             wrapper.setGui(FatesGui.getInstance());
-            wrapper.setCharacters(selectedCharacters);
+            wrapper.setCharacters(characters.getWorkingCharacters());
             gson.toJson(wrapper, writer);
         } catch(IOException ex) {
             ex.printStackTrace();
@@ -146,7 +154,7 @@ public class FatesHub {
     private void createOutputText() {
         File out = new File(System.getProperty("user.dir"), "results.txt");
         List<String> lines = new ArrayList<>();
-        for(FatesCharacter c : selectedCharacters) {
+        for(FatesCharacter c : characters.getWorkingCharacters()) {
             lines.add(c.toString());
         }
         try {

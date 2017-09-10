@@ -13,7 +13,10 @@ import randomizer.fates.singletons.FatesJobs;
 import randomizer.fates.singletons.FatesSkills;
 
 import java.io.File;
-import java.util.HashMap;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class NameMatcher {
     /**
@@ -24,8 +27,14 @@ public class NameMatcher {
      * @param file A compressed GameData text file.
      */
     public static void matchNames(File file) {
+        if(file == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "matchNames. file must not be null.");
+
+        // Decompress the file and extract it's text contents.
+        // Split each line and store the result in a map.
         String[] lines = MessageBinUtils.extractMessageArchive(CompressionUtils.decompress(file));
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new TreeMap<>();
         for(int x = 6; x < lines.length; x++) {
             String[] split = lines[x].split(": ");
             map.put(split[0], split[1]);
@@ -33,8 +42,10 @@ public class NameMatcher {
 
         // Use the map to assign names.
         for(FatesCharacter c : FatesCharacters.getInstance().getCharacters()) {
-            if(c.getCharacterType() != CharacterType.Player && !c.getPid().startsWith("PID_カンナ"))
-                c.setName(map.get(c.getMPid()));
+            if(c.getCharacterType() != CharacterType.Player && !c.getPid().startsWith("PID_カンナ")) {
+                if(map.containsKey(c.getMPid()))
+                    c.setName(map.get(c.getMPid()));
+            }
         }
         for(Skill s : FatesSkills.getInstance().getSkills()) {
             s.setName(map.get("M" + s.getSeid()));

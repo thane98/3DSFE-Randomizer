@@ -64,6 +64,7 @@ public class FatesOptions implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Build menus.
         menuBox.getItems().addAll(Arrays.asList(
                 "Basic Options", "Characters", "Classes",
                 "Skills", "Items", "Paths"
@@ -71,6 +72,7 @@ public class FatesOptions implements Initializable {
         menuBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
                 changeMenu(newValue));
 
+        // Bind stat sliders to properties in the FatesGui singleton.
         FatesGui gui = FatesGui.getInstance();
         gui.baseStatPassesProperty().bind(baseStatPasses.valueProperty());
         gui.baseStatMinProperty().bind(baseStatMin.valueProperty());
@@ -204,6 +206,8 @@ public class FatesOptions implements Initializable {
                 };
                 configList.getCheckModel().getCheckedIndices().addListener(listener);
                 break;
+            default:
+                throw new RuntimeException("Error: changeMenu. Unknown menu type specified.");
         }
     }
 

@@ -19,7 +19,9 @@ import java.util.List;
 public class CharacterMatcher {
     private static boolean[] options = FatesGui.getInstance().getSelectedOptions();
 
-    public static void matchCharacters(List<FatesCharacter> characters) {
+    public static void matchCharacters() {
+        List<FatesCharacter> characters = FatesCharacters.getInstance().getWorkingCharacters();
+
         // No join order randomization.
         if(!options[3]) {
             for(FatesCharacter c : characters)
@@ -57,6 +59,11 @@ public class CharacterMatcher {
     }
 
     private static void assignSameSexTargets(List<FatesCharacter> characters) {
+        if(characters == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "assignSameSexTargets. characters must not be null.");
+
+        // Sort by male/female.
         List<FatesCharacter> male = new ArrayList<>();
         List<FatesCharacter> female = new ArrayList<>();
         for(FatesCharacter c : characters) {
@@ -65,11 +72,17 @@ public class CharacterMatcher {
             else
                 female.add(c);
         }
+
+        // Assign from each list separately.
         assignTargets(male);
         assignTargets(female);
     }
 
     private static void assignTargets(List<FatesCharacter> characters) {
+        if(characters == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "assignTargets. characters must not be null.");
+
         List<String> pids = new ArrayList<>();
         for (FatesCharacter character : characters) {
             pids.add(character.getPid());
@@ -81,10 +94,17 @@ public class CharacterMatcher {
     }
 
     private static void assignParents(List<FatesCharacter> firstGen, List<FatesCharacter> secondGen) {
+        if(firstGen == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "assignParents. firstGen must not be null.");
+        if(secondGen == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "assignParents. secondGen must not be null.");
+
         List<Chapter> fatesChapters = FatesChapters.getInstance().getChaptersByType(ChapterType.Child);
         for(Chapter c : fatesChapters) {
-            FatesCharacter parent = FatesCharacters.getInstance().getReplacement(firstGen, c.getParentPid());
-            FatesCharacter child = FatesCharacters.getInstance().getReplacement(secondGen, c.getChildPid());
+            FatesCharacter parent = FatesCharacters.getInstance().getReplacement(c.getParentPid());
+            FatesCharacter child = FatesCharacters.getInstance().getReplacement(c.getChildPid());
             if(parent != null && child != null) {
                 parent.setLinkedPid(child.getPid());
                 child.setLinkedPid(parent.getPid());

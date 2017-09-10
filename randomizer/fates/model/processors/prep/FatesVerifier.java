@@ -37,17 +37,29 @@ public class FatesVerifier {
      * @return A boolean value indicating whether or not the ROM verified successfully.
      */
     public static boolean verify(File dir, String region) {
+        if(dir == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "verify. dir must not be null.");
+        if(region == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "verify. region must not be null.");
+
+        // Verification trackers.
         List<File> verified = new ArrayList<>();
         List<File> failures = new ArrayList<>();
         List<File> routeFailures = new ArrayList<>();
+
+        // Path-specific files.
         List<File> birthright = new ArrayList<>();
         List<File> conquest = new ArrayList<>();
         List<File> revelation = new ArrayList<>();
+
+        // Route flags.
         boolean birthrightFlag = false;
         boolean conquestFlag = false;
         boolean revelationFlag = false;
 
-        // Define text locations based off of region.
+        // Define text locations by region.
         File mainText;
         File birthrightText;
         File conquestText;
@@ -96,7 +108,7 @@ public class FatesVerifier {
                 revelationText = new File(dir.getAbsolutePath() + "/m/C/@F");
                 break;
             default:
-                return false; // Invalid region.
+                throw new IllegalArgumentException("Error : verify. Illegal region specified.");
         }
 
         // Verify that chapter-independent files exist.
@@ -120,6 +132,7 @@ public class FatesVerifier {
             verified.add(file);
         else
             failures.add(file);
+
         file = new File(mainText, "GameData.bin.lz");
         if(file.exists()) {
             NameMatcher.matchNames(file); // Get names from IDs.
@@ -127,9 +140,10 @@ public class FatesVerifier {
         else
             failures.add(file);
 
+        // Check chapter specific files.
         for(Chapter c : FatesChapters.getInstance().getChapters()) {
             if(c.getType() == ChapterType.AllRoutes || c.getType() == ChapterType.Child
-                    || c.getType() == ChapterType.Amiibo) {
+                    || c.getType() == ChapterType.Amiibo) { // Chapters available on all routes.
                 file = new File(mainText, c.getCid() + ".bin.lz");
                 if(file.exists())
                     verified.add(file);
@@ -276,6 +290,10 @@ public class FatesVerifier {
     }
 
     private static void outputErrorLog(List<File> failures) {
+        if(failures == null)
+            throw new IllegalArgumentException("Violation of precondidition: " +
+                    "outputErrorLog. failures must not be null.");
+
         List<String> out = new ArrayList<>();
         out.add("The following files failed to verify: ");
         for(File f : failures)

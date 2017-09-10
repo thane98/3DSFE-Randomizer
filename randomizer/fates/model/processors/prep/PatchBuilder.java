@@ -46,6 +46,7 @@ public class PatchBuilder {
 
         if(FatesFiles.getInstance().getCode() != null) {
             try {
+                // Copy code.bin to the patch directory.
                 File file = new File(patchDir, "code.bin");
                 Files.copy(FatesFiles.getInstance().getCode().toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 FatesFiles.getInstance().setCode(file);
@@ -54,13 +55,17 @@ public class PatchBuilder {
             }
         }
 
+        // Copy files from the selected romfs folder to the patch romfs folder.
+        // Store the copies in their corresponding variables.
         for(File f : FatesFiles.getInstance().getOriginalFileList()) {
+            // Don't copy files from routes that weren't selected.
             if(!FatesGui.getInstance().getSelectedPaths()[0] && f.getAbsolutePath().contains("\\A\\"))
                 continue;
             if(!FatesGui.getInstance().getSelectedPaths()[1] && f.getAbsolutePath().contains("\\B\\"))
                 continue;
             if(!FatesGui.getInstance().getSelectedPaths()[2] && f.getAbsolutePath().contains("\\C\\"))
                 continue;
+
             File copy = new File(f.getAbsolutePath().replace(FatesFiles.getInstance().getRom().getAbsolutePath(),
                     dir.getAbsolutePath()));
             if(!copy.getName().endsWith(".lz") && !copy.getName().endsWith(".cmb"))

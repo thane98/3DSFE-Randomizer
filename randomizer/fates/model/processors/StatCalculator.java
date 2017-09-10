@@ -2,6 +2,7 @@ package randomizer.fates.model.processors;
 
 import randomizer.common.structures.Skill;
 import randomizer.fates.model.structures.FatesCharacter;
+import randomizer.fates.singletons.FatesCharacters;
 import randomizer.fates.singletons.FatesGui;
 import randomizer.fates.singletons.FatesSkills;
 
@@ -16,7 +17,9 @@ public class StatCalculator {
     private static List<Skill> skills = FatesSkills.getInstance().getSelectedSkills();
     private static List<Skill> personalSkills = FatesSkills.getInstance().getSelectedPersonalSkills();
 
-    public static void randomizeStats(List<FatesCharacter> characters) {
+    public static void randomizeStats() {
+        List<FatesCharacter> characters = FatesCharacters.getInstance().getWorkingCharacters();
+
         for(FatesCharacter c : characters) {
             if(c.getId() == 0)
                 continue;
